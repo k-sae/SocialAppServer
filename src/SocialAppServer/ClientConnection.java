@@ -40,7 +40,6 @@ public class ClientConnection implements Connection {
 
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             objectOutputStream.writeObject(command);
-            System.out.println("sending");
             //if there is error remove this
 //                    objectOutputStream.close();
         } catch (

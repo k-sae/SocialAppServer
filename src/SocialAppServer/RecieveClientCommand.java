@@ -18,7 +18,5 @@ public class RecieveClientCommand extends ReceiveCommand {
     public void Analyze(Command command) {
         //TODO #AllTeam mem
         //our code starts Here HF
-        System.out.println((String)command.getSerializable());
-        connection.sendData(command);
     }
 }
