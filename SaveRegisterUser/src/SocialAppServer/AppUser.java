@@ -1,11 +1,9 @@
-package SocialAppGeneral;
-
-import java.io.Serializable;
+package SocialAppServer;
 
 /**
- * Created by kemo on 30/10/2016.
+ * Created by begad on 10/31/2016.
  */
-public class AppUser implements Serializable {
+public class AppUser {
     private UserInfo userInfo;
     private String ID;
     public UserInfo getUserInfo() {

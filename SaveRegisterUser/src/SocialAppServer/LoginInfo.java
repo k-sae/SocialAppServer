@@ -1,17 +1,17 @@
-package SocialAppGeneral;
-
-import java.io.Serializable;
+package SocialAppServer;
 
 /**
- * Created by kemo on 30/10/2016.
+ * Created by begad on 10/30/2016.
  */
-public class LoginInfo implements Serializable {
+public class LoginInfo {
     private String email;
     private String password;
+
     public LoginInfo() {
         this.email = "";
         this.password = "";
     }
+
     public String getEmail() {
         return email;
     }

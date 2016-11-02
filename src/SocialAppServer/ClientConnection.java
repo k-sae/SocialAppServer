@@ -13,7 +13,6 @@ import java.net.Socket;
  */
 //
 public class ClientConnection implements Connection {
-    //public class ClientConnection implements Connection {
     ServerSocket serverSocket;
     Socket clientSocket;
 

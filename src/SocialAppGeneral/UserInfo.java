@@ -10,6 +10,12 @@ public class UserInfo implements Serializable {
   private String fullName;
   private String BirthDate;
   private String Gender;
+  public UserInfo() {
+    this.fullName = "";
+    this.BirthDate = "";
+    this.Gender = "";
+  }
+
   public String getFullName() {
     return fullName;
   }
