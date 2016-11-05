@@ -20,7 +20,7 @@ public class Main {
        try{
            //create a server socket where the client will connect on the specified port
            ServerSocket serverSocket = new ServerSocket(port);
-           while(true){ // loop where the server wait for client to start his connection in a separate thread
+           while(true){ // loop where the server wait for client to start his connection may need to make these process in another thread
                Socket client = serverSocket.accept();
                ClientConnection clientConnection = new ClientConnection(serverSocket,client);
                clientConnections.add(clientConnection);

@@ -13,14 +13,14 @@ import java.net.Socket;
  */
 //
 public class ClientConnection implements Connection {
-    ServerSocket serverSocket;
-    Socket clientSocket;
+    private  ServerSocket serverSocket;
+   protected Socket clientSocket;
 
     public ClientConnection(ServerSocket serverSocket, Socket clientSocket) {
         this.serverSocket = serverSocket;
         this.clientSocket = clientSocket;
         //Read Client data im another thread so it doesnt disturb the server
-        RecieveClientCommand readClientData = new RecieveClientCommand(clientSocket, this);
+        ReceiveClientCommand readClientData = new ReceiveClientCommand(clientSocket, this);
         readClientData.start();
     }
 
@@ -31,9 +31,9 @@ public class ClientConnection implements Connection {
     }
 
     @Override
-    public void sendData(Command command) {
+    public void sendCommand(Command command) {
         //TODO #kareem
-        //Try to handle it int another thread (EPIC FAIL) use another way
+        //Try to handle it in another thread (EPIC FAIL) use another way
         // try to make it in another thread thats is w8ing for notify in loop
         try {
 
