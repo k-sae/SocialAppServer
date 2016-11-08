@@ -1,3 +1,8 @@
+# ignore all except our class diagram file
+src/
+out/
+.idea/
+
 *.class
 
 # Mobile Tools for Java (J2ME)
