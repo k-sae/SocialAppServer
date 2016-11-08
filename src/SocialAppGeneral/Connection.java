@@ -5,5 +5,4 @@ package SocialAppGeneral;
  */
 public interface Connection {
     void startConnection();
-    void sendCommand(Command data);
 }

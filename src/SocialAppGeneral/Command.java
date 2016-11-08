@@ -5,7 +5,19 @@ package SocialAppGeneral;
  */
 public class Command  {
     private String keyWord;
-    private Shareable object;
+    final String separator = "%&&&%";
+    private String sharableObject;
+    public String getObjectStr() {
+        return sharableObject;
+    }
+
+    public void setSharableObject(Shareable objectstr) {
+        this.sharableObject = objectstr.generateStringFromObject();
+    }
+    public void setSharableObject(String  objectstr) {
+        this.sharableObject = objectstr;
+    }
+
     public String getKeyWord() {
         return keyWord;
     }
@@ -13,15 +25,20 @@ public class Command  {
     public void setKeyWord(String keyWord) {
         this.keyWord = keyWord;
     }
-
-    public Shareable getSerializable() {
-        return object;
+    @Override
+    public String toString() {
+        return keyWord + separator + sharableObject;
     }
-
-    public void setSerializable(Shareable object) {
-        object = object;
+    public Command fromString(String s)
+    {
+        String[] commandStr = s.split(separator);
+        if(commandStr.length != 2)
+        {
+            return  null;
+        }
+        Command newCommand = new Command();
+        newCommand.setKeyWord(commandStr[0]);
+        newCommand.setSharableObject(commandStr[1]);
+        return newCommand;
     }
-
-
-
 }

@@ -22,9 +22,6 @@ abstract class ClientConnection implements Connection {
     @Override
    public abstract void startConnection();
 
-
-
-    @Override
     public void sendCommand(Command command) {
         //TODO #kareem
         //Try to handle it in another thread (EPIC FAIL) use another way

@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class RegisterInfo implements Serializable {
     private LoginInfo loginInfo;
-   private UserInfo UserInfo;
+   private SocialAppGeneral.UserInfo UserInfo;
 
     public LoginInfo getLoginInfo() {
         return loginInfo;

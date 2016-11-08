@@ -8,11 +8,9 @@ import java.net.Socket;
  */
 public abstract class ReceiveCommand extends Thread {
     private Socket remote;
-    protected Connection connection;
-    public ReceiveCommand(Socket remote, Connection connection)
+    public ReceiveCommand(Socket remote)
     {
         this.remote = remote;
-        this.connection = connection;
     }
     @Override
     public void run() {

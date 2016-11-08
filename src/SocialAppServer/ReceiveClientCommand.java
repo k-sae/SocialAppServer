@@ -11,7 +11,7 @@ import java.net.Socket;
  */
 public class ReceiveClientCommand extends ReceiveCommand {
     public ReceiveClientCommand(Socket remote, Connection connection) {
-        super(remote, connection);
+        super(remote);
     }
 
     @Override
