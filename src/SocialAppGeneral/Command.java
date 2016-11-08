@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Command implements Serializable {
     private String keyWord;
-
+    private Serializable serializable;
     public String getKeyWord() {
         return keyWord;
     }
@@ -24,6 +24,6 @@ public class Command implements Serializable {
         this.serializable = serializable;
     }
 
-    private Serializable serializable;
+
 
 }
