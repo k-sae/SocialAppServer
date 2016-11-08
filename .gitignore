@@ -2,7 +2,7 @@
 src/
 out/
 .idea/
-
+*.~vsdx
 *.class
 
 # Mobile Tools for Java (J2ME)
