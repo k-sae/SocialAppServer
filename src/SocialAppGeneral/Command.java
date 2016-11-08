@@ -1,13 +1,11 @@
 package SocialAppGeneral;
 
-import java.io.Serializable;
-
 /**
  * Created by kemo on 25/10/2016.
  */
-public class Command implements Serializable {
+public class Command  {
     private String keyWord;
-    private Serializable serializable;
+    private Shareable object;
     public String getKeyWord() {
         return keyWord;
     }
@@ -16,12 +14,12 @@ public class Command implements Serializable {
         this.keyWord = keyWord;
     }
 
-    public Serializable getSerializable() {
-        return serializable;
+    public Shareable getSerializable() {
+        return object;
     }
 
-    public void setSerializable(Serializable serializable) {
-        this.serializable = serializable;
+    public void setSerializable(Shareable object) {
+        object = object;
     }
 
 
