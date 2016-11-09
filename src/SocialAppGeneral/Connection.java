@@ -5,5 +5,5 @@ package SocialAppGeneral;
  */
 public interface Connection {
     void startConnection();
-    void sendData(Command data);
+    void sendCommand(Command data);
 }

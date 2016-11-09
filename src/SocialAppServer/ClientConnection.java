@@ -3,44 +3,37 @@ package SocialAppServer;
 import SocialAppGeneral.Command;
 import SocialAppGeneral.Connection;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
  * Created by kemo on 23/10/2016.
  */
 //
-public class ClientConnection implements Connection {
-    //public class ClientConnection implements Connection {
-    ServerSocket serverSocket;
-    Socket clientSocket;
+abstract class ClientConnection implements Connection {
+    protected Socket clientSocket;
 
-    public ClientConnection(ServerSocket serverSocket, Socket clientSocket) {
-        this.serverSocket = serverSocket;
+    public ClientConnection( Socket clientSocket) {
         this.clientSocket = clientSocket;
-        //Read Client data im another thread so it doesnt disturb the server
-        RecieveClientCommand readClientData = new RecieveClientCommand(clientSocket, this);
-        readClientData.start();
     }
+    //TODO #kareem
+    //Check for user input info
+    @Override
+   public abstract void startConnection();
+
+
 
     @Override
-    public void startConnection() {
+    public void sendCommand(Command command) {
         //TODO #kareem
-        //Check for user input info
-    }
-
-    @Override
-    public void sendData(Command command) {
-        //TODO #kareem
-        //Try to handle it int another thread (EPIC FAIL) use another way
+        //Try to handle it in another thread (EPIC FAIL) use another way
         // try to make it in another thread thats is w8ing for notify in loop
         try {
-
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-            objectOutputStream.writeObject(command);
-            System.out.println("sending");
+            //TODO #kareem
+            //add the new interface where all classes implements its
+            DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
+            //dataOutputStream.writeUTF(command);
             //if there is error remove this
 //                    objectOutputStream.close();
         } catch (
@@ -54,7 +47,7 @@ public class ClientConnection implements Connection {
         {
             //TODO
             //Export to Log
-            System.out.println("send Data\t" + e.getMessage());
+            System.out.println("E: send Data\t" + e.getMessage());
         }
 
     }
