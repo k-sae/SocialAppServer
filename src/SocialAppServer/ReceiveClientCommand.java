@@ -22,13 +22,6 @@ public class ReceiveClientCommand extends ReceiveCommand {
         //TODO #prototype
         if(command.getKeyWord().equals("changeColor"))
         {
-            //4 Debugging u dont have to sleep
-            //just making sure it works well on slow network connection
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             //DO ur algorithm
             Command command1 = new Command();
             command1.setKeyWord("changeColor");
