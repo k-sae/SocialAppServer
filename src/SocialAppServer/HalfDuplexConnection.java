@@ -8,14 +8,15 @@ import java.net.Socket;
 public class HalfDuplexConnection extends ClientConnection {
     public HalfDuplexConnection(Socket clientSocket) {
         super(clientSocket);
-        //Read Client data im another thread so it doesnt disturb the server
-        ReceiveClientCommand readClientData = new ReceiveClientCommand(clientSocket, this);
-        readClientData.start();
+        startConnection();
     }
 
     @Override
     public void startConnection() {
         //TODO #kareem
         //check for use info if false end the connection
+        //Read Client data im another thread so it doesnt disturb the server
+        ReceiveClientCommand readClientData = new ReceiveClientCommand(clientSocket, this);
+        readClientData.start();
     }
 }

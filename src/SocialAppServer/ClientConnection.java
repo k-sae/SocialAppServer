@@ -30,12 +30,9 @@ abstract class ClientConnection implements Connection {
             //TODO #kareem
             //add the new interface where all classes implements its
             DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
-            //dataOutputStream.writeUTF(command);
-            //if there is error remove this
-//                    objectOutputStream.close();
+            dataOutputStream.writeUTF(command.toString());
         } catch (
                 IOException e)
-
         {
             //For debugging
             System.out.println("send Data\t" + e.getMessage());

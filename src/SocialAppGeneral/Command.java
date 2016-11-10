@@ -5,7 +5,7 @@ package SocialAppGeneral;
  */
 public class Command  {
     private String keyWord;
-    final String separator = "%&&&%";
+    final static String separator = "%&&&%";
     private String sharableObject;
     public String getObjectStr() {
         return sharableObject;
@@ -29,7 +29,7 @@ public class Command  {
     public String toString() {
         return keyWord + separator + sharableObject;
     }
-    public Command fromString(String s)
+    public static Command fromString(String s)
     {
         String[] commandStr = s.split(separator);
         if(commandStr.length != 2)

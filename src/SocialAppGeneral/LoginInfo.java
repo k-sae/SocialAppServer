@@ -1,11 +1,9 @@
 package SocialAppGeneral;
 
-import java.io.Serializable;
-
 /**
  * Created by kemo on 30/10/2016.
  */
-public class LoginInfo implements Serializable {
+public class LoginInfo implements Shareable {
     private String email;
     private String password;
     public LoginInfo() {
@@ -26,5 +24,15 @@ public class LoginInfo implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public Shareable generateObjectFromString() {
+        return null;
+    }
+
+    @Override
+    public String generateStringFromObject() {
+        return null;
     }
 }
