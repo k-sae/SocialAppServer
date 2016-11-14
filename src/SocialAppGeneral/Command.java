@@ -12,7 +12,7 @@ public class Command  {
     }
 
     public void setSharableObject(Shareable objectstr) {
-        this.sharableObject = objectstr.generateStringFromObject();
+        this.sharableObject = objectstr.convertToString();
     }
     public void setSharableObject(String  objectstr) {
         this.sharableObject = objectstr;

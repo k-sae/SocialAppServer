@@ -1,4 +1,4 @@
-package FilesManeger;
+package SocialAppGeneral;
 
 /**
  * Created by begad on 10/30/2016.

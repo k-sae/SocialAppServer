@@ -36,5 +36,8 @@ public class ReceiveClientCommand extends ReceiveCommand {
             //lastly send new command to the client
             connection.sendCommand(command1);
         }
+        if(command.getKeyWord().equals("new register")){
+
+        }
     }
 }
