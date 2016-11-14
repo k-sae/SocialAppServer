@@ -9,14 +9,14 @@ public class Saver {
     //TODO #hazem
     //Replace file names with constants
     public static boolean SaveTemp(RegisterUser RUser) {
-        FilesManger.CreateFolder("Registered Users");
+        FilesManger.CreateFolder("Temp");
 
         if (!FilesManger.FileIsExist("Registered Users\\Register Requests.txt"))
         {
             FilesManger.OpenToWrite("Registered Users","Register Requests.txt");
         }
 
-        String Id = Generator.GenerateID(RUser.getLoginInfo().getEmail());
+        String Id = Generator.GenerateID(RUser.getLoginInfo().getEMAIL());
 
         if (FilesManger.FileIsExist("Registered Users\\"+Id)) {
             return false;
@@ -36,7 +36,7 @@ public class Saver {
 
             //write User Login Info on a Formed Line
             FormedLine LoginInfoLine = new FormedLine();
-            LoginInfoLine.AddPartition("Email",RUser.getLoginInfo().getEmail());
+            LoginInfoLine.AddPartition("Email",RUser.getLoginInfo().getEMAIL());
             LoginInfoLine.AddPartition("Password",RUser.getLoginInfo().getPassword());
 
             //Writ The Formed LoginInfoLine on The User Info File
