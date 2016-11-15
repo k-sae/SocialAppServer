@@ -14,12 +14,11 @@ public class ReceiveClientCommand extends ReceiveCommand {
         super(remote);
         this.connection = connection;
     }
-
     @Override
     public void Analyze(Command command) {
         //TODO #AllTeam mem
         //our code starts Here HF
-        //TODO #prototype
+        //TODO #Server Command prototype
         if(command.getKeyWord().equals("changeColor"))
         {
             //DO ur algorithm

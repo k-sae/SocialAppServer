@@ -24,15 +24,15 @@ public class RegisterInfo implements Shareable {
     }
 
     @Override
-    public void setAttributes(String s) {
+    public void fromJsonString(String s) {
 
     }
 
     @Override
-    public String convertToString() {
+    public String convertToJsonString() {
         FormedLine regFormedLined = new FormedLine();
-        regFormedLined.AddPartition("userInfo", UserInfo.convertToString());
-        regFormedLined.AddPartition("loginInfo", loginInfo.convertToString());
+        regFormedLined.AddPartition("userInfo", UserInfo.convertToJsonString());
+        regFormedLined.AddPartition("loginInfo", loginInfo.convertToJsonString());
         return regFormedLined.getLine();
 
     }

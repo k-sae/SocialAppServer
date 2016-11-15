@@ -43,7 +43,7 @@ public class UserInfo implements Shareable {
   }
 
   @Override
-  public void setAttributes(String s) {
+  public void fromJsonString(String s) {
     FormedLine formedLine = new FormedLine();
     formedLine.setLine(s);
     fullName = formedLine.ReadPartition(FULL_NAME).Value;
@@ -52,7 +52,7 @@ public class UserInfo implements Shareable {
   }
 
   @Override
-  public String convertToString() {
+  public String convertToJsonString() {
     //use Begad Class
     FormedLine formedLine = new FormedLine();
     formedLine.AddPartition(FULL_NAME, fullName);
