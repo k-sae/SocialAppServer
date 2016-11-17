@@ -5,4 +5,5 @@ package FileManagment;
  */
 public interface FilesPath {
     String USERS = "users\\";
+    String GROUPS="groups\\";
 }
