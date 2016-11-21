@@ -1,5 +1,7 @@
 package SocialAppGeneral;
 
+import com.google.gson.Gson;
+
 /**
  * Created by kemo on 30/10/2016.
  */
