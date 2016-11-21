@@ -1,13 +1,11 @@
 package SocialAppGeneral;
 
-import com.google.gson.Gson;
-
 /**
  * Created by kemo on 30/10/2016.
  */
 public class RegisterInfo implements Shareable {
     private LoginInfo loginInfo;
-   private UserInfo UserInfo;
+   private SocialAppGeneral.UserInfo UserInfo;
 
     public LoginInfo getLoginInfo() {
         return loginInfo;
@@ -25,17 +23,10 @@ public class RegisterInfo implements Shareable {
         UserInfo = userInfo;
     }
 
-    @Override
-    public void fromJsonString(String s) {
 
-    }
 
-    @Override
     public String convertToJsonString() {
-        FormedLine regFormedLined = new FormedLine();
-        regFormedLined.AddPartition("userInfo", UserInfo.convertToJsonString());
-        regFormedLined.AddPartition("loginInfo", loginInfo.convertToJsonString());
-        return regFormedLined.getLine();
-
+        //TODO #hazem
+       return null;
     }
 }

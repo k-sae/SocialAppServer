@@ -33,7 +33,7 @@ public class FormedLine {
     }
 
     //read a partition from line
-    public Partition ReadPartition() {
+    public SocialAppGeneral.Partition ReadPartition() {
         Partition.Clean();
         if (Cursor < line.length()) {
             while (Cursor < line.length() && line.charAt(Cursor) != '=') {
@@ -51,7 +51,9 @@ public class FormedLine {
     }
 
     //Read a spicific Partition by its Variable Name
-    public Partition ReadPartition(String VariableName) {
+
+    public SocialAppGeneral.Partition ReadPartition(String VariableName) {
+
         Partition.Clean();
         Partition.VariableName = VariableName;
         int Counter = line.indexOf(VariableName) + VariableName.length() + 2;
