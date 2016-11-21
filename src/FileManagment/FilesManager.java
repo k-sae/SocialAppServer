@@ -1,3 +1,4 @@
+
 package FileManagment;
 
 import java.io.*;
@@ -5,7 +6,8 @@ import java.io.*;
 /**
  * Created by begad on 10/30/2016.
  */
-public class FilesManger {
+public class FilesManager {
+
     public static File CreateFolder(String FolderName) {
         File Folder = new File(FolderName);
         return Folder.mkdir() ? Folder : null;
@@ -132,10 +134,10 @@ public class FilesManger {
 
             /*
             Path path = Paths.get(FileName);
-            List<String> lines = java.nio.file.FilesManger.readAllLines(path);
+            List<String> lines = java.nio.file.Files.readAllLines(path);
 
             lines.add(0, Line);
-            java.nio.file.FilesManger.write(path,lines);
+            java.nio.file.Files.write(path,lines);
             */
 
             BufferedReader BR = new BufferedReader(new FileReader(FileName));

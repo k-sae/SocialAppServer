@@ -5,5 +5,10 @@ package FileManagment;
  */
 public interface FilesPath {
     String USERS = "users\\";
+<<<<<<< HEAD
     String GROUPS="groups\\";
+=======
+    String UNREIGESTERDUSERS= "temp\\";
+    String BLOCKEDUSERS = "bannedusers\\";
+>>>>>>> develop
 }
