@@ -1,4 +1,4 @@
-package FileManagment;
+package SocialAppGeneral;
 
 /**
  * Created by begad on 10/30/2016.
@@ -6,7 +6,7 @@ package FileManagment;
 public class FormedLine {
     private String line;
     private int Cursor;
-    private Partition Partition;
+    private SocialAppGeneral.Partition Partition;
 
     //Constructor
     public FormedLine() {

@@ -5,4 +5,6 @@ package FileManagment;
  */
 public interface FilesPath {
     String USERS = "users\\";
+    String UNREIGESTERDUSERS= "temp\\";
+    String BLOCKEDUSERS = "bannedusers\\";
 }
