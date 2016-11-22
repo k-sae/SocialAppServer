@@ -16,8 +16,8 @@ public class Main {
     public static List<ClientConnection> clientConnections;
     public static void main(String[] args){
         clientConnections = new ArrayList<>();
-       int port = args.length < 2 ? 6060 : Integer.parseInt(args[0]);
-        AcceptSecondaryConnection acceptSecondaryConnection = new AcceptSecondaryConnection(6061);
+       int port = args.length < 2 ? 6080 : Integer.parseInt(args[0]);
+        AcceptSecondaryConnection acceptSecondaryConnection = new AcceptSecondaryConnection(6081);
         acceptSecondaryConnection.start();
        try{
            //create a server socket where the client will connect on the specified port
