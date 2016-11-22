@@ -42,22 +42,8 @@ public class UserInfo implements Shareable {
     this.gender = gender;
   }
 
-  @Override
-  public void fromJsonString(String s) {
-    FormedLine formedLine = new FormedLine();
-    formedLine.setLine(s);
-    fullName = formedLine.ReadPartition(FULL_NAME).Value;
-    birthDate = formedLine.ReadPartition(BIRTH_DATE).Value;
-    gender = formedLine.ReadPartition(GENDER).Value;
-  }
-
-  @Override
   public String convertToJsonString() {
-    //use Begad Class
-    FormedLine formedLine = new FormedLine();
-    formedLine.AddPartition(FULL_NAME, fullName);
-    formedLine.AddPartition(BIRTH_DATE, birthDate);
-    formedLine.AddPartition(GENDER, gender);
-    return formedLine.getLine();
+    //TODO #hazem
+    return null;
   }
 }

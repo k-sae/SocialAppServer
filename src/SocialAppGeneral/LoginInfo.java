@@ -10,19 +10,22 @@ public class LoginInfo implements Shareable {
     //TODO #prototype GSON
     //just for prototype will be removed
     private transient final String EMAIL ="email"; //using transient GSON will ignore this obj and wont put it in string
+
     private String email;
     private String password;
     public LoginInfo() {
         this.email = "";
         this.password = "";
     }
-    public String getEmail() {
+    public String getEMAIL() {
         return email;
     }
+
 
     public void setEmail(String EMAIL) {
         this.email = EMAIL;
     }
+
 
     public String getPassword() {
         return password;
@@ -32,14 +35,11 @@ public class LoginInfo implements Shareable {
         this.password = password;
     }
 
-    @Override
-    public  void fromJsonString(String jsonStr) {
+    public static LoginInfo fromJsonString(String jsonStr) {
         //TODO #prototype GSON
-        //Read JSON
+        //Read from JSON
          Gson gson = new Gson();
-        LoginInfo loginInfo = gson.fromJson(jsonStr,LoginInfo.class);
-        this.email = loginInfo.getEmail();
-        this.password = loginInfo.getPassword();
+        return  gson.fromJson(jsonStr, LoginInfo.class);
     }
 
     @Override
