@@ -3,7 +3,7 @@ package SocialAppGeneral;
 /**
  * Created by khaled hesham on 11/12/2016.
  */
- public class GroupInfo implements Shareable {
+ public class GroupInfo {
     private  String Groupname;
     private  Boolean Pinpost;
     private  int Imageid;
@@ -32,13 +32,5 @@ package SocialAppGeneral;
     public void setGroupid(int groupid){
         Groupid=groupid;
     }
-    @Override
-    public Shareable generateObjectFromString() {
-        return null;
-    }
 
-    @Override
-    public String generateStringFromObject() {
-        return null;
-    }
 }
