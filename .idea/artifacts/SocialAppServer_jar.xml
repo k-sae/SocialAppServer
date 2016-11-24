@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SocialAppServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SocialAppServer_jar</output-path>
+    <root id="archive" name="SocialAppServer.jar">
+      <element id="module-output" name="SocialAppServer" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/gson-2.8.0.zip" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

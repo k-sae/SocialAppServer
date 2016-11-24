@@ -14,27 +14,35 @@ public class Main {
     //TODO #kareem
     //dont forget to remove clientConnection when he dcs
     public static List<ClientConnection> clientConnections;
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         clientConnections = new ArrayList<>();
-       int port = args.length < 2 ? 6080 : Integer.parseInt(args[0]);
-        AcceptSecondaryConnection acceptSecondaryConnection = new AcceptSecondaryConnection(6081);
-        acceptSecondaryConnection.start();
-       try{
-           //create a server socket where the client will connect on the specified port
-           ServerSocket serverSocket = new ServerSocket(port);
-           while(true){ // loop where the server wait for client to start his connection may need to make these process in another thread
-               Socket client = serverSocket.accept();
-               HalfDuplexConnection clientConnection = new HalfDuplexConnection(client);
-               clientConnections.add(clientConnection);
-           }
-       }catch (IOException e) {
-           //Error reporting 4 Debugging later will use log class
-           System.out.println("main\t" + e.getMessage() );
-       }
-       catch (Exception e)
-       {
-           //TODO
-           //Export to log files
-       }
+        final int mainPort = 6000;
+        final int secondryPort = 6101;
+        SecondaryConnection secondaryConnection = new SecondaryConnection(secondryPort);
+        secondaryConnection.start();
+        //start main Connection up here
+        startMainConnection(mainPort);
+
+    }
+
+    @SuppressWarnings("InfiniteLoopStatement")
+    private static void startMainConnection(int startPort) {
+        for (int i = startPort; i < startPort + 100; i++) {
+            try {
+                //create a server socket where the client will connect on the specified startPort
+                ServerSocket serverSocket = new ServerSocket(i);
+                while (true) { // loop where the server wait for client to start his connection may need to make these process in another thread
+                    Socket client = serverSocket.accept();
+                    HalfDuplexConnection clientConnection = new HalfDuplexConnection(client);
+                    clientConnections.add(clientConnection);
+                }
+            } catch (IOException e) {
+                //Error reporting 4 Debugging later will use log class
+            } catch (Exception e) {
+                //TODO
+                //Export to log files
+            }
+        }
     }
 }

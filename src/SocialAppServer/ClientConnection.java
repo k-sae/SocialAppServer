@@ -23,12 +23,7 @@ abstract class ClientConnection implements Connection {
    public abstract void startConnection();
 
     public void sendCommand(Command command) {
-        //TODO #kareem
-        //Try to handle it in another thread (EPIC FAIL) use another way
-        // try to make it in another thread thats is w8ing for notify in loop
         try {
-            //TODO #kareem
-            //add the new interface where all classes implements its
             DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
             dataOutputStream.writeUTF(command.toString());
         } catch (
