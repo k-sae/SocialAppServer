@@ -1,0 +1,1 @@
+{"loginInfo":{"email":"5@yahoo.com","password":"sdasdasdasda"},"UserInfo":{"FULL_NAME":"fullName","BIRTH_DATE":"birthDate","GENDER":"gender","fullName":"sdasdasadasdasd","birthDate":"2012-11-13","gender":"RadioButton@1a850d0a[styleClass\u003dradio-button]\u0027Male\u0027"}}

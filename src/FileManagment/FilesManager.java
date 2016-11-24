@@ -82,15 +82,17 @@ public class FilesManager {
     //belal
     public static Boolean AddLine(String FileName, String text) {
         try {
-            BufferedWriter WT = new BufferedWriter(new FileWriter(FileName, true));
+            BufferedWriter WT = new BufferedWriter(new FileWriter(FileName,true));
             WT.write(text);
-            WT.newLine();
+           WT.newLine();
+            WT.flush();
             WT.close();
-            return true;
-        } catch (IOException ex) {
-            return false;
-        }
+          return true;
+       } catch (IOException ex) {
+           return false;
+       }
     }
+
 
     public static String ReadLine(String FileName, int lineNum) {
         try {
@@ -106,6 +108,20 @@ public class FilesManager {
             return line;
         } catch (IOException ex) {
             return null;
+        }
+    }
+    public static boolean ReadLine(String FileName, String token) {
+        try {
+            BufferedReader RL = new BufferedReader(new FileReader(FileName));
+            String line;
+            while ((line = RL.readLine()) != null) {
+                if (line.contains(token)) {
+                   return true;
+                }
+            }
+            return false;
+        } catch (IOException ex) {
+            return false;
         }
     }
 

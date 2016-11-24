@@ -19,7 +19,15 @@ public class Generator {
         String ID="";
         for(int i=0;i<modified.length();i++)
             ID+=modified.charAt(i)-97;
-
+        //try another ways
+        String mod="00";
+        //String modf="";
+        if(ID.length()>=3){
+        ID=ID.substring(0,ID.length()-2);
+            ID=ID+mod;
+        }else{
+            ID="0";
+        }
         return ID;
     }
     }
