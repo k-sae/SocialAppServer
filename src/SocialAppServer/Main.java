@@ -18,8 +18,8 @@ public class Main {
     public static void main(String[] args) {
         clientConnections = new ArrayList<>();
         final int mainPort = 6000;
-        final int secondryPort = 6101;
-        SecondaryConnection secondaryConnection = new SecondaryConnection(secondryPort);
+        final int secondaryPort = 6101;
+        SecondaryConnection secondaryConnection = new SecondaryConnection(secondaryPort);
         secondaryConnection.start();
         //start main Connection up here
         startMainConnection(mainPort);
@@ -28,7 +28,7 @@ public class Main {
 
     @SuppressWarnings("InfiniteLoopStatement")
     private static void startMainConnection(int startPort) {
-        for (int i = startPort; i < startPort + 100; i++) {
+        for (int i = startPort; i < startPort + 10; i++) {
             try {
                 //create a server socket where the client will connect on the specified startPort
                 ServerSocket serverSocket = new ServerSocket(i);

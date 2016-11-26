@@ -8,10 +8,10 @@ import java.util.ArrayList;
 /**
  * Created by kemo on 06/11/2016.
  */
-public class SecondaryConnection extends Thread {
+class SecondaryConnection extends Thread {
     private int port;
-    public static ArrayList<NotificationSimplexConnection> connections;
-    public SecondaryConnection(int port)
+    private static ArrayList<NotificationSimplexConnection> connections;
+    SecondaryConnection(int port)
     {
         this.port = port;
         connections = new ArrayList<>();
@@ -20,7 +20,7 @@ public class SecondaryConnection extends Thread {
     @Override
     public void run() {
         super.run();
-        for (int i = port; i < port + 100; i++) {
+        for (int i = port; i < port + 10; i++) {
             try {
                 //noinspection InfiniteLoopStatement
                 while (true) {

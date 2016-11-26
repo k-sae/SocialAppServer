@@ -11,18 +11,21 @@ import java.net.Socket;
  * Created by kemo on 23/10/2016.
  */
 //
-abstract class ClientConnection implements Connection {
-    protected Socket clientSocket;
 
-    public ClientConnection( Socket clientSocket) {
+abstract class ClientConnection implements Connection {
+    Socket clientSocket;
+
+    ClientConnection(Socket clientSocket) {
         this.clientSocket = clientSocket;
+        sendVerificationCode();
+        startConnection();
     }
     //TODO #kareem
     //Check for user input info
     @Override
    public abstract void startConnection();
 
-    public void sendCommand(Command command) {
+    void sendCommand(Command command) {
         try {
             DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
             dataOutputStream.writeUTF(command.toString());
@@ -39,6 +42,15 @@ abstract class ClientConnection implements Connection {
             System.out.println("E: send Data\t" + e.getMessage());
         }
 
+    }
+    private void sendVerificationCode()
+    {
+        try {
+            DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
+            dataOutputStream.write(VERIFICATION.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
