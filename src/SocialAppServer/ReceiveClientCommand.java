@@ -3,16 +3,15 @@ package SocialAppServer;
 import FileManagment.Saver;
 import SocialAppGeneral.Command;
 import SocialAppGeneral.ReceiveCommand;
-import SocialAppGeneral.RegisterInfo;
 
 import java.net.Socket;
 
 /**
  * Created by kemo on 25/10/2016.
  */
-public class ReceiveClientCommand extends ReceiveCommand {
-    HalfDuplexConnection connection;
-    public ReceiveClientCommand(Socket remote, HalfDuplexConnection connection) {
+class ReceiveClientCommand extends ReceiveCommand {
+    private HalfDuplexConnection connection;
+    ReceiveClientCommand(Socket remote, HalfDuplexConnection connection) {
         super(remote);
         this.connection = connection;
     }
