@@ -14,7 +14,7 @@ public class FilesManager {
     }
 
     public static File CreateFolder(String ExistedFolderName, String NewFolderName) {
-        File Folder = new File(ExistedFolderName,NewFolderName);
+        File Folder = new File(ExistedFolderName, NewFolderName);
         return Folder.mkdir() ? Folder : null;
     }
 
@@ -50,7 +50,7 @@ public class FilesManager {
 
     public static BufferedWriter OpenToWrite(String FolderName, String FileName) {
         try {
-            File file = new File(FolderName,FileName);
+            File file = new File(FolderName, FileName);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
             return bufferWriter;
@@ -124,7 +124,7 @@ public class FilesManager {
     }
 
     public static boolean FileIsExist(String FolderName, String FileName) {
-        File file = new File(FolderName,FileName);
+        File file = new File(FolderName, FileName);
         return file.exists();
     }
 
@@ -197,3 +197,4 @@ public class FilesManager {
         return file.exists();
     }
 }
+

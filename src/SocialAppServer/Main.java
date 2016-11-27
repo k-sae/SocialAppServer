@@ -1,5 +1,7 @@
 package SocialAppServer;
 
+import SocialAppGeneral.Group;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,7 +16,7 @@ public class Main {
     //TODO #kareem
     //dont forget to remove clientConnection when he dcs
     public static List<ClientConnection> clientConnections;
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         clientConnections = new ArrayList<>();
        int port = args.length < 2 ? 6080 : Integer.parseInt(args[0]);
         AcceptSecondaryConnection acceptSecondaryConnection = new AcceptSecondaryConnection(6081);
@@ -36,5 +38,7 @@ public class Main {
            //TODO
            //Export to log files
        }
+        Group group=new Group("khaled");
+
     }
 }

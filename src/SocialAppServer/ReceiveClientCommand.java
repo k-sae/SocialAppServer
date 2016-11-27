@@ -2,10 +2,14 @@ package SocialAppServer;
 
 import FileManagment.Saver;
 import SocialAppGeneral.Command;
+import SocialAppGeneral.Group;
 import SocialAppGeneral.ReceiveCommand;
 import SocialAppGeneral.RegisterInfo;
+import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.net.Socket;
+import java.nio.file.attribute.GroupPrincipal;
 
 /**
  * Created by kemo on 25/10/2016.
@@ -36,6 +40,18 @@ public class ReceiveClientCommand extends ReceiveCommand {
             Saver s=new Saver();
 
 
+        }
+        if (command.getKeyWord().equals(Group.CREATE_GROUP))
+        {
+            Group group = Group.fromJsonString(command.getObjectStr());
+            GroupfileMangement g=new GroupfileMangement();
+            try {
+                g.create(group);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
