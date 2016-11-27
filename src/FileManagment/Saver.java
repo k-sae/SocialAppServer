@@ -40,6 +40,12 @@ if(FilesManager.ReadLine(UNREIGESTERDUSERS+"\\"+Id+".txt","\"email\":\""+reg.get
    // FilesManager.OpenToWrite(UNREIGESTERDUSERS+"\\"+Id+".txt");
     //FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString());
     FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString());
+if(FilesManager.FileIsExist(UNREIGESTERDUSERS+AllUSERS)){
+    FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
+}else{
+    FilesManager.OpenToWrite(UNREIGESTERDUSERS+AllUSERS);
+    FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
+}
 }
     }
     else{
@@ -49,7 +55,6 @@ if(FilesManager.ReadLine(UNREIGESTERDUSERS+"\\"+Id+".txt","\"email\":\""+reg.get
     }
   //  FilesManager.OpenToWrite(UNREIGESTERDUSERS,Id+".txt");
     //FilesManager.WriteOnTop(UNREIGESTERDUSERS+"\\"+Generator.GenerateID(reg.getLoginInfo().getEMAIL())+".txt",reg.convertToJsonString());
-
 
 }
 

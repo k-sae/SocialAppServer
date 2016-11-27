@@ -92,6 +92,18 @@ public class FilesManager {
            return false;
        }
     }
+    public static Boolean AddLineWithoutAppend(String FileName, String text) {
+        try {
+            BufferedWriter WT = new BufferedWriter(new FileWriter(FileName));
+            WT.write(text);
+            WT.newLine();
+            WT.flush();
+            WT.close();
+            return true;
+        } catch (IOException ex) {
+            return false;
+        }
+    }
 
 
     public static String ReadLine(String FileName, int lineNum) {
