@@ -5,10 +5,9 @@ import java.net.Socket;
 /**
  * Created by kemo on 06/11/2016.
  */
-public class HalfDuplexConnection extends ClientConnection {
-    public HalfDuplexConnection(Socket clientSocket) {
+class HalfDuplexConnection extends ClientConnection {
+    HalfDuplexConnection(Socket clientSocket) {
         super(clientSocket);
-        startConnection();
     }
 
     @Override
