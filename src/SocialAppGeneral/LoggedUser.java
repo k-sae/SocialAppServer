@@ -11,7 +11,9 @@ import java.util.Properties;
 public class LoggedUser extends AppUser{
    //TO DO
     // may change later check with kareem
-    private ArrayList<Integer>Friends=new ArrayList<Integer>();
-    private  ArrayList<Integer>Requests=new ArrayList<Integer>();
-    private ArrayList<String>Notifactions=new ArrayList<String>();
+  public LoggedUser() {
+      ArrayList<Integer> Friends = new ArrayList<Integer>();
+      ArrayList<Integer> Requests = new ArrayList<Integer>();
+      ArrayList<String> Notifactions = new ArrayList<String>();
+  }
 }

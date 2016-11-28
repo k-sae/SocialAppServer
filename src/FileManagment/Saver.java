@@ -32,27 +32,35 @@ public Saver(RegisterInfo reg, HalfDuplexConnection connection){
         FilesManager.CreateFolder(BLOCKEDUSERS);
     }
     if(FilesManager.FileIsExist(UNREIGESTERDUSERS,Id+".txt")){
-FilesManager.OpenToReade(UNREIGESTERDUSERS+"\\"+Id+".txt");
-if(FilesManager.ReadLine(UNREIGESTERDUSERS+"\\"+Id+".txt","\"email\":\""+reg.getLoginInfo().getEMAIL()+"\",")==true){
+FilesManager.OpenToReade(UNREIGESTERDUSERS+Id+".txt");
+if(FilesManager.ReadLine(UNREIGESTERDUSERS+Id+".txt","\"email\":\""+reg.getLoginInfo().getEMAIL()+"\",")==true){
     Command EMAILUSED = new Command();
-    connection.sendCommand(EMAILUSED);
+   connection.startConnection();
 }else{
    // FilesManager.OpenToWrite(UNREIGESTERDUSERS+"\\"+Id+".txt");
     //FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString());
     FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString());
-if(FilesManager.FileIsExist(UNREIGESTERDUSERS+AllUSERS)){
-    FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
-}else{
-    FilesManager.OpenToWrite(UNREIGESTERDUSERS+AllUSERS);
-    FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
-}
+    if(FilesManager.FileIsExist(UNREIGESTERDUSERS+AllUSERS)){
+        FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
+    }else{
+        FilesManager.OpenToWrite(UNREIGESTERDUSERS+AllUSERS);
+        FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
+    }
 }
     }
     else{
      // FilesManager.CreateFile(UNREIGESTERDUSERS,Id+".txt");
        FilesManager.OpenToWrite(UNREIGESTERDUSERS+"\\"+Id+".txt");
         FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString());
+        if(FilesManager.FileIsExist(UNREIGESTERDUSERS+AllUSERS)){
+            FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
+        }else{
+            FilesManager.OpenToWrite(UNREIGESTERDUSERS+AllUSERS);
+            FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
+        }
     }
+    //file contains all emails
+
   //  FilesManager.OpenToWrite(UNREIGESTERDUSERS,Id+".txt");
     //FilesManager.WriteOnTop(UNREIGESTERDUSERS+"\\"+Generator.GenerateID(reg.getLoginInfo().getEMAIL())+".txt",reg.convertToJsonString());
 

@@ -3,6 +3,7 @@ package SocialAppServer;
 import FileManagment.Saver;
 import SocialAppGeneral.Command;
 import SocialAppGeneral.ReceiveCommand;
+import SocialAppGeneral.RegisterInfo;
 
 import java.net.Socket;
 
@@ -33,6 +34,7 @@ class ReceiveClientCommand extends ReceiveCommand {
          // h3ml constrain el fe saver 7alyin
             RegisterInfo reg =RegisterInfo.fromJsonString(command.getObjectStr());
             Saver s=new Saver(reg,connection);
+            System.out.println("in");
 
 
         }

@@ -1,6 +1,7 @@
 
 package FileManagment;
 
+import javax.sound.sampled.Line;
 import java.io.*;
 
 /**
@@ -134,6 +135,20 @@ public class FilesManager {
             return false;
         } catch (IOException ex) {
             return false;
+        }
+    }
+    public static String FileSearcher(String FileName, String token) {
+        try {
+            BufferedReader RL = new BufferedReader(new FileReader(FileName));
+            String line;
+            while ((line = RL.readLine()) != null) {
+                if (line.contains(token)) {
+                    return line;
+                }
+            }
+            return null;
+        } catch (IOException ex) {
+            return null;
         }
     }
 
