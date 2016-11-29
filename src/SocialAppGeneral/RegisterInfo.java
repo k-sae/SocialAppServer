@@ -1,5 +1,7 @@
 package SocialAppGeneral;
 
+import com.google.gson.Gson;
+
 /**
  * Created by kemo on 30/10/2016.
  */
@@ -24,9 +26,18 @@ public class RegisterInfo implements Shareable {
     }
 
 
+    public static RegisterInfo fromJsonString(String jsonStr) {
+        //TODO #prototype GSON
+        //Read from JSON
+        Gson gson = new Gson();
+        return  gson.fromJson(jsonStr,RegisterInfo.class);
+    }
 
+    @Override
     public String convertToJsonString() {
-        //TODO #hazem
-       return null;
+        //TODO #prototype GSON
+        //Write JSON
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }
