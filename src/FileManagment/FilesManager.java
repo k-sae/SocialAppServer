@@ -1,6 +1,8 @@
 
 package FileManagment;
 
+import SocialAppGeneral.Group;
+
 import java.io.*;
 
 /**
@@ -195,6 +197,36 @@ public class FilesManager {
     public static boolean FileIsExist(String FileName) {
         File file = new File(FileName);
         return file.exists();
+    }
+    public static void CreateFileBinary(Object object,String path){
+        try{
+        FileOutputStream fos = new FileOutputStream(path) ;
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(object);
+            oos.close();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public  static  void ReadFromBinaryFile(Object object,String path){
+        try{
+            FileInputStream foss=new FileInputStream(path);
+            ObjectInputStream ooss=new ObjectInputStream(foss);
+            object=(Object) ooss.readObject();
+            ooss.close();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 

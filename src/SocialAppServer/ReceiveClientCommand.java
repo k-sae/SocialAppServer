@@ -4,19 +4,16 @@ import FileManagment.Saver;
 import SocialAppGeneral.Command;
 import SocialAppGeneral.Group;
 import SocialAppGeneral.ReceiveCommand;
-import SocialAppGeneral.RegisterInfo;
-import com.google.gson.Gson;
-
 import java.io.IOException;
 import java.net.Socket;
-import java.nio.file.attribute.GroupPrincipal;
+
 
 /**
  * Created by kemo on 25/10/2016.
  */
-public class ReceiveClientCommand extends ReceiveCommand {
-    HalfDuplexConnection connection;
-    public ReceiveClientCommand(Socket remote, HalfDuplexConnection connection) {
+class ReceiveClientCommand extends ReceiveCommand {
+    private HalfDuplexConnection connection;
+    ReceiveClientCommand(Socket remote, HalfDuplexConnection connection) {
         super(remote);
         this.connection = connection;
     }
@@ -43,15 +40,11 @@ public class ReceiveClientCommand extends ReceiveCommand {
         }
         if (command.getKeyWord().equals(Group.CREATE_GROUP))
         {
-            Group group = Group.fromJsonString(command.getObjectStr());
+            String name = command.getObjectStr();
+            Group group=new Group(name);
             GroupfileMangement g=new GroupfileMangement();
-            try {
-                g.create(group);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            g.create(group);
+
         }
     }
 }
