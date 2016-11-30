@@ -1,10 +1,16 @@
 package SocialAppServer;
 
+import FileManagment.FilesPath;
 import FileManagment.Saver;
 import SocialAppGeneral.Command;
 import SocialAppGeneral.Group;
 import SocialAppGeneral.ReceiveCommand;
-import java.io.IOException;
+
+
+
+import SocialAppGeneral.RegisterInfo;
+
+
 import java.net.Socket;
 
 
@@ -27,14 +33,15 @@ class ReceiveClientCommand extends ReceiveCommand {
             //DO ur algorithm
             Command command1 = new Command();
             command1.setKeyWord("changeColor");
-            command1.setSharableObject("#023345");
+            command1.setSharableObject("#000");
             //lastly send new command to the client
             connection.sendCommand(command1);
         }
         if(command.getKeyWord().equals("new register")){
          // h3ml constrain el fe saver 7alyin
-
-            Saver s=new Saver();
+            RegisterInfo reg =RegisterInfo.fromJsonString(command.getObjectStr());
+            Saver s=new Saver(reg,connection);
+            System.out.println("in");
 
 
         }
@@ -42,9 +49,16 @@ class ReceiveClientCommand extends ReceiveCommand {
         {
             String name = command.getObjectStr();
             Group group=new Group(name);
+//            group.setId(Integer.parseInt(Generator.GenerateUnigueId(FilesPath.GROUPS)));
+//            group.setAdminId(1);
+//            group.setMember(1);
             GroupfileMangement g=new GroupfileMangement();
             g.create(group);
-
+            Command command1 = new Command();
+            command1.setKeyWord(Group.CREATE_GROUP);
+            command1.setSharableObject(group);
+            System.out.println(command1.getObjectStr());
+            connection.sendCommand(command1);
         }
     }
 }

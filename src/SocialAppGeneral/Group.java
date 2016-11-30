@@ -1,5 +1,7 @@
 package SocialAppGeneral;
 
+import FileManagment.FilesPath;
+import SocialAppServer.Generator;
 import com.google.gson.Gson;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by khaled hesham on 11/24/2016.
  */
-public class Group implements Shareable,Serializable{
+public class Group implements Shareable,Serializable, FilesPath{
     private ArrayList<Integer> member;
     private ArrayList<Integer> req;
     private ArrayList<Integer> post;
@@ -26,9 +28,9 @@ public class Group implements Shareable,Serializable{
         this.name = name;
         member = new ArrayList<>();
         req = new ArrayList<>();
-        adminId = 1;//will be change to user create
-        imageId = 0;//wii be change to defult
-        Id = 3;//will be change to function generate id unique
+        adminId = 0;
+        imageId = 0;
+        Id = 0;
         post=new ArrayList<>();
     }
 
@@ -64,8 +66,8 @@ public class Group implements Shareable,Serializable{
         return member;
     }
 
-    public void setMember(ArrayList<Integer> member) {
-        this.member = member;
+    public void setMember(int  member) {
+        this.member.add(member,0);
     }
 
     public String getName() {
