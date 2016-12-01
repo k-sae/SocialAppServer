@@ -25,7 +25,7 @@ abstract class ClientConnection implements Connection {
     @Override
    public abstract void startConnection();
 
-    void sendCommand(Command command) {
+    public void sendCommand(Command command) {
         try {
             DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
             dataOutputStream.writeUTF(command.toString());

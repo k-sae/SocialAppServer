@@ -36,19 +36,19 @@ public class Generator implements FilesPath {
         return ID;
     }
 
-    public static String GenerateUnigueId(String path) {
-        String uniqueID = "1";
-        int uniqueidtemp = 0;
-        if (FilesManager.FileIsExist(path + "\\uniqueID" + ".txt")) {
+    public static String GenerateUnigueId(String path){
+        String uniqueID="1";
+        int uniqueidtemp =0;
+        if(FilesManager.FileIsExist(path+"\\uniqueID"+".txt")){
             uniqueID=(FilesManager.ReadLine(path+"\\uniqueID.txt",1));
-            uniqueidtemp = Integer.parseInt(uniqueID);
+            uniqueidtemp=Integer.parseInt(uniqueID);
             uniqueidtemp++;
             uniqueID = Integer.toString(uniqueidtemp);
-            FilesManager.AddLineWithoutAppend(path + "\\uniqueID" + ".txt", uniqueID);
-            return uniqueID;
-        } else {
-            FilesManager.OpenToWrite(path + "\\uniqueID" + ".txt");
-            FilesManager.AddLineWithoutAppend(path + "\\uniqueID" + ".txt", uniqueID);
+            FilesManager.AddLineWithoutAppend(path+"\\uniqueID"+".txt",uniqueID);
+             return uniqueID;
+        }else{
+           // FilesManager.OpenToWrite(path+"\\uniqueID"+".txt");
+            FilesManager.AddLineWithoutAppend(path+"\\uniqueID"+".txt",uniqueID);
             return uniqueID;
         }
     }

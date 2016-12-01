@@ -1,6 +1,8 @@
 package SocialAppGeneral;
 
 
+import com.google.gson.Gson;
+
 /**
  * Created by kemo on 24/10/2016.
  */
@@ -44,6 +46,7 @@ public class UserInfo implements Shareable {
 
   public String convertToJsonString() {
     //TODO #hazem
-    return null;
+    Gson gson = new Gson();
+    return gson.toJson(this);
   }
 }

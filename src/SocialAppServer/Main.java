@@ -33,6 +33,7 @@ public class Main {
             try {
                 //create a server socket where the client will connect on the specified startPort
                 ServerSocket serverSocket = new ServerSocket(i);
+                System.out.println("Server Socket is: " + serverSocket.getLocalPort());
                 while (true) { // loop where the server wait for client to start his connection may need to make these process in another thread
                     Socket client = serverSocket.accept();
                     HalfDuplexConnection clientConnection = new HalfDuplexConnection(client);

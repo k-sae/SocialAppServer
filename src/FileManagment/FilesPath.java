@@ -10,6 +10,7 @@ public interface FilesPath {
     String BLOCKEDUSERS = "bannedusers\\";
     String AllUSERS="allemails\\";
     String NAMES="names\\";
-
+    String EMAILS="emails\\";
+    String INFO="Info";
 
 }
