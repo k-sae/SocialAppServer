@@ -31,14 +31,17 @@ public Saver(RegisterInfo reg, HalfDuplexConnection connection) {
     if (!FilesManager.FileIsExist(BLOCKEDUSERS)) {
         FilesManager.CreateFolder(BLOCKEDUSERS);
     }
+    Command command = new Command();
+    command.setKeyWord(RegisterInfo.KEYWORD);
     if (FilesManager.FileIsExist(UNREIGESTERDUSERS, Id + ".txt")) {
-        if(FilesManager.ReadLine(UNREIGESTERDUSERS+Id+".txt",reg.getLoginInfo().getEMAIL())==true||FilesManager.ReadLine(USERS+EMAILS+Id+".txt","email\":\""+reg.getLoginInfo().getEMAIL()+"\"")){
-            Command EMAILUSED = new Command();
-            connection.startConnection();
+        if(FilesManager.ReadLine(UNREIGESTERDUSERS + Id + ".txt", reg.getLoginInfo().getEMAIL()) || FilesManager.ReadLine(USERS + EMAILS + Id + ".txt", reg.getLoginInfo().getEMAIL())){
+            command.setSharableObject("false");
+            connection.sendCommand(command);
     }else{
         FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString());
             FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
-
+            command.setSharableObject("true");
+            connection.sendCommand(command);
     }
 }
     else{
@@ -47,6 +50,7 @@ public Saver(RegisterInfo reg, HalfDuplexConnection connection) {
 
     }
     }
+
 }
 
 

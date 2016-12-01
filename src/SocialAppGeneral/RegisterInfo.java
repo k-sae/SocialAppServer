@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 public class RegisterInfo implements Shareable {
     private LoginInfo loginInfo;
    private SocialAppGeneral.UserInfo UserInfo;
+    public static  final String KEYWORD="new_register";
 
     public LoginInfo getLoginInfo() {
         return loginInfo;

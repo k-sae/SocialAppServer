@@ -190,7 +190,7 @@ public class FilesManager {
           ArrayList <String> a =new ArrayList<String>();
           while((Line= RL.readLine())!=null) {
               if (!Line.contains(token)) {
-                  a.add(Line);
+                  a.add(Line+"\n");
               }
           }
           AddLineWithoutAppend(a,FilePath);

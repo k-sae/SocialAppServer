@@ -1,10 +1,7 @@
 package SocialAppServer;
 
 import FileManagment.Saver;
-import SocialAppGeneral.Admin;
-import SocialAppGeneral.Command;
-import SocialAppGeneral.ReceiveCommand;
-import SocialAppGeneral.RegisterInfo;
+import SocialAppGeneral.*;
 
 import java.net.Socket;
 
@@ -31,15 +28,16 @@ class ReceiveClientCommand extends ReceiveCommand {
             //lastly send new command to the client
             connection.sendCommand(command1);
         }
-        if(command.getKeyWord().equals("new register")){
+        if(command.getKeyWord().equals(RegisterInfo.KEYWORD)){
          // h3ml constrain el fe saver 7alyin
             RegisterInfo reg =RegisterInfo.fromJsonString(command.getObjectStr());
             Saver s=new Saver(reg,connection);
-        Admin a=new Admin();
-       a.convertIntoPermnantUser("mostafahazem144@yahoo.com");
+      // Admin a=new Admin();
+    //   a.convertIntoPermnantUser("mostafa@yahoo.com");
         //    a.convertIntoPermnantUser("mostafahazem145@yahoo.com");
             //System.out.println("in");
-
+        }
+        if(command.getKeyWord().equals(LoginInfo.KEYWORD)){
 
         }
     }

@@ -1,0 +1,2 @@
+{"loginInfo":{"email":"mosygfsd@yahoo.com","password":"ewrwqerweqr"},"UserInfo":{"FULL_NAME":"fullName","BIRTH_DATE":"birthDate","GENDER":"gender","fullName":"dfsdfsfdsfsdf","birthDate":"2014-12-01","gender":"RadioButton@3acea39[styleClass\u003dradio-button]\u0027FEMale\u0027"}}
+{"loginInfo":{"email":"mosygfsd@yah.com","password":"SDFSDFSDF"},"UserInfo":{"FULL_NAME":"fullName","BIRTH_DATE":"birthDate","GENDER":"gender","fullName":"SFSDFSDFSDFSDFSD","birthDate":"2014-12-01","gender":"RadioButton@153832f3[styleClass\u003dradio-button]\u0027Male\u0027"}}
