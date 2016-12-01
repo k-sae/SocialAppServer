@@ -1,2 +1,0 @@
-{"loginInfo":{"email":"sdfsdfsdaf@go.com","password":"sdfsdafsdf"},"UserInfo":{"FULL_NAME":"fullName","BIRTH_DATE":"birthDate","GENDER":"gender","fullName":"sdffdsfsdfsdafsdaf","birthDate":"2014-12-01","gender":"RadioButton@63da517c[styleClass\u003dradio-button]\u0027Male\u0027"}}
-{"loginInfo":{"email":"sdfsdfsdfsd@g.com","password":"sdfsdfsdfsdf"},"UserInfo":{"FULL_NAME":"fullName","BIRTH_DATE":"birthDate","GENDER":"gender","fullName":"dsfsdfsdfsdfsfsdf","birthDate":"2014-12-01","gender":"RadioButton@63da517c[styleClass\u003dradio-button]\u0027Male\u0027"}}
