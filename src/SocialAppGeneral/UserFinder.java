@@ -4,8 +4,6 @@ import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppServer.Generator;
 
-import javax.swing.text.StyledEditorKit;
-
 /**
  * Created by mosta on 30-Nov-16.
  */
@@ -25,8 +23,9 @@ return Id;
     }
     return null;
 }
-public Boolean Userfound(String email){
+public Boolean Userfound(String email) {
 
+
+    return true;
 }
-
 }
