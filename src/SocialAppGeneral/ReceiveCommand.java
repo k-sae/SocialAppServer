@@ -29,6 +29,7 @@ public abstract class ReceiveCommand extends Thread {
         {
             //Export to log
             System.out.println("ReadClientData\t" + e.getMessage());
+            e.printStackTrace();
         }
     }
     public abstract void Analyze(Command command);

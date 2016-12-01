@@ -57,7 +57,6 @@ class ReceiveClientCommand extends ReceiveCommand {
             Command command1 = new Command();
             command1.setKeyWord(Group.CREATE_GROUP);
             command1.setSharableObject(group);
-            System.out.println(command1.getObjectStr());
             connection.sendCommand(command1);
         }
     }
