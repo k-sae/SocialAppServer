@@ -1,8 +1,11 @@
 
 package FileManagment;
 
+import com.sun.javafx.fxml.expression.Expression;
+
 import javax.sound.sampled.Line;
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * Created by begad on 10/30/2016.
@@ -105,6 +108,18 @@ public class FilesManager {
             return false;
         }
     }
+    public static Boolean AddLineWithoutAppend(ArrayList<String> a, String FileName) {
+        try {
+            BufferedWriter WT = new BufferedWriter(new FileWriter(FileName));
+            WT.write(String.valueOf(a));
+            WT.newLine();
+            WT.flush();
+            WT.close();
+            return true;
+        } catch (IOException ex) {
+            return false;
+        }
+    }
 
 
     public static String ReadLine(String FileName, int lineNum) {
@@ -114,10 +129,13 @@ public class FilesManager {
             int LineCounter = 1;
             while ((line = RL.readLine()) != null) {
                 if (LineCounter == lineNum) {
+                    RL.close();
                     break;
+
                 }
                 LineCounter++;
             }
+            RL.close();
             return line;
         } catch (IOException ex) {
             return null;
@@ -129,8 +147,10 @@ public class FilesManager {
             String line;
             while ((line = RL.readLine()) != null) {
                 if (line.contains(token)) {
+                    RL.close();
                    return true;
                 }
+                RL.close();
             }
             return false;
         } catch (IOException ex) {
@@ -143,9 +163,11 @@ public class FilesManager {
             String line;
             while ((line = RL.readLine()) != null) {
                 if (line.contains(token)) {
+                    RL.close();
                     return line;
                 }
             }
+            RL.close();
             return null;
         } catch (IOException ex) {
             return null;
@@ -155,11 +177,47 @@ public class FilesManager {
     public static void DeleteFile(File file) {
         final boolean Temp = file.delete();
     }
-
     public static void DeleteFile(String FileName) {
         File file = new File(FileName);
         final boolean Temp = file.delete();
     }
+
+
+    public static synchronized void RemoveLine(String FilePath,String token){
+      try {
+      BufferedReader RL=new BufferedReader(new FileReader(FilePath));
+      String Line;
+          ArrayList <String> a =new ArrayList<String>();
+          while((Line= RL.readLine())!=null) {
+              if (!Line.contains(token)) {
+                  a.add(Line);
+              }
+          }
+          AddLineWithoutAppend(a,FilePath);
+      }catch (IOException ex){
+
+        }
+          //File inputFile = new File(FilePath);
+          //File tempFile = new File(FilePath+"2");
+          //BufferedReader RL = new BufferedReader(new FileReader(FilePath));
+          //String line;
+          //BufferedWriter WT = new BufferedWriter(new FileWriter(FilePath+"2"));
+          //while ((line = RL.readLine()) != null) {
+           //   if (line.contains(token)) {
+             // }else{
+               //   WT.write(line);
+                 // WT.newLine();
+              //}
+         // }
+          //WT.close();
+          //RL.close();
+          //DeleteFile(inputFile);
+          //tempFile.renameTo(inputFile);
+
+        //}catch (IOException ex){
+
+      //}
+      }
 
     public static void DeleteFile(String FolderName, String FileName) {
         File file = new File(FolderName, FileName);
