@@ -49,7 +49,7 @@ class ReceiveClientCommand extends ReceiveCommand {
         {
             String name = command.getObjectStr();
             Group group=new Group(name);
-//            group.setId(Integer.parseInt(Generator.GenerateUnigueId(FilesPath.GROUPS)));
+           group.setId(Integer.parseInt(Generator.GenerateUnigueId(FilesPath.GROUPS)));
 //            group.setAdminId(1);
 //            group.setMember(1);
             GroupfileMangement g=new GroupfileMangement();

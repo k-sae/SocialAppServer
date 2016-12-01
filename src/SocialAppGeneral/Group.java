@@ -1,13 +1,7 @@
 package SocialAppGeneral;
 
 import FileManagment.FilesPath;
-import SocialAppServer.Generator;
 import com.google.gson.Gson;
-import javafx.geometry.Insets;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,6 +39,7 @@ public class Group implements Shareable,Serializable, FilesPath{
     public void setAdminId(int adminId) {
         this.adminId = adminId;
     }
+    public Boolean checkAdmin(int id){return (this.adminId==id);}
 
     public int getId() {
         return Id;
@@ -65,9 +60,8 @@ public class Group implements Shareable,Serializable, FilesPath{
     public ArrayList<Integer> getMember() {
         return member;
     }
-
-    public void setMember(int  member) {
-        this.member.add(member,0);
+    public void setMember(ArrayList<Integer>  member) {
+        this.member =member;
     }
 
     public String getName() {
@@ -93,7 +87,21 @@ public class Group implements Shareable,Serializable, FilesPath{
     public void setPost(ArrayList<Integer> post) {
         this.post = post;
     }
-
+    public void deleteMember(Integer id){
+        this.member.remove(id);
+    }
+    public int checkMember(Integer id){
+        return (this.member.indexOf(id));
+    }
+    public void addMember(Integer id){member.add(id);}
+    public void addReq(Integer id){req.add(id);}
+    public void addPost(Integer id){post.add(id);}
+    public void deleteReq(Integer id){
+        this.req.remove(id);
+    }
+    public void deletePost(Integer id){
+        this.post.remove(id);
+    }
     @Override
     public String convertToJsonString() {
         Gson gson = new Gson();
@@ -105,4 +113,3 @@ public class Group implements Shareable,Serializable, FilesPath{
         return gson.fromJson(jsonStr, Group.class);
     }
 }
-
