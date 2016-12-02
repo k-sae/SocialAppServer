@@ -2,9 +2,10 @@
 package FileManagment;
 
 
-import com.sun.javafx.fxml.expression.Expression;
 
-import javax.sound.sampled.Line;
+
+
+
 
 import java.io.*;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class FilesManager {
         try {
             FileWriter fileWriter = new FileWriter(FileName);
             BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
+            fileWriter.close();
             return bufferWriter;
         } catch (IOException ex) {
             return null;
@@ -48,6 +50,7 @@ public class FilesManager {
         try {
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
+            fileWriter.close();
             return bufferWriter;
         } catch (IOException ex) {
             return null;
@@ -59,6 +62,7 @@ public class FilesManager {
             File file = new File(FolderName, FileName);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
+            fileWriter.close();
             return bufferWriter;
         } catch (IOException ex) {
             return null;
@@ -69,6 +73,7 @@ public class FilesManager {
         try {
             FileReader fileReader = new FileReader(FileName);
             BufferedReader bufferReader = new BufferedReader(fileReader);
+            fileReader.close();
             return bufferReader;
         } catch (IOException ex) {
             return null;
@@ -301,10 +306,14 @@ public class FilesManager {
     }
     public static void CreateFileBinary(Object object,String path){
         try{
-        FileOutputStream fos = new FileOutputStream(path) ;
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(object);
-            oos.close();
+
+            FileOutputStream fos = new FileOutputStream(path);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(object);
+
+                oos.close();
+
+
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -329,5 +338,6 @@ public class FilesManager {
         }
 
     }
+
 }
 

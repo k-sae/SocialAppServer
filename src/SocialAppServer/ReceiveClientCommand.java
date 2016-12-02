@@ -1,5 +1,6 @@
 package SocialAppServer;
 
+import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import FileManagment.Saver;
 
@@ -57,6 +58,17 @@ class ReceiveClientCommand extends ReceiveCommand {
             command1.setKeyWord(Group.CREATE_GROUP);
             command1.setSharableObject(group);
             connection.sendCommand(command1);
+        }
+        if(command.getKeyWord().equals(Post.SAVE_POST)){
+            Post post=new Post();
+            post=Post.fromJsonString(command.getObjectStr());
+          post= PostManger.SavePost(post,FilesPath.GROUPS+post.getPostPos());
+            System.out.println(post.getDate());
+            Command command1 = new Command();
+            command1.setKeyWord(Post.SAVE_POST);
+            command1.setSharableObject(post.convertToJsonString());
+            connection.sendCommand(command1);
+            System.out.println("ok");
         }
     }
 }

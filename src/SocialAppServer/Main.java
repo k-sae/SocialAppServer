@@ -1,6 +1,7 @@
 package SocialAppServer;
 
-import SocialAppGeneral.Group;
+
+import SocialAppGeneral.Post;
 
 import java.io.IOException;
 import java.net.ServerSocket;
