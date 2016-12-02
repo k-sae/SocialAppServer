@@ -1,11 +1,8 @@
 package SocialAppServer;
 
-import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import FileManagment.Saver;
-
 import SocialAppGeneral.*;
-
 
 import java.net.Socket;
 
@@ -85,7 +82,7 @@ class ReceiveClientCommand extends ReceiveCommand {
             command1.setKeyWord(Post.Add_COMMENT);
             command1.setSharableObject(post.convertToJsonString());
             connection.sendCommand(command1);
-
+            SecondaryConnection.sendNotification("0",command1);
         }
 
     }
