@@ -49,4 +49,10 @@ public class UserInfo implements Shareable {
     Gson gson = new Gson();
     return gson.toJson(this);
   }
+  public static UserInfo fromJsonString(String jsonStr) {
+    //TODO #prototype GSON
+    //Read from JSON
+    Gson gson = new Gson();
+    return  gson.fromJson(jsonStr,UserInfo.class);
+  }
 }

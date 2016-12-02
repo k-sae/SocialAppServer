@@ -170,12 +170,27 @@ public class FilesManager {
                 }
             }
             RL.close();
-            return null;
+            return "";
         } catch (IOException ex) {
             return null;
         }
     }
-
+    public static boolean StringFinder(String FileName, String token) {
+        try {
+            BufferedReader RL = new BufferedReader(new FileReader(FileName));
+            String line;
+            while ((line = RL.readLine()) != null) {
+                if (line.contains(token)) {
+                    RL.close();
+                    return true;
+                }
+            }
+            RL.close();
+            return false;
+        } catch (IOException ex) {
+            return false;
+        }
+    }
     public static void DeleteFile(File file) {
         final boolean Temp = file.delete();
     }
