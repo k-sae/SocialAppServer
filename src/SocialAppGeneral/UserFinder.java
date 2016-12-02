@@ -5,8 +5,6 @@ import FileManagment.FilesPath;
 import SocialAppServer.Generator;
 import SocialAppServer.HalfDuplexConnection;
 
-import javax.swing.text.StyledEditorKit;
-
 /**
  * Created by mosta on 30-Nov-16.
  */
@@ -26,6 +24,7 @@ return Id;
     }
     return null;
 }
+<<<<<<< HEAD
 public void Userfound(String email, String pass, HalfDuplexConnection connection){
     Command command = new Command();
     command.setKeyWord(RegisterInfo.KEYWORD);
@@ -41,5 +40,11 @@ String id="-1";
         connection.sendCommand(command);
     }
 
+=======
+public Boolean Userfound(String email) {
+
+
+    return true;
+>>>>>>> b32eca162da57947d975207810b7e6fee3f27112
 }
 }

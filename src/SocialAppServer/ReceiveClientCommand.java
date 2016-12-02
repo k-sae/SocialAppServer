@@ -2,9 +2,7 @@ package SocialAppServer;
 
 import FileManagment.FilesPath;
 import FileManagment.Saver;
-
 import SocialAppGeneral.*;
-
 
 import java.net.Socket;
 
@@ -62,5 +60,34 @@ class ReceiveClientCommand extends ReceiveCommand {
             command1.setSharableObject(group);
             connection.sendCommand(command1);
         }
+        if(command.getKeyWord().equals(Post.SAVE_POST)){
+            Post post=Post.fromJsonString(command.getObjectStr());
+           PostManger.SavePost(post,FilesPath.GROUPS+post.getPostPos());
+            Command command1 = new Command();
+            command1.setKeyWord(Post.SAVE_POST);
+            command1.setSharableObject(post.convertToJsonString());
+            connection.sendCommand(command1);
+
+        }
+        if(command.getKeyWord().equals(Post.LOAD_POST)){
+            Post post=Post.fromJsonString(command.getObjectStr());
+            post =PostManger.PickPost(FilesPath.GROUPS+post.getPostPos(),post.getId());
+            Command command1 = new Command();
+            command1.setKeyWord(Post.LOAD_POST);
+            command1.setSharableObject(post.convertToJsonString());
+            connection.sendCommand(command1);
+
+        }
+        if(command.getKeyWord().equals(Post.Add_COMMENT)){
+            Post post=Post.fromJsonString(command.getObjectStr());
+           // post =PostManger.addComment(FilesPath.GROUPS+post.getPostPos(),post.getId(),post);
+            PostManger.savePostWithoutId(post,FilesPath.GROUPS+post.getPostPos());
+            Command command1 = new Command();
+            command1.setKeyWord(Post.Add_COMMENT);
+            command1.setSharableObject(post.convertToJsonString());
+            connection.sendCommand(command1);
+            SecondaryConnection.sendNotification("0",command1);
+        }
+
     }
 }
