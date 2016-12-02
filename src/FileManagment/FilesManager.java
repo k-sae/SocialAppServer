@@ -322,12 +322,14 @@ public class FilesManager {
         }
 
     }
-    public  static  void ReadFromBinaryFile(Object object,String path){
+    public  static  Object ReadFromBinaryFile(String path){
+        Object o = null;
         try{
             FileInputStream foss=new FileInputStream(path);
             ObjectInputStream ooss=new ObjectInputStream(foss);
-            object=(Object) ooss.readObject();
+            o = ooss.readObject();
             ooss.close();
+
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -336,8 +338,7 @@ public class FilesManager {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+        return o;
     }
-
 }
 

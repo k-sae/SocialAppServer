@@ -40,9 +40,10 @@ class GroupfileMangement implements FilesPath{
         FilesManager.AddLine(GROUPS+NAMES+(Integer.parseInt(Generator.GenerateID(group.getName()))),group.getName());
 
     }
-    public Group pickGroup(int id) throws IOException, ClassNotFoundException {
+    /*public Group pickGroup(int id) throws IOException, ClassNotFoundException {
         Group group=new Group(id);
         FilesManager.ReadFromBinaryFile(group,GROUPS+id+INFO);
         return  group;
     }
+    */
 }
