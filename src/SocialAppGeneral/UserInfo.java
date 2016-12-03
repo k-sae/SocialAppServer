@@ -11,11 +11,14 @@ public class UserInfo implements Shareable {
   private String fullName;
   private String birthDate;
   private String gender;
+  private String profileImage;
   public static transient final  String PICK_INFO = "pick_info";
+  public static transient final  String EDIT_INFO = "edit_info";
   public UserInfo() {
     this.fullName = "";
     this.birthDate = "";
     this.gender = "";
+    profileImage = "";
   }
 
   public String getFullName() {
@@ -52,5 +55,13 @@ public class UserInfo implements Shareable {
     //Read from JSON
     Gson gson = new Gson();
     return  gson.fromJson(jsonStr,UserInfo.class);
+  }
+
+  public String getProfileImage() {
+    return profileImage;
+  }
+
+  public void setProfileImage(String profileImage) {
+    this.profileImage = profileImage;
   }
 }
