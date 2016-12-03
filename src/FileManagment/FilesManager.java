@@ -219,8 +219,21 @@ public class FilesManager {
           }
           AddLineWithoutAppend(a,FilePath);
       }catch (IOException ex){
+      }
+    }
+    public static synchronized void Removefile(String FilePath,String info){
+        try {
 
+            File inputFile = new File(FilePath);
+            DeleteFile(inputFile);
+            File tempFile = new File(FilePath);
+            BufferedWriter WT = new BufferedWriter(new FileWriter(tempFile));
+            WT.write(info);
+            WT.newLine();
+            WT.close();
+        }catch (IOException ex){
         }
+
           //File inputFile = new File(FilePath);
           //File tempFile = new File(FilePath+"2");
           //BufferedReader RL = new BufferedReader(new FileReader(FilePath));
