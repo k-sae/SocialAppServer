@@ -12,6 +12,7 @@ import java.net.Socket;
  */
 class ReceiveClientCommand extends ReceiveCommand {
     private HalfDuplexConnection connection;
+    private String loggedUserId;
     ReceiveClientCommand(Socket remote, HalfDuplexConnection connection) {
         super(remote);
         this.connection = connection;
@@ -40,11 +41,10 @@ class ReceiveClientCommand extends ReceiveCommand {
             //System.out.println("in");
         }
         if(command.getKeyWord().equals(LoginInfo.KEYWORD)){
-        UserFinder u=new UserFinder();
             LoginInfo log=LoginInfo.fromJsonString(command.getObjectStr());
-            u.Userfound(log.getEMAIL(),log.getPassword(),connection);
-            UserPicker p=new UserPicker();
-            p.pickUserInfo("1");
+            loggedUserId = UserFinder.validate(log.getEMAIL(),log.getPassword());
+            command.setSharableObject(loggedUserId);
+            connection.sendCommand(command);
         }
         if (command.getKeyWord().equals(Group.CREATE_GROUP))
         {
