@@ -1,11 +1,8 @@
 package SocialAppServer;
 
-import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import FileManagment.Saver;
-
 import SocialAppGeneral.*;
-
 
 import java.net.Socket;
 
@@ -15,6 +12,7 @@ import java.net.Socket;
  */
 class ReceiveClientCommand extends ReceiveCommand {
     private HalfDuplexConnection connection;
+    private String loggedUserId;
     ReceiveClientCommand(Socket remote, HalfDuplexConnection connection) {
         super(remote);
         this.connection = connection;
@@ -37,13 +35,16 @@ class ReceiveClientCommand extends ReceiveCommand {
          // h3ml constrain el fe saver 7alyin
             RegisterInfo reg =RegisterInfo.fromJsonString(command.getObjectStr());
             Saver s=new Saver(reg,connection);
-      // Admin a=new Admin();
-    //   a.convertIntoPermnantUser("mostafa@yahoo.com");
-        //    a.convertIntoPermnantUser("mostafahazem145@yahoo.com");
+      Admin a=new Admin();
+  //    a.convertIntoPermnantUser("werwqw@yahoo.com");
+          a.convertIntoPermnantUser(reg.getLoginInfo().getEMAIL());
             //System.out.println("in");
         }
         if(command.getKeyWord().equals(LoginInfo.KEYWORD)){
-
+            LoginInfo log=LoginInfo.fromJsonString(command.getObjectStr());
+            loggedUserId = UserFinder.validate(log.getEMAIL(),log.getPassword());
+            command.setSharableObject(loggedUserId);
+            connection.sendCommand(command);
         }
         if (command.getKeyWord().equals(Group.CREATE_GROUP))
         {
@@ -85,8 +86,12 @@ class ReceiveClientCommand extends ReceiveCommand {
             command1.setKeyWord(Post.Add_COMMENT);
             command1.setSharableObject(post.convertToJsonString());
             connection.sendCommand(command1);
-
+            SecondaryConnection.sendNotification("0",command1);
         }
-
+        if (command.getKeyWord().equals(UserInfo.PICK_INFO))
+        {
+            command.setSharableObject(UserPicker.pickUserInfo(command.getObjectStr()));
+            connection.sendCommand(command);
+        }
     }
 }

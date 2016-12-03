@@ -1,9 +1,11 @@
 package SocialAppGeneral;
 
+import java.io.Serializable;
+
 /**
  * Created by khaled hesham on 12/2/2016.
  */
-public class Like extends PostAtachmment {
+public class Like extends PostAtachmment implements Serializable {
     private int like;
 
     public int getLike() {

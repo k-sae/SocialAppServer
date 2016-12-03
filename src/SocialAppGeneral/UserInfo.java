@@ -8,12 +8,10 @@ import com.google.gson.Gson;
  */
 //created it for debugging
 public class UserInfo implements Shareable {
-  private final String FULL_NAME = "fullName";
-  private final String BIRTH_DATE = "birthDate";
-  private final String GENDER = "gender";
   private String fullName;
   private String birthDate;
   private String gender;
+  public static transient final  String PICK_INFO = "pick_info";
   public UserInfo() {
     this.fullName = "";
     this.birthDate = "";
@@ -48,5 +46,11 @@ public class UserInfo implements Shareable {
     //TODO #hazem
     Gson gson = new Gson();
     return gson.toJson(this);
+  }
+  public static UserInfo fromJsonString(String jsonStr) {
+    //TODO #prototype GSON
+    //Read from JSON
+    Gson gson = new Gson();
+    return  gson.fromJson(jsonStr,UserInfo.class);
   }
 }
