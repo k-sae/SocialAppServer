@@ -36,7 +36,7 @@ class ReceiveClientCommand extends ReceiveCommand {
             Saver s=new Saver(reg,connection);
       Admin a=new Admin();
   //    a.convertIntoPermnantUser("werwqw@yahoo.com");
-          a.convertIntoPermnantUser("mostafahazem144@yahoo.com");
+          a.convertIntoPermnantUser(reg.getLoginInfo().getEMAIL());
             //System.out.println("in");
         }
         if(command.getKeyWord().equals(LoginInfo.KEYWORD)){
@@ -88,6 +88,10 @@ class ReceiveClientCommand extends ReceiveCommand {
             connection.sendCommand(command1);
             SecondaryConnection.sendNotification("0",command1);
         }
-
+        if (command.getKeyWord().equals(UserInfo.PICK_INFO))
+        {
+            command.setSharableObject(UserPicker.pickUserInfo(command.getObjectStr()));
+            connection.sendCommand(command);
+        }
     }
 }

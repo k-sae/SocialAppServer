@@ -8,7 +8,7 @@ import SocialAppGeneral.UserInfo;
  */
 public class RegisterUser {
     private LoginInfo loginInfo;
-    private UserInfo UserInfo;
+    private SocialAppGeneral.UserInfo UserInfo;
 
     public RegisterUser() {
         this.loginInfo = new LoginInfo();
