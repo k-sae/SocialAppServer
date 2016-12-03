@@ -118,9 +118,11 @@ public class FilesManager {
     public static Boolean AddLineWithoutAppend(ArrayList<String> a, String FileName) {
         try {
             BufferedWriter WT = new BufferedWriter(new FileWriter(FileName));
-            WT.write(String.valueOf(a));
-            WT.newLine();
-            WT.flush();
+            for (String S:a){
+                WT.write(String.valueOf(S));
+                WT.newLine();
+                WT.flush();
+            }
             WT.close();
             return true;
         } catch (IOException ex) {
@@ -212,7 +214,7 @@ public class FilesManager {
           ArrayList <String> a =new ArrayList<String>();
           while((Line= RL.readLine())!=null) {
               if (!Line.contains(token)) {
-                  a.add(Line+"\n");
+                  a.add(Line);
               }
           }
           AddLineWithoutAppend(a,FilePath);

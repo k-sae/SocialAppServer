@@ -35,9 +35,9 @@ class ReceiveClientCommand extends ReceiveCommand {
          // h3ml constrain el fe saver 7alyin
             RegisterInfo reg =RegisterInfo.fromJsonString(command.getObjectStr());
             Saver s=new Saver(reg,connection);
-      Admin a=new Admin();
-  //    a.convertIntoPermnantUser("werwqw@yahoo.com");
-          a.convertIntoPermnantUser(reg.getLoginInfo().getEMAIL());
+  Admin a=new Admin();
+   // a.convertIntoPermnantUser("mostafahazem144@yahoo.com");
+        a.convertIntoPermnantUser(reg.getLoginInfo().getEMAIL());
             //System.out.println("in");
         }
         if(command.getKeyWord().equals(LoginInfo.KEYWORD)){

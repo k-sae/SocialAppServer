@@ -9,9 +9,16 @@ public class LoggedUser extends AppUser{
    //TO DO
     // may change later check with kareem
    ArrayList<Integer> friends;
-  public LoggedUser() {
+    ArrayList<Integer> Requests;
+    ArrayList<String> Notifactions;
+    public LoggedUser() {
         friends = new ArrayList<Integer>();
-      ArrayList<Integer> Requests = new ArrayList<Integer>();
-      ArrayList<String> Notifactions = new ArrayList<String>();
+       Requests = new ArrayList<Integer>();
+        Notifactions = new ArrayList<String>();
   }
+  public void addFriend(String ID){
+
+
+  }
+
 }
