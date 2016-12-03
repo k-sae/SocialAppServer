@@ -4,7 +4,10 @@
 .idea/workspace.xml
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
-
+users/
+temp/
+bannedusers/
+groups/
 # Package Files #
 *.jar
 *.war

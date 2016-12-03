@@ -1,5 +1,6 @@
 package SocialAppServer;
 
+import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import FileManagment.Saver;
 import SocialAppGeneral.*;
@@ -96,7 +97,9 @@ class ReceiveClientCommand extends ReceiveCommand {
         }
         else if (command.getKeyWord().equals(UserInfo.EDIT_INFO))
         {
-
+            FilesManager.Removefile(FilesPath.USERS + loggedUserId+"\\" + FilesPath.INFO + ".txt", command.getObjectStr());
+            command.setSharableObject("true");
+            connection.sendCommand(command);
         }
     }
 }
