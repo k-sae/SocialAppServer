@@ -21,12 +21,8 @@ class PostManger {
     private static final String Comment_ID="\\comment_ID";
     private static final String Post_FILE="\\post";
     private static final String POSTS= "\\posts";
-   // private static final long serialVersionUID = 1L;
-    private static long serialVersionUID = 1113799434508676095L;
-
-   static ArrayList <Post> posts= new ArrayList<>();
-    static int countenr=1;
-     static String uniqueID="1";
+    static ArrayList <Post> posts= new ArrayList<>();
+    static String uniqueID="1";
     static Post post=new Post();
      static Post SavePost(Post post,String path)  {
         post.setDate(new Date());
@@ -40,6 +36,7 @@ class PostManger {
          return ((Post) FilesManager.ReadFromBinaryFile(path+POSTS+"\\"+id+Post_FILE));
     }
      static ArrayList<Post> PickPosts(String path)  {
+         int countenr=1;
         System.out.println(path);
         uniqueID=(FilesManager.ReadLine(path+POSTS+"\\uniqueID.txt",1));
         long uniqueidtemp=Long.valueOf(uniqueID);
