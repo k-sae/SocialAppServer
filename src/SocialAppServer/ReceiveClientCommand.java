@@ -11,7 +11,7 @@ import java.net.Socket;
 /**
  * Created by kemo on 25/10/2016.
  */
-class ReceiveClientCommand extends ReceiveCommand {
+class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
     private HalfDuplexConnection connection;
     private String loggedUserId;
     ReceiveClientCommand(Socket remote, HalfDuplexConnection connection) {
@@ -110,9 +110,22 @@ class ReceiveClientCommand extends ReceiveCommand {
         }
         else if (command.getKeyWord().equals(UserInfo.EDIT_INFO))
         {
+
             FilesManager.Removefile(FilesPath.USERS + loggedUserId+"\\" + FilesPath.INFO + ".txt", command.getObjectStr());
             command.setSharableObject("true");
             connection.sendCommand(command);
+
+
+        }else if(command.getKeyWord().equals(LoggedUser.ADD_FRIEND)){
+
+            String  id =command.getObjectStr();
+            FilesManager.AddLine(USERS+id+"\\"+FriendRequest+".txt",loggedUserId);
+            command.setSharableObject("true");
+            connection.sendCommand(command);
+            command.setKeyWord(LoggedUser.FRIEND_REQ);
+            command.setSharableObject(loggedUserId);
+            System.out.println(id);
+            SecondaryConnection.sendNotification(id,command);
         }
     }
 }
