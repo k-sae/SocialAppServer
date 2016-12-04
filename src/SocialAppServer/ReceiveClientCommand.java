@@ -97,6 +97,8 @@ class ReceiveClientCommand extends ReceiveCommand {
         else if (command.getKeyWord().equals(UserInfo.EDIT_INFO))
         {
 
+        }else if(command.getKeyWord().equals(LoggedUser.KEYWORD)){
+
         }
     }
 }
