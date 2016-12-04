@@ -60,21 +60,32 @@ class ReceiveClientCommand extends ReceiveCommand {
             command1.setSharableObject(group);
             connection.sendCommand(command1);
         }
-        if(command.getKeyWord().equals(Post.SAVE_POST)){
+        if(command.getKeyWord().equals(Post.SAVE_POST_USER)){
             Post post=Post.fromJsonString(command.getObjectStr());
-           PostManger.SavePost(post,FilesPath.GROUPS+post.getPostPos());
+           PostManger.SavePost(post,FilesPath.USERS+post.getPostPos());
             Command command1 = new Command();
-            command1.setKeyWord(Post.SAVE_POST);
+            command1.setKeyWord(Post.SAVE_POST_USER);
             command1.setSharableObject(post.convertToJsonString());
             connection.sendCommand(command1);
 
         }
-        if(command.getKeyWord().equals(Post.LOAD_POST)){
+        if(command.getKeyWord().equals(Post.SAVE_POST_GROUP)){
             Post post=Post.fromJsonString(command.getObjectStr());
-            post =PostManger.PickPost(FilesPath.GROUPS+post.getPostPos(),post.getId());
+            PostManger.SavePost(post,FilesPath.GROUPS+post.getPostPos());
             Command command1 = new Command();
-            command1.setKeyWord(Post.LOAD_POST);
+            command1.setKeyWord(Post.SAVE_POST_USER);
             command1.setSharableObject(post.convertToJsonString());
+            connection.sendCommand(command1);
+
+        }
+        if(command.getKeyWord().equals(Post.LOAD_POST_USERS)){
+            ArraylistPost posts=new ArraylistPost();
+            posts=(ArraylistPost.fromJsonString(command.getObjectStr()));
+            posts.setPosts(PostManger.PickPosts(FilesPath.USERS+posts.getOwnerPosts()));
+            System.out.println(posts.getPosts());
+            Command command1 = new Command();
+            command1.setKeyWord(Post.LOAD_POST_USERS);
+            command1.setSharableObject(posts.convertToJsonString());
             connection.sendCommand(command1);
 
         }

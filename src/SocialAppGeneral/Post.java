@@ -12,19 +12,25 @@ import java.util.Date;
  * Created by khaled hesham on 12/2/2016.
  */
 public class Post implements Shareable,Serializable{
-
+    private static final long serialVersionUID = 6529685098267757690L;
     private long id;
     private String content;
     private Date date;
     private long ownerId;
     private long PostPos;
-    public static final String SAVE_POST = "save_post";
-    public static final String LOAD_POST = "load_post";
+    public static final String SAVE_POST_USER = "save_post_user";
+    public static final String LOAD_POST_GROUPS = "load_post_groups";
+    public static final String LOAD_POST_USERS = "load_post_user";
     public static final String Add_COMMENT = "add_comment";
+    public static final String SAVE_POST_GROUP = "save_post_group";
     private  String imageID ;
-    private ArrayList <Like> like;
+    private ArrayList<Like> like;
     private  ArrayList<Comment> comments;
-
+    public Post()
+    {
+        like = new ArrayList<>();
+        comments = new ArrayList<>();
+    }
     public ArrayList<Comment> getComments() {
         return comments;
     }
