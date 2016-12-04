@@ -62,11 +62,8 @@ class ReceiveClientCommand extends ReceiveCommand {
             command1.setSharableObject(group);
             connection.sendCommand(command1);
         }
-<<<<<<< HEAD
-        if(command.getKeyWord().equals(Post.SAVE_POST_USER)){
-=======
-        else if(command.getKeyWord().equals(Post.SAVE_POST)){
->>>>>>> 4413d3613a326094864af22e5a9a2df64dbde6e5
+
+       else if(command.getKeyWord().equals(Post.SAVE_POST_USER)){
             Post post=Post.fromJsonString(command.getObjectStr());
            PostManger.SavePost(post,FilesPath.USERS+post.getPostPos());
             Command command1 = new Command();
@@ -75,21 +72,17 @@ class ReceiveClientCommand extends ReceiveCommand {
             connection.sendCommand(command1);
 
         }
-<<<<<<< HEAD
-        if(command.getKeyWord().equals(Post.SAVE_POST_GROUP)){
-=======
-      else if(command.getKeyWord().equals(Post.LOAD_POST)){
->>>>>>> 4413d3613a326094864af22e5a9a2df64dbde6e5
-            Post post=Post.fromJsonString(command.getObjectStr());
-            PostManger.SavePost(post,FilesPath.GROUPS+post.getPostPos());
+
+       else if(command.getKeyWord().equals(Post.SAVE_POST_GROUP)) {
+            Post post = Post.fromJsonString(command.getObjectStr());
+            PostManger.SavePost(post, FilesPath.GROUPS + post.getPostPos());
             Command command1 = new Command();
             command1.setKeyWord(Post.SAVE_POST_USER);
             command1.setSharableObject(post.convertToJsonString());
             connection.sendCommand(command1);
-
         }
-<<<<<<< HEAD
-        if(command.getKeyWord().equals(Post.LOAD_POST_USERS)){
+
+        else if(command.getKeyWord().equals(Post.LOAD_POST_USERS)){
             ArraylistPost posts=new ArraylistPost();
             posts=(ArraylistPost.fromJsonString(command.getObjectStr()));
             posts.setPosts(PostManger.PickPosts(FilesPath.USERS+posts.getOwnerPosts()));
@@ -100,11 +93,8 @@ class ReceiveClientCommand extends ReceiveCommand {
             connection.sendCommand(command1);
 
         }
-        if(command.getKeyWord().equals(Post.Add_COMMENT)){
-=======
        else if(command.getKeyWord().equals(Post.Add_COMMENT)){
->>>>>>> 4413d3613a326094864af22e5a9a2df64dbde6e5
-            Post post=Post.fromJsonString(command.getObjectStr());
+        Post post=Post.fromJsonString(command.getObjectStr());
            // post =PostManger.addComment(FilesPath.GROUPS+post.getPostPos(),post.getId(),post);
             PostManger.savePostWithoutId(post,FilesPath.GROUPS+post.getPostPos());
             Command command1 = new Command();
@@ -113,7 +103,7 @@ class ReceiveClientCommand extends ReceiveCommand {
             connection.sendCommand(command1);
             SecondaryConnection.sendNotification("0",command1);
         }
-       else if (command.getKeyWord().equals(UserInfo.PICK_INFO))
+           else if (command.getKeyWord().equals(UserInfo.PICK_INFO))
         {
             command.setSharableObject(UserPicker.pickUserInfo(command.getObjectStr()));
             connection.sendCommand(command);
