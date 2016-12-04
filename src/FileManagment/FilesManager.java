@@ -8,7 +8,6 @@ package FileManagment;
 
 
 import SocialAppGeneral.LoginInfo;
-import SocialAppGeneral.UserInfo;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -393,6 +392,21 @@ public class FilesManager {
         } catch (IOException ex) {
             return false;
         }
+    }
+    public static ArrayList<String> readAllLines(String file) {
+        ArrayList<String> strings = new ArrayList<>();
+        try {
+
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                strings.add(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strings;
     }
 }
 
