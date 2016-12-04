@@ -110,9 +110,14 @@ class ReceiveClientCommand extends ReceiveCommand {
         }
         else if (command.getKeyWord().equals(UserInfo.EDIT_INFO))
         {
+
             FilesManager.Removefile(FilesPath.USERS + loggedUserId+"\\" + FilesPath.INFO + ".txt", command.getObjectStr());
             command.setSharableObject("true");
             connection.sendCommand(command);
+
+
+        }else if(command.getKeyWord().equals(LoggedUser.KEYWORD)){
+            
         }
     }
 }
