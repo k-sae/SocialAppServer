@@ -14,7 +14,7 @@ public class SocialArrayList {
     {
         this.items = items;
     }
-    SocialArrayList()
+    public SocialArrayList()
     {
         items = new ArrayList<>();
     }

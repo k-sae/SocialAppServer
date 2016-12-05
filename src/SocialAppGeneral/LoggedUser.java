@@ -1,7 +1,5 @@
 package SocialAppGeneral;
 
-import FileManagment.FilesPath;
-
 import java.util.ArrayList;
 
 /**
@@ -10,6 +8,7 @@ import java.util.ArrayList;
 public class LoggedUser extends AppUser {
     public static final String ADD_FRIEND="add_Friend";
     public static final String FRIEND_REQ = "friend_req";
+    public static final String FETCH_REQS = "fetch_reqs";
    //TO DO
     // may change later check with kareem
    ArrayList<Integer> friends;

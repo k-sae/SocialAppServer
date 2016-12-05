@@ -125,19 +125,24 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             connection.sendCommand(command);
             command.setKeyWord(LoggedUser.FRIEND_REQ);
             command.setSharableObject(loggedUserId);
-            System.out.println(id);
             SecondaryConnection.sendNotification(id,command);
         }
-        else if(command.getKeyWord().equals("Search")){
-            UserFinder f=new UserFinder();
+        else if(command.getKeyWord().equals("Search")) {
+            UserFinder f = new UserFinder();
             //ArrayList <String>a=new ArrayList<String>();
             ArrayList<Object> objects = new ArrayList<>();
             ArrayList<String> strings = new ArrayList<>();
-            strings=f.Search(command.getObjectStr());
+            strings = f.Search(command.getObjectStr());
             objects.addAll(strings);
             SocialArrayList socialArrayList = new SocialArrayList(objects);
             command.setSharableObject(socialArrayList.convertToJsonString());
-
+        }
+        else if(command.getKeyWord().equals(LoggedUser.FETCH_REQS))
+        {
+            ArrayList<Object> objects = new ArrayList<>();
+            objects.addAll(FilesManager.readAllLines(USERS+loggedUserId+"\\"+FriendRequest+".txt"));
+            command.setSharableObject(new SocialArrayList(objects).convertToJsonString());
+            connection.sendCommand(command);
         }
     }
 }
