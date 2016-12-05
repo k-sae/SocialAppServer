@@ -1,2 +1,0 @@
-[{"loginInfo":{"email":"khaledhesham2017@hotmail.com","password":"kadra2015"},"UserInfo":{"FULL_NAME":"fullName","BIRTH_DATE":"birthDate","GENDER":"gender","fullName":"khaledhesham","birthDate":"1997-06-25","gender":"RadioButton@391f6ff0[styleClass\u003dradio-button]\u0027Male\u0027"}}
-]

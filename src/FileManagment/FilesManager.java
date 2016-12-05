@@ -7,6 +7,9 @@ package FileManagment;
 
 
 
+import SocialAppGeneral.LoginInfo;
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -369,6 +372,41 @@ public class FilesManager {
             e.printStackTrace();
         }
         return o;
+
+    }
+    public static boolean LoginValidatior(String FileName, String mail, String pass) {
+        try {
+            BufferedReader RL = new BufferedReader(new FileReader(FileName));
+            String line;
+            LoginInfo loginInfo;
+            Gson gson = new Gson();
+           while( (line = RL.readLine()) != null) {
+            line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
+               loginInfo = gson.fromJson(line,LoginInfo.class);
+                if (loginInfo.getEMAIL().equals(mail) && loginInfo.getPassword().equals(pass)) {
+                    return true;
+                }
+            }
+            RL.close();
+            return false;
+        } catch (IOException ex) {
+            return false;
+        }
+    }
+    public static ArrayList<String> readAllLines(String file) {
+        ArrayList<String> strings = new ArrayList<>();
+        try {
+
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                strings.add(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strings;
     }
 }
 

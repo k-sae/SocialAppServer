@@ -12,5 +12,5 @@ public interface FilesPath {
     String NAMES="names\\";
     String EMAILS="emails\\";
     String INFO="Info";
-
+    String FriendRequest="pendingRequest";
 }
