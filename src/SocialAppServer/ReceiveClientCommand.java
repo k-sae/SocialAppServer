@@ -6,6 +6,7 @@ import FileManagment.Saver;
 import SocialAppGeneral.*;
 
 import java.net.Socket;
+import java.util.ArrayList;
 
 
 /**
@@ -126,6 +127,17 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             command.setSharableObject(loggedUserId);
             System.out.println(id);
             SecondaryConnection.sendNotification(id,command);
+        }
+        else if(command.getKeyWord().equals("Search")){
+            UserFinder f=new UserFinder();
+            //ArrayList <String>a=new ArrayList<String>();
+            ArrayList<Object> objects = new ArrayList<>();
+            ArrayList<String> strings = new ArrayList<>();
+            strings=f.Search(command.getObjectStr());
+            objects.addAll(strings);
+            SocialArrayList socialArrayList = new SocialArrayList(objects);
+            command.setSharableObject(socialArrayList.convertToJsonString());
+
         }
     }
 }

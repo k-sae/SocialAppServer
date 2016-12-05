@@ -186,22 +186,6 @@ public class FilesManager {
             return null;
         }
     }
-    public static boolean StringFinder(String FileName, String token) {
-        try {
-            BufferedReader RL = new BufferedReader(new FileReader(FileName));
-            String line;
-            while ((line = RL.readLine()) != null) {
-                if (line.contains(token)) {
-                    RL.close();
-                    return true;
-                }
-            }
-            RL.close();
-            return false;
-        } catch (IOException ex) {
-            return false;
-        }
-    }
     public static void DeleteFile(File file) {
         final boolean Temp = file.delete();
     }
@@ -224,6 +208,20 @@ public class FilesManager {
           AddLineWithoutAppend(a,FilePath);
       }catch (IOException ex){
       }
+    }
+    public static ArrayList<String> ReadIntoArrayList(String FilePath){
+        ArrayList <String> a =new ArrayList<String>();
+        try {
+            BufferedReader RL=new BufferedReader(new FileReader(FilePath));
+            String Line;
+            while((Line= RL.readLine())!=null) {
+                Line=Line.substring(Line.indexOf('[')+1,Line.indexOf(']'));
+                a.add(Line);
+            }
+            return a;
+        }catch (IOException ex){
+        }
+        return a;
     }
     public static synchronized void Removefile(String FilePath,String info){
         try {
