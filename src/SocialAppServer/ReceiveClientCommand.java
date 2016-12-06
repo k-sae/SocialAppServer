@@ -84,22 +84,20 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         }
 
         else if(command.getKeyWord().equals(Post.LOAD_POST_USERS)){
-            ArraylistPost posts=new ArraylistPost();
+            ArraylistPost posts;
             posts=(ArraylistPost.fromJsonString(command.getObjectStr()));
             posts.setPosts(PostManger.PickPosts(FilesPath.USERS+posts.getOwnerPosts()));
-            System.out.println(posts.getPosts());
             Command command1 = new Command();
             command1.setKeyWord(Post.LOAD_POST_USERS);
             command1.setSharableObject(posts.convertToJsonString());
             connection.sendCommand(command1);
 
         }
-       else if(command.getKeyWord().equals(Post.Add_COMMENT)){
+       else if(command.getKeyWord().equals(Post.EDITE_POST)){
         Post post=Post.fromJsonString(command.getObjectStr());
-           // post =PostManger.addComment(FilesPath.GROUPS+post.getPostPos(),post.getId(),post);
             PostManger.savePostWithoutId(post,FilesPath.GROUPS+post.getPostPos());
             Command command1 = new Command();
-            command1.setKeyWord(Post.Add_COMMENT);
+            command1.setKeyWord(Post.EDITE_POST);
             command1.setSharableObject(post.convertToJsonString());
             connection.sendCommand(command1);
             SecondaryConnection.sendNotification("0",command1);

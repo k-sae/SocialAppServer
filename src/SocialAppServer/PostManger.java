@@ -21,10 +21,7 @@ class PostManger {
     private static final String Comment_ID="\\comment_ID";
     private static final String Post_FILE="\\post";
     private static final String POSTS= "\\posts";
-    static ArrayList <Post> posts= new ArrayList<>();
-    static String uniqueID="1";
-    static Post post=new Post();
-     static Post SavePost(Post post,String path)  {
+    static Post SavePost(Post post,String path)  {
         post.setDate(new Date());
         FilesManager.CreateFolder(path,POSTS);
         post.setId(Long.valueOf(Generator.GenerateUnigueId(path+POSTS)));
@@ -36,19 +33,20 @@ class PostManger {
          return ((Post) FilesManager.ReadFromBinaryFile(path+POSTS+"\\"+id+Post_FILE));
     }
      static ArrayList<Post> PickPosts(String path)  {
+          ArrayList <Post> posts= new ArrayList<>();
+          String uniqueID="1";
          int countenr=1;
-        System.out.println(path);
-        uniqueID=(FilesManager.ReadLine(path+POSTS+"\\uniqueID.txt",1));
-        long uniqueidtemp=Long.valueOf(uniqueID);
-        while (uniqueidtemp!=0 && countenr %10 !=0) {
-          // post= (Post) FilesManager.ReadFromBinaryFile(path + POSTS + "\\" + uniqueidtemp + Post_FILE);
-          post=  PostManger.PickonePost(path,uniqueidtemp);
-            posts.add(post);
-            uniqueidtemp--;
-            countenr++;
-        }
-        System.out.println(posts);
-        return  posts;
+       if(FilesManager.FileIsExist(path+POSTS,"\\uniqueID.txt")) {
+           uniqueID = (FilesManager.ReadLine(path + POSTS + "\\uniqueID.txt", 1));
+           long uniqueidtemp = Long.valueOf(uniqueID);
+           while (uniqueidtemp != 0 && countenr % 10 != 0) {
+               posts.add((Post) FilesManager.ReadFromBinaryFile(path + POSTS + "\\" + uniqueidtemp + Post_FILE));
+               uniqueidtemp--;
+               countenr++;
+           }
+           return posts;
+       }
+       else return  null;
     }
     static Post addComment(String path,long id,Post post){
        Comment comment= post.getComments().get(post.getComments().size()-1);
