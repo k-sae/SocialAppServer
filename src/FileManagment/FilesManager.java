@@ -220,8 +220,10 @@ public class FilesManager {
                   a.add(Line);
               }
           }
+          RL.close();
           AddLineWithoutAppend(a,FilePath);
-      }catch (IOException ex){
+
+      }catch (IOException ignored){
       }
     }
     public static synchronized void Removefile(String FilePath,String info){
@@ -234,7 +236,7 @@ public class FilesManager {
             WT.write(info);
             WT.newLine();
             WT.close();
-        }catch (IOException ex){
+        }catch (IOException ignored){
         }
 
           //File inputFile = new File(FilePath);
@@ -364,11 +366,7 @@ public class FilesManager {
             ooss.close();
 
         }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+      catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return o;
