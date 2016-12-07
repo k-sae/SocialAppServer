@@ -63,29 +63,45 @@ class PostManger {
         FilesManager.CreateFolder(path+POSTS,"\\"+post.getId()+"");
         FilesManager.CreateFileBinary(post,path+POSTS+"\\"+post.getId()+Post_FILE);
     }
-    static void saveAtachment(Post post,String path){
+    static void saveAtachment(Post postNew,String path){
         FilesManager.CreateFolder(path,POSTS);
-        FilesManager.CreateFolder(path+POSTS,"\\"+post.getId()+"");
-        Post post1= (Post) FilesManager.ReadFromBinaryFile(path + POSTS + "\\" +post.getId() + Post_FILE);
+        FilesManager.CreateFolder(path+POSTS,"\\"+postNew.getId()+"");
+        Post post1= (Post) FilesManager.ReadFromBinaryFile(path + POSTS + "\\" +postNew.getId() + Post_FILE);
+        if(postNew.getLike().size() !=0) {
+            if (postNew.getLike().size() != 0 && postNew.getLike().get(0).getLike() != -1) {
 
-        if (post.getLike().size() !=0 &&post.getLike().get(0).getLike() !=0){
-            post1.addlike((post.getLike().get(0)));
-            FilesManager.CreateFileBinary(post1,path+POSTS+"\\"+post1.getId()+Post_FILE);
+                post1.addlike((postNew.getLike().get(0)));
+            } else if (postNew.getLike().size() != 0 && postNew.getLike().get(0).getLike() == -1) {
+                int i = 0;
+                int check = -1;
+                do {
+                    if (post1.getLike().get(i).getOwnerID() == postNew.getLike().get(0).getOwnerID()) {
+                        check = i;
+                    }
+                    i++;
+                }
+                while (i < post1.getLike().size() && post1.getLike().get(i).getOwnerID() != postNew.getLike().get(0).getOwnerID());
+                post1.deletelike(check);
+
+            }
         }
-        else if(post.getLike().size() !=0 &&post.getLike().get(0).getLike() ==0){
+        if(postNew.getComments().size() != 0 && postNew.getComments().get(0).isShow()){
+            postNew.getComments().get(0).setCommentId((Long.valueOf(Generator.GenerateUnigueId(path + POSTS + "\\" +
+                    post1.getId()))));
+           post1.addcomment(postNew.getComments().get(0));
+        }
+        else if(postNew.getComments().size() !=0 &&!postNew.getComments().get(0).isShow() ){
             int i = 0;
             int check = -1;
-            while (i<post1.getLike().size()&&post1.getLike().get(i).getOwnerID() != post.getLike().get(0).getOwnerID()){
-                if(post.getLike().get(i).getOwnerID() == post.getLike().get(0).getOwnerID()) {
+            do {
+                if(post1.getComments().get(i).getOwnerID() == postNew.getComments().get(0).getOwnerID()) {
                     check = i;
                 }
                 i++;
-            }
-            post1.deletelike(i);
-            FilesManager.CreateFileBinary(post1,path+POSTS+"\\"+post1.getId()+Post_FILE);
+            }while (i<post1.getComments().size()&&post1.getComments().get(i).getOwnerID() !=  postNew.getComments().get(0).getOwnerID());
+            post1.deletecomment(check);
         }
-        System.out.println(post1.convertToJsonString());
-
+        FilesManager.CreateFileBinary(post1,path+POSTS+"\\"+postNew.getId()+Post_FILE);
 
     }
 

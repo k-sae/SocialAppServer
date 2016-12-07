@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Like extends PostAtachmment implements Serializable {
     private int like;
-
+    private static final long serialVersionUID = 6529685098267757690L;
     public int getLike() {
         return like;
     }

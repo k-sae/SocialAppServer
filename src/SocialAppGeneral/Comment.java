@@ -6,7 +6,15 @@ package SocialAppGeneral;
 public class Comment extends PostAtachmment {
     private String commentcontent;
     private  long CommentId;
+    private boolean show;
 
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
+    }
     public String getCommentcontent() {
         return commentcontent;
     }

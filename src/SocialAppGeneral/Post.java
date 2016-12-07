@@ -41,8 +41,8 @@ public class Post implements Shareable,Serializable{
     public void addcomment(Comment comment) {
         this.comments.add(comment);
     }
-    public  void deletecomment(Comment comment){
-        this.comments.remove(comment);
+    public  void deletecomment(int  index){
+        this.comments.remove(index);
     }
 
 
