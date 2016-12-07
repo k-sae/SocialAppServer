@@ -70,17 +70,21 @@ class PostManger {
 
         if (post.getLike().size() !=0 &&post.getLike().get(0).getLike() !=0){
             post1.addlike((post.getLike().get(0)));
-            FilesManager.CreateFileBinary(post,path+POSTS+"\\"+post.getId()+Post_FILE);
+            FilesManager.CreateFileBinary(post1,path+POSTS+"\\"+post1.getId()+Post_FILE);
         }
         else if(post.getLike().size() !=0 &&post.getLike().get(0).getLike() ==0){
-            int i=0;
-            while (i<post1.getLike().size()&&post1.getLike().get(i).getOwnerID() == post.getLike().get(0).getOwnerID()){
+            int i = 0;
+            int check = -1;
+            while (i<post1.getLike().size()&&post1.getLike().get(i).getOwnerID() != post.getLike().get(0).getOwnerID()){
+                if(post.getLike().get(i).getOwnerID() == post.getLike().get(0).getOwnerID()) {
+                    check = i;
+                }
                 i++;
             }
-            post.deletelike(i);
-            FilesManager.CreateFileBinary(post,path+POSTS+"\\"+post.getId()+Post_FILE);
+            post1.deletelike(i);
+            FilesManager.CreateFileBinary(post1,path+POSTS+"\\"+post1.getId()+Post_FILE);
         }
-        System.out.println(post1.getLike().toString());
+        System.out.println(post1.convertToJsonString());
 
 
     }
