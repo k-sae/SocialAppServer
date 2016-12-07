@@ -93,14 +93,14 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             connection.sendCommand(command1);
 
         }
-       else if(command.getKeyWord().equals(Post.EDITE_POST)){
-        Post post=Post.fromJsonString(command.getObjectStr());
-            PostManger.savePostWithoutId(post,FilesPath.GROUPS+post.getPostPos());
-            Command command1 = new Command();
-            command1.setKeyWord(Post.EDITE_POST);
-            command1.setSharableObject(post.convertToJsonString());
-            connection.sendCommand(command1);
-            SecondaryConnection.sendNotification("0",command1);
+       else if(command.getKeyWord().equals(Post.EDITE_POST_USERS)){
+       Post post1= Post.fromJsonString(command.getObjectStr());
+            System.out.println(command.getObjectStr());
+            PostManger.saveAtachment(post1,FilesPath.USERS+post1.getPostPos());
+            command.setKeyWord(Post.EDITE_POST_USERS);
+            command.setSharableObject(post1.convertToJsonString());
+            connection.sendCommand(command);
+
         }
            else if (command.getKeyWord().equals(UserInfo.PICK_INFO))
         {

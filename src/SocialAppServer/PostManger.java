@@ -2,7 +2,9 @@ package SocialAppServer;
 
 import FileManagment.FilesManager;
 import SocialAppGeneral.Comment;
+import SocialAppGeneral.Like;
 import SocialAppGeneral.Post;
+import SocialAppGeneral.PostAtachmment;
 
 
 import java.io.FileInputStream;
@@ -18,7 +20,7 @@ import static FileManagment.FilesManager.*;
  * Created by khaled hesham on 12/2/2016.
  */
 class PostManger {
-    private static final String Comment_ID="\\comment_ID";
+    private static final String Comment_ID="\\commenta_ID";
     private static final String Post_FILE="\\post";
     private static final String POSTS= "\\posts";
     static Post SavePost(Post post,String path)  {
@@ -60,6 +62,27 @@ class PostManger {
         FilesManager.CreateFolder(path,POSTS);
         FilesManager.CreateFolder(path+POSTS,"\\"+post.getId()+"");
         FilesManager.CreateFileBinary(post,path+POSTS+"\\"+post.getId()+Post_FILE);
+    }
+    static void saveAtachment(Post post,String path){
+        FilesManager.CreateFolder(path,POSTS);
+        FilesManager.CreateFolder(path+POSTS,"\\"+post.getId()+"");
+        Post post1= (Post) FilesManager.ReadFromBinaryFile(path + POSTS + "\\" +post.getId() + Post_FILE);
+
+        if (post.getLike().size() !=0 &&post.getLike().get(0).getLike() !=0){
+            post1.addlike((post.getLike().get(0)));
+            FilesManager.CreateFileBinary(post,path+POSTS+"\\"+post.getId()+Post_FILE);
+        }
+        else if(post.getLike().size() !=0 &&post.getLike().get(0).getLike() ==0){
+            int i=0;
+            while (i<post1.getLike().size()&&post1.getLike().get(i).getOwnerID() == post.getLike().get(0).getOwnerID()){
+                i++;
+            }
+            post.deletelike(i);
+            FilesManager.CreateFileBinary(post,path+POSTS+"\\"+post.getId()+Post_FILE);
+        }
+        System.out.println(post1.getLike().toString());
+
+
     }
 
 }
