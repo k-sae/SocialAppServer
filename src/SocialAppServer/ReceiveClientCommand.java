@@ -102,7 +102,8 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         }
         else if (command.getKeyWord().equals(Post.DELETE_POST_USERS)){
             Post post1= Post.fromJsonString(command.getObjectStr());
-            PostManger.deletepost(FilesPath.USERS+post1.getPostPos()+post1.getId());
+            PostManger.deletepost(FilesPath.USERS+"\\"+post1.getPostPos()+FilesPath.POSTS+"\\"+post1.getId());
+            connection.sendCommand(command);
         }
            else if (command.getKeyWord().equals(UserInfo.PICK_INFO))
         {

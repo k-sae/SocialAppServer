@@ -13,4 +13,5 @@ public interface FilesPath {
     String EMAILS="emails\\";
     String INFO="Info";
     String FriendRequest="pendingRequest";
+    String POSTS= "\\posts";
 }

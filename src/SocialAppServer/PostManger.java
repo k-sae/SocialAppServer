@@ -1,6 +1,7 @@
 package SocialAppServer;
 
 import FileManagment.FilesManager;
+import FileManagment.FilesPath;
 import SocialAppGeneral.Comment;
 import SocialAppGeneral.Like;
 import SocialAppGeneral.Post;
@@ -17,31 +18,34 @@ import static FileManagment.FilesManager.*;
  * Created by khaled hesham on 12/2/2016.
  */
 class PostManger {
-    private static final String Comment_ID="\\commenta_ID";
+
     private static final String Post_FILE="\\post";
-    private static final String POSTS= "\\posts";
+
     static Post SavePost(Post post,String path)  {
         post.setDate(new Date());
-        FilesManager.CreateFolder(path,POSTS);
-        post.setId(Long.valueOf(Generator.GenerateUnigueId(path+POSTS)));
-        FilesManager.CreateFolder(path+POSTS,"\\"+post.getId()+"");
-        FilesManager.CreateFileBinary(post,path+POSTS+"\\"+post.getId()+Post_FILE);
+        FilesManager.CreateFolder(path, FilesPath.POSTS);
+        post.setId(Long.valueOf(Generator.GenerateUnigueId(path+FilesPath.POSTS)));
+        FilesManager.CreateFolder(path+FilesPath.POSTS,"\\"+post.getId()+"");
+        FilesManager.CreateFileBinary(post,path+FilesPath.POSTS+"\\"+post.getId()+Post_FILE);
         return (post);
     }
      static Post PickonePost(String path,long id)  {
-         return ((Post) FilesManager.ReadFromBinaryFile(path+POSTS+"\\"+id+Post_FILE));
+         return ((Post) FilesManager.ReadFromBinaryFile(path+FilesPath.POSTS+"\\"+id+Post_FILE));
     }
      static ArrayList<Post> PickPosts(String path)  {
           ArrayList <Post> posts= new ArrayList<>();
           String uniqueID="1";
          int countenr=1;
-       if(FilesManager.FileIsExist(path+POSTS,"\\uniqueID.txt")) {
-           uniqueID = (FilesManager.ReadLine(path + POSTS + "\\uniqueID.txt", 1));
+       if(FilesManager.FileIsExist(path+FilesPath.POSTS,"\\uniqueID.txt")) {
+           uniqueID = (FilesManager.ReadLine(path + FilesPath.POSTS + "\\uniqueID.txt", 1));
            long uniqueidtemp = Long.valueOf(uniqueID);
            while (uniqueidtemp != 0 && countenr % 10 != 0) {
-               posts.add((Post) FilesManager.ReadFromBinaryFile(path + POSTS + "\\" + uniqueidtemp + Post_FILE));
+               if(FilesManager.FileIsExist(path +FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE)) {
+                   posts.add((Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
+
+                   countenr++;
+               }
                uniqueidtemp--;
-               countenr++;
            }
            return posts;
        }
@@ -49,9 +53,9 @@ class PostManger {
     }
 
     static void saveAtachment(Post postNew,String path){
-        FilesManager.CreateFolder(path,POSTS);
-        FilesManager.CreateFolder(path+POSTS,"\\"+postNew.getId()+"");
-        Post post1= (Post) FilesManager.ReadFromBinaryFile(path + POSTS + "\\" +postNew.getId() + Post_FILE);
+        FilesManager.CreateFolder(path,FilesPath.POSTS);
+        FilesManager.CreateFolder(path+FilesPath.POSTS,"\\"+postNew.getId()+"");
+        Post post1= (Post) FilesManager.ReadFromBinaryFile(path +FilesPath.POSTS+ "\\" +postNew.getId() + Post_FILE);
         if(postNew.getLike().size() !=0) {
             int i = 0;
             int check = -1;
@@ -71,15 +75,16 @@ class PostManger {
                          post1.getLike().get(check).setLike(postNew.getLike().get(0).getLike());
                      }
             } else if (  postNew.getLike().get(0).getLike() == -1) {
-
-                post1.deletelike(check);
+                if(check !=-1) {
+                    post1.deletelike(check);
+                }
 
             }
         }
         else {
             if (postNew.getComments().size() != 0) {
                 if (postNew.getComments().get(0).getShow() == 1) {
-                    postNew.getComments().get(0).setCommentId((Long.valueOf(Generator.GenerateUnigueId(path + POSTS + "\\" +
+                    postNew.getComments().get(0).setCommentId((Long.valueOf(Generator.GenerateUnigueId(path + FilesPath.POSTS + "\\" +
                             post1.getId()))));
                     post1.addcomment(postNew.getComments().get(0));
                 } else {
@@ -94,9 +99,10 @@ class PostManger {
                     while (i < post1.getComments().size() && post1.getComments().get(i).getCommentId() != postNew.getComments().get(0).getCommentId());
 
                     if (postNew.getComments().get(0).getShow() == -1) {
-
+                      if(check !=-1)
                         post1.deletecomment(check);
                     } else if (postNew.getComments().get(0).getShow() == 0) {
+                        if(check !=-1)
                         post1.getComments().get(check).setCommentcontent(postNew.getComments().get(0).getCommentcontent());
                     }
                 }
@@ -109,7 +115,7 @@ class PostManger {
         }
 
 
-        FilesManager.CreateFileBinary(post1,path+POSTS+"\\"+postNew.getId()+Post_FILE);
+        FilesManager.CreateFileBinary(post1,path+FilesPath.POSTS+"\\"+postNew.getId()+Post_FILE);
 
     }
 
