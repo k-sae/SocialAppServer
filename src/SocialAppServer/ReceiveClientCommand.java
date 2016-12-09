@@ -86,7 +86,9 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         else if(command.getKeyWord().equals(Post.LOAD_POST_USERS)){
             ArraylistPost posts;
             posts=(ArraylistPost.fromJsonString(command.getObjectStr()));
-            posts.setPosts(PostManger.PickPosts(FilesPath.USERS+posts.getOwnerPosts()));
+            System.out.println(command.getObjectStr());
+            posts.setPosts(PostManger.PickPosts(FilesPath.USERS+posts.getOwnerPosts(),posts.getNumberpost()));
+
             Command command1 = new Command();
             command1.setKeyWord(Post.LOAD_POST_USERS);
             command1.setSharableObject(posts.convertToJsonString());
