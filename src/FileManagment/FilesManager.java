@@ -8,6 +8,7 @@ package FileManagment;
 
 
 import SocialAppGeneral.LoginInfo;
+import SocialAppGeneral.RegisterInfo;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -156,27 +157,63 @@ public class FilesManager {
     public static boolean ReadLine(String FileName, String token) {
         try {
             BufferedReader RL = new BufferedReader(new FileReader(FileName));
-            String line;
+            RegisterInfo re;
+            Gson gson = new Gson();
+            String line ;
             while ((line = RL.readLine()) != null) {
-                if (line.contains(token)) {
-                    RL.close();
-                   return true;
+//                line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
+                System.out.print(line);
+                if(!line.isEmpty()) {
+                  re = gson.fromJson(line, RegisterInfo.class);
+                    if (re.getLoginInfo().getEMAIL().equals(token)) {
+                        RL.close();
+                        return true;
+                    }
                 }
-                RL.close();
             }
+            RL.close();
             return false;
         } catch (IOException ex) {
             return false;
         }
     }
-    public static String FileSearcher(String FileName, String token) {
+    public static boolean ReadLineoflogin(String FileName, String token) {
         try {
             BufferedReader RL = new BufferedReader(new FileReader(FileName));
-            String line;
+            LoginInfo re;
+            Gson gson = new Gson();
+            String line ;
             while ((line = RL.readLine()) != null) {
-                if (line.contains(token)) {
+                line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
+              //  System.out.print(line);
+                if(!line.isEmpty()) {
+                    re = gson.fromJson(line, LoginInfo.class);
+                    if (re.getEMAIL().equals(token)) {
+                        RL.close();
+                        return true;
+                    }
+                }
+            }
+            RL.close();
+            return false;
+        } catch (IOException ex) {
+            return false;
+        }
+    }
+    public static String FileSearcherForID(String FileName, String token) {
+        try {
+            BufferedReader RL = new BufferedReader(new FileReader(FileName));
+            LoginInfo re;
+            Gson gson = new Gson();
+            String line;
+            String Wline;
+            while ((Wline = RL.readLine()) != null) {
+                line=Wline;
+                line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
+               re = gson.fromJson(line,LoginInfo.class);
+                if (re.getEMAIL().equals(token)) {
                     RL.close();
-                    return line;
+                    return Wline;
                 }
             }
             RL.close();
@@ -185,20 +222,24 @@ public class FilesManager {
             return null;
         }
     }
-    public static boolean StringFinder(String FileName, String token) {
+    public static String FileSearcher(String FileName, String token) {
         try {
             BufferedReader RL = new BufferedReader(new FileReader(FileName));
+            RegisterInfo re;
+            Gson gson = new Gson();
             String line;
             while ((line = RL.readLine()) != null) {
-                if (line.contains(token)) {
+                line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
+                re = gson.fromJson(line,RegisterInfo.class);
+                if (re.getLoginInfo().getEMAIL().equals(token)) {
                     RL.close();
-                    return true;
+                    return line;
                 }
             }
             RL.close();
-            return false;
+            return "";
         } catch (IOException ex) {
-            return false;
+            return null;
         }
     }
     public static void DeleteFile(File file) {
@@ -225,6 +266,20 @@ public class FilesManager {
 
       }catch (IOException ignored){
       }
+    }
+    public static ArrayList<String> ReadIntoArrayList(String FilePath){
+        ArrayList <String> a =new ArrayList<String>();
+        try {
+            BufferedReader RL=new BufferedReader(new FileReader(FilePath));
+            String Line;
+            while((Line= RL.readLine())!=null) {
+                Line=Line.substring(Line.indexOf('[')+1,Line.indexOf(']'));
+                a.add(Line);
+            }
+            return a;
+        }catch (IOException ex){
+        }
+        return a;
     }
     public static synchronized void Removefile(String FilePath,String info){
         try {
