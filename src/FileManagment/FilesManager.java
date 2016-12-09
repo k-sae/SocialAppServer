@@ -133,7 +133,22 @@ public class FilesManager {
             return false;
         }
     }
-
+    public static boolean StringFinder(String FileName, String token) {
+        try {
+            BufferedReader RL = new BufferedReader(new FileReader(FileName));
+            String line;
+            while ((line = RL.readLine()) != null) {
+                if (line.contains(token)) {
+                    RL.close();
+                    return true;
+                }
+            }
+            RL.close();
+            return false;
+        } catch (IOException ex) {
+            return false;
+        }
+    }
 
     public static String ReadLine(String FileName, int lineNum) {
         try {
