@@ -37,13 +37,13 @@ class PostManger {
           String uniqueID="1";
 
          long countenr=1;
-         int counter2= 0;
+         int counter2= 1;
        if(FilesManager.FileIsExist(path+FilesPath.POSTS,"\\uniqueID.txt")) {
            uniqueID = (FilesManager.ReadLine(path + FilesPath.POSTS + "\\uniqueID.txt", 1));
            long uniqueidtemp = Long.valueOf(uniqueID);
            do{
                if(FilesManager.FileIsExist(path +FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE)) {
-                   if(counter2 >= ((numberPost-1)*10)-1) {
+                   if(counter2 >= ((numberPost-1)*10)+1) {
                        posts.add((Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
 
                    countenr++;
@@ -53,7 +53,7 @@ class PostManger {
                uniqueidtemp--;
            }
 
-           while (uniqueidtemp != 0 && countenr % 10 != 0);
+           while (uniqueidtemp != 0 && countenr % 11 != 0);
 
            return posts;
        }
