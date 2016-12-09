@@ -34,7 +34,7 @@ public Saver(RegisterInfo reg, HalfDuplexConnection connection) {
     Command command = new Command();
     command.setKeyWord(RegisterInfo.KEYWORD);
     if (FilesManager.FileIsExist(UNREIGESTERDUSERS, Id + ".txt")) {
-        if(FilesManager.ReadLine(UNREIGESTERDUSERS + Id + ".txt", reg.getLoginInfo().getEMAIL()) || FilesManager.ReadLine(USERS + EMAILS + Id + ".txt", reg.getLoginInfo().getEMAIL())){
+        if(FilesManager.ReadLine(UNREIGESTERDUSERS + Id + ".txt", reg.getLoginInfo().getEMAIL()) || FilesManager.ReadLineoflogin(USERS + EMAILS + Id + ".txt", reg.getLoginInfo().getEMAIL())){
             command.setSharableObject("false");
             connection.sendCommand(command);
     }else{

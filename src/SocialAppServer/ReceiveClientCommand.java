@@ -136,6 +136,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             objects.addAll(strings);
             SocialArrayList socialArrayList = new SocialArrayList(objects);
             command.setSharableObject(socialArrayList.convertToJsonString());
+            connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(LoggedUser.FETCH_REQS))
         {
