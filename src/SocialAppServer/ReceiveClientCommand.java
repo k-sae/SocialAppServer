@@ -95,8 +95,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         }
        else if(command.getKeyWord().equals(Post.EDITE_POST_USERS)){
        Post post1= Post.fromJsonString(command.getObjectStr());
-            PostManger.saveAtachment(post1,FilesPath.USERS+post1.getPostPos());
-
+            command.setSharableObject(String.valueOf(PostManger.saveAtachment(post1, FilesPath.USERS+post1.getPostPos())));
             connection.sendCommand(command);
 
         }
