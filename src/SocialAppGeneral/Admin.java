@@ -14,9 +14,9 @@ public class Admin extends LoggedUser implements FilesPath{
         RegisterInfo re = RegisterInfo.fromJsonString(line);
         String ID = Generator.GenerateUnigueId(USERS);
         FilesManager.CreateFolder(USERS + ID);
-   FilesManager.CreateFile(USERS+ID+"\\"+INFO+".txt");
+   FilesManager.CreateFile(USERS+ID+"\\"+INFO);
         //     FilesManager.OpenToWrite(USERS + ID+"\\",INFO+".txt");
-        FilesManager.AddLineWithoutAppend(USERS + ID+"\\"+INFO+".txt",re.getUserInfo().convertToJsonString());
+        FilesManager.AddLineWithoutAppend(USERS + ID+"\\"+INFO,re.getUserInfo().convertToJsonString());
         if(FilesManager.FileIsExist(USERS+EMAILS)){
             FilesManager.AddLine(USERS+EMAILS+Generator.GenerateID(re.getLoginInfo().getEMAIL())+".txt",re.getLoginInfo().convertToJsonString()+"ID=["+ID+"]");
         }else{
