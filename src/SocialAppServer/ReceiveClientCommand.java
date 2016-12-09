@@ -112,7 +112,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         else if (command.getKeyWord().equals(UserInfo.EDIT_INFO))
         {
 
-            FilesManager.Removefile(FilesPath.USERS + loggedUserId+"\\" + FilesPath.INFO + ".txt", command.getObjectStr());
+            FilesManager.Removefile(FilesPath.USERS + loggedUserId+"\\" + FilesPath.INFO, command.getObjectStr());
             command.setSharableObject("true");
             connection.sendCommand(command);
 
@@ -120,7 +120,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         }else if(command.getKeyWord().equals(LoggedUser.ADD_FRIEND)){
 
             String  id =command.getObjectStr();
-            FilesManager.AddLine(USERS+id+"\\"+FriendRequest+".txt",loggedUserId);
+            FilesManager.AddLine(USERS+id+"\\"+ FRIEND_REQUEST,loggedUserId);
             command.setSharableObject("true");
             connection.sendCommand(command);
             command.setKeyWord(LoggedUser.FRIEND_REQ);
@@ -130,8 +130,42 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         else if(command.getKeyWord().equals(LoggedUser.FETCH_REQS))
         {
             ArrayList<Object> objects = new ArrayList<>();
-            objects.addAll(FilesManager.readAllLines(USERS+loggedUserId+"\\"+FriendRequest+".txt"));
+            objects.addAll(FilesManager.readAllLines(USERS+loggedUserId+"\\"+ FRIEND_REQUEST));
             command.setSharableObject(new SocialArrayList(objects).convertToJsonString());
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(LoggedUser.GET_RELATION_STATUS))
+        {
+            Relation relation = new Relation(loggedUserId);
+            command.setSharableObject(relation.getStatus(command.getObjectStr()) + "");
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(LoggedUser.ACCEPT_FRIEND))
+        {
+            Relation relation = new Relation(loggedUserId);
+            relation.acceptFriendReq(command.getObjectStr());
+            command.setSharableObject("true");
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(LoggedUser.REMOVE_FRIEND))
+        {
+            Relation relation = new Relation(loggedUserId);
+            relation.removeFriend(command.getObjectStr());
+            command.setSharableObject("true");
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(LoggedUser.CANCEL_FRIEND_REQ))
+        {
+            Relation relation = new Relation(loggedUserId);
+            relation.cancelFriendReq(command.getObjectStr());
+            command.setSharableObject("true");
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(LoggedUser.DECLINE_FRIEND))
+        {
+            Relation relation = new Relation(loggedUserId);
+            relation.declineFriendReq(command.getObjectStr());
+            command.setSharableObject("true");
             connection.sendCommand(command);
         }
     }
