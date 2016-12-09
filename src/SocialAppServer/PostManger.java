@@ -35,15 +35,15 @@ class PostManger {
      static ArrayList<Post> PickPosts(String path)  {
           ArrayList <Post> posts= new ArrayList<>();
           String uniqueID="1";
-         int countenr=1;
+//         int countenr=1;
        if(FilesManager.FileIsExist(path+FilesPath.POSTS,"\\uniqueID.txt")) {
            uniqueID = (FilesManager.ReadLine(path + FilesPath.POSTS + "\\uniqueID.txt", 1));
            long uniqueidtemp = Long.valueOf(uniqueID);
-           while (uniqueidtemp != 0 && countenr % 10 != 0) {
+           while (uniqueidtemp != 0) {
                if(FilesManager.FileIsExist(path +FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE)) {
                    posts.add((Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
 
-                   countenr++;
+//                   countenr++;
                }
                uniqueidtemp--;
            }
