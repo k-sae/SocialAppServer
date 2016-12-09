@@ -48,8 +48,9 @@ class PostManger {
 
                    countenr++;
                    }
+                   counter2++;
          }
-               counter2++;
+
                uniqueidtemp--;
            }
 
