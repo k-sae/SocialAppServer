@@ -9,59 +9,62 @@ import java.util.ArrayList;
 /**
  * Created by khaled hesham on 11/24/2016.
  */
-public class Group implements Shareable,Serializable, FilesPath{
-    private ArrayList<Integer> member;
-    private ArrayList<Integer> req;
-    private ArrayList<Integer> post;
-    private int adminId;
+public class Group implements Shareable,Serializable {
+    private static final long serialVersionUID = 6529685098267757690L;
+    private ArrayList<Long> member;
+    private ArrayList<Long> req;
+    private long adminId;
     private String name;
-    private int imageId;
-    private int Id;
-    public static final String CREATE_GROUP = "Create_group";
+    private long imageId;
+    private long Id;
+    public static final String CREATE_GROUP = "CreateGroup";
     public Group(String name) {
         this.name = name;
         member = new ArrayList<>();
         req = new ArrayList<>();
-        adminId = 0;
-        imageId = 0;
-        Id = 0;
-        post=new ArrayList<>();
+
     }
 
-    public Group(int id) {
-        Id = id;
+
+
+    public ArrayList<Long> getMember() {
+        return member;
     }
 
-    public int getAdminId() {
+    public void setMember(ArrayList<Long> member) {
+        this.member = member;
+    }
+
+    public ArrayList<Long> getReq() {
+        return req;
+    }
+
+    public void setReq(ArrayList<Long> req) {
+        this.req = req;
+    }
+
+    public long getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(int adminId) {
+    public void setAdminId(long adminId) {
         this.adminId = adminId;
     }
-    public Boolean checkAdmin(int id){return (this.adminId==id);}
 
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
-    }
-
-    public int getImageId() {
+    public long getImageId() {
         return imageId;
     }
 
-    public void setImageId(int imageId) {
+    public void setImageId(long imageId) {
         this.imageId = imageId;
     }
 
-    public ArrayList<Integer> getMember() {
-        return member;
+    public long getId() {
+        return Id;
     }
-    public void setMember(ArrayList<Integer>  member) {
-        this.member =member;
+
+    public void setId(long id) {
+        Id = id;
     }
 
     public String getName() {
@@ -72,36 +75,19 @@ public class Group implements Shareable,Serializable, FilesPath{
         this.name = name;
     }
 
-    public ArrayList<Integer> getReq() {
-        return req;
-    }
 
-    public void setReq(ArrayList<Integer> req) {
-        this.req = req;
-    }
-
-    public ArrayList<Integer> getPost() {
-        return post;
-    }
-
-    public void setPost(ArrayList<Integer> post) {
-        this.post = post;
-    }
-    public void deleteMember(Integer id){
+    public void deleteMember(Long id){
         this.member.remove(id);
     }
-    public int checkMember(Integer id){
+    public int checkMember(Long id){
         return (this.member.indexOf(id));
     }
-    public void addMember(Integer id){member.add(id);}
-    public void addReq(Integer id){req.add(id);}
-    public void addPost(Integer id){post.add(id);}
-    public void deleteReq(Integer id){
+    public void addMember(Long id){member.add(id);}
+    public void addReq(Long id){req.add(id);}
+    public void deleteReq(Long id){
         this.req.remove(id);
     }
-    public void deletePost(Integer id){
-        this.post.remove(id);
-    }
+
     @Override
     public String convertToJsonString() {
         Gson gson = new Gson();
@@ -113,3 +99,4 @@ public class Group implements Shareable,Serializable, FilesPath{
         return gson.fromJson(jsonStr, Group.class);
     }
 }
+

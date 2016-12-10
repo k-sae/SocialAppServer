@@ -51,26 +51,25 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         }
         else if (command.getKeyWord().equals(Group.CREATE_GROUP))
         {
-            String name = command.getObjectStr();
-            Group group=new Group(name);
-           group.setId(Integer.parseInt(Generator.GenerateUnigueId(FilesPath.GROUPS)));
-//            group.setAdminId(1);
-//            group.setMember(1);
-            GroupfileMangement g=new GroupfileMangement();
-            g.create(group);
-            Command command1 = new Command();
-            command1.setKeyWord(Group.CREATE_GROUP);
-            command1.setSharableObject(group);
-            connection.sendCommand(command1);
+            Group group= Group.fromJsonString(command.getObjectStr());
+           group.setId(Long.parseLong(Generator.GenerateUnigueId(FilesPath.GROUPS)));
+            GroupfileMangement.create(group);
+            command.setSharableObject(group);
+            connection.sendCommand(command);
         }
 
        else if(command.getKeyWord().equals(Post.SAVE_POST_USER)){
             Post post=Post.fromJsonString(command.getObjectStr());
            PostManger.SavePost(post,FilesPath.USERS+post.getPostPos());
-            Command command1 = new Command();
-            command1.setKeyWord(Post.SAVE_POST_USER);
-            command1.setSharableObject(post.convertToJsonString());
-            connection.sendCommand(command1);
+            command.setSharableObject(post.convertToJsonString());
+            connection.sendCommand(command);
+
+        }
+        else if(command.getKeyWord().equals(Post.SAVE_POST_GROUP)){
+            Post post=Post.fromJsonString(command.getObjectStr());
+            PostManger.SavePost(post,FilesPath.GROUPS+post.getPostPos());
+            command.setSharableObject(post.convertToJsonString());
+            connection.sendCommand(command);
 
         }
 

@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07bacbbb-abcf-48c8-816f-362f31d1356b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SocialAppClientJavaFX" afterPath="$PROJECT_DIR$/../SocialAppClientJavaFX" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SocialAppImagesServer" afterPath="$PROJECT_DIR$/../SocialAppImagesServer" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$" afterPath="$PROJECT_DIR$" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SocialAppServer/PostManger.java" afterPath="$PROJECT_DIR$/src/SocialAppServer/PostManger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SocialAppGeneral/Group.java" afterPath="$PROJECT_DIR$/src/SocialAppGeneral/Group.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SocialAppServer/GroupfileMangement.java" afterPath="$PROJECT_DIR$/src/SocialAppServer/GroupfileMangement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java" afterPath="$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java" />
     </list>
     <ignored path="SocialAppServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,9 +32,17 @@
       <file leaf-file-name="Relation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Relation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="499">
+            <state relative-caret-position="391">
               <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1243#1244#0" expanded="false" />
+                <element signature="e#1285#1286#0" expanded="false" />
+                <element signature="e#1340#1341#0" expanded="false" />
+                <element signature="e#1420#1421#0" expanded="false" />
+                <element signature="e#1832#1833#0" expanded="false" />
+                <element signature="e#1916#1917#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -37,7 +50,7 @@
       <file leaf-file-name="FilesManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FileManagment/FilesManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1479">
+            <state relative-caret-position="17">
               <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="false" />
@@ -63,7 +76,9 @@
                 <element signature="e#8237#8238#0" expanded="false" />
                 <element signature="method#DeleteFile#1;class#FilesManager#0" expanded="false" />
                 <element signature="method#RemoveLine#0;class#FilesManager#0" expanded="false" />
+                <element signature="e#8608#8616#0" expanded="false" />
                 <element signature="method#ReadIntoArrayList#0;class#FilesManager#0" expanded="false" />
+                <element signature="e#9001#9009#0" expanded="false" />
                 <element signature="method#Removefile#0;class#FilesManager#0" expanded="false" />
                 <element signature="e#9824#9862#0" expanded="false" />
                 <element signature="method#DeleteFile#2;class#FilesManager#0" expanded="false" />
@@ -81,11 +96,102 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PostManger.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PostManger.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SocialAppServer/PostManger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+            <state relative-caret-position="170">
+              <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Group.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SocialAppGeneral/Group.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="523">
+              <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+              <folding>
+                <element signature="e#728#729#0" expanded="true" />
+                <element signature="e#757#758#0" expanded="true" />
+                <element signature="e#810#811#0" expanded="true" />
+                <element signature="e#846#847#0" expanded="true" />
+                <element signature="e#885#886#0" expanded="true" />
+                <element signature="e#911#912#0" expanded="true" />
+                <element signature="e#958#959#0" expanded="true" />
+                <element signature="e#988#989#0" expanded="true" />
+                <element signature="e#1020#1021#0" expanded="true" />
+                <element signature="e#1050#1051#0" expanded="true" />
+                <element signature="e#1094#1095#0" expanded="true" />
+                <element signature="e#1132#1133#0" expanded="true" />
+                <element signature="e#1164#1165#0" expanded="true" />
+                <element signature="e#1194#1195#0" expanded="true" />
+                <element signature="e#1238#1239#0" expanded="true" />
+                <element signature="e#1276#1277#0" expanded="true" />
+                <element signature="e#1303#1304#0" expanded="true" />
+                <element signature="e#1328#1329#0" expanded="true" />
+                <element signature="e#1362#1363#0" expanded="true" />
+                <element signature="e#1385#1386#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReceiveClientCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="217">
+              <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Saver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/FileManagment/Saver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Admin.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SocialAppGeneral/Admin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupfileMangement.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/SocialAppServer/GroupfileMangement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Generator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Generator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegisterUser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SocialAppServer/RegisterUser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -106,14 +212,18 @@
       <list>
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/SocialAppServer/PostManger.java" />
+        <option value="$PROJECT_DIR$/src/SocialAppGeneral/Group.java" />
+        <option value="$PROJECT_DIR$/src/SocialAppGeneral/Admin.java" />
+        <option value="$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java" />
+        <option value="$PROJECT_DIR$/src/SocialAppServer/GroupfileMangement.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -141,7 +251,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -191,6 +300,24 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocialAppGeneral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocialAppServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocialAppServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -212,8 +339,12 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SocialAppClientJavaFX" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -503,7 +634,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -513,12 +644,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32831" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32569557" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24886535" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -556,9 +687,230 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Relation.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1243#1244#0" expanded="false" />
+            <element signature="e#1285#1286#0" expanded="false" />
+            <element signature="e#1340#1341#0" expanded="false" />
+            <element signature="e#1420#1421#0" expanded="false" />
+            <element signature="e#1832#1833#0" expanded="false" />
+            <element signature="e#1916#1917#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileManagment/FilesManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2550">
+          <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="docComment;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFolder#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFolder#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFile#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFile#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#2;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToReade#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToReade#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLineWithoutAppend#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLineWithoutAppend#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLine#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLineoflogin#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileSearcherForID#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileSearcher#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#8187#8188#0" expanded="false" />
+            <element signature="e#8237#8238#0" expanded="false" />
+            <element signature="method#DeleteFile#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#RemoveLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#8608#8616#0" expanded="false" />
+            <element signature="method#ReadIntoArrayList#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#9001#9009#0" expanded="false" />
+            <element signature="method#Removefile#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#9824#9862#0" expanded="false" />
+            <element signature="method#DeleteFile#2;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileIsExist#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#WriteOnTop#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#WriteOnTop#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileIsExist#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFileBinary#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadFromBinaryFile#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#LoginValidatior#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#readAllLines#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#delete#0;class#FilesManager#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/PostManger.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Relation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1243#1244#0" expanded="false" />
+            <element signature="e#1285#1286#0" expanded="false" />
+            <element signature="e#1340#1341#0" expanded="false" />
+            <element signature="e#1420#1421#0" expanded="false" />
+            <element signature="e#1832#1833#0" expanded="false" />
+            <element signature="e#1916#1917#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileManagment/FilesManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="docComment;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFolder#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFolder#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFile#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFile#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#2;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToReade#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToReade#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLineWithoutAppend#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLineWithoutAppend#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLine#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLineoflogin#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileSearcherForID#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileSearcher#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#8187#8188#0" expanded="false" />
+            <element signature="e#8237#8238#0" expanded="false" />
+            <element signature="method#DeleteFile#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#RemoveLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#8608#8616#0" expanded="false" />
+            <element signature="method#ReadIntoArrayList#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#9001#9009#0" expanded="false" />
+            <element signature="method#Removefile#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#9824#9862#0" expanded="false" />
+            <element signature="method#DeleteFile#2;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileIsExist#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#WriteOnTop#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#WriteOnTop#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileIsExist#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFileBinary#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadFromBinaryFile#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#LoginValidatior#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#readAllLines#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#delete#0;class#FilesManager#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/PostManger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Relation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1243#1244#0" expanded="false" />
+            <element signature="e#1285#1286#0" expanded="false" />
+            <element signature="e#1340#1341#0" expanded="false" />
+            <element signature="e#1420#1421#0" expanded="false" />
+            <element signature="e#1832#1833#0" expanded="false" />
+            <element signature="e#1916#1917#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileManagment/FilesManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="docComment;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFolder#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFolder#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFile#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFile#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#2;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToReade#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToReade#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLineWithoutAppend#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLineWithoutAppend#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLine#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLineoflogin#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileSearcherForID#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileSearcher#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#8187#8188#0" expanded="false" />
+            <element signature="e#8237#8238#0" expanded="false" />
+            <element signature="method#DeleteFile#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#RemoveLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#8608#8616#0" expanded="false" />
+            <element signature="method#ReadIntoArrayList#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#9001#9009#0" expanded="false" />
+            <element signature="method#Removefile#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#9824#9862#0" expanded="false" />
+            <element signature="method#DeleteFile#2;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileIsExist#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#WriteOnTop#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#WriteOnTop#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileIsExist#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFileBinary#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadFromBinaryFile#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#LoginValidatior#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#readAllLines#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#delete#0;class#FilesManager#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/PostManger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Relation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1243#1244#0" expanded="false" />
+            <element signature="e#1285#1286#0" expanded="false" />
+            <element signature="e#1340#1341#0" expanded="false" />
+            <element signature="e#1420#1421#0" expanded="false" />
+            <element signature="e#1832#1833#0" expanded="false" />
+            <element signature="e#1916#1917#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -590,7 +942,9 @@
             <element signature="e#8237#8238#0" expanded="false" />
             <element signature="method#DeleteFile#1;class#FilesManager#0" expanded="false" />
             <element signature="method#RemoveLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#8608#8616#0" expanded="false" />
             <element signature="method#ReadIntoArrayList#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#9001#9009#0" expanded="false" />
             <element signature="method#Removefile#0;class#FilesManager#0" expanded="false" />
             <element signature="e#9824#9862#0" expanded="false" />
             <element signature="method#DeleteFile#2;class#FilesManager#0" expanded="false" />
@@ -619,7 +973,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -627,7 +980,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="667">
           <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1243#1244#0" expanded="false" />
+            <element signature="e#1285#1286#0" expanded="false" />
+            <element signature="e#1340#1341#0" expanded="false" />
+            <element signature="e#1420#1421#0" expanded="false" />
+            <element signature="e#1832#1833#0" expanded="false" />
+            <element signature="e#1916#1917#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -659,7 +1020,9 @@
             <element signature="e#8237#8238#0" expanded="false" />
             <element signature="method#DeleteFile#1;class#FilesManager#0" expanded="false" />
             <element signature="method#RemoveLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#8608#8616#0" expanded="false" />
             <element signature="method#ReadIntoArrayList#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#9001#9009#0" expanded="false" />
             <element signature="method#Removefile#0;class#FilesManager#0" expanded="false" />
             <element signature="e#9824#9862#0" expanded="false" />
             <element signature="method#DeleteFile#2;class#FilesManager#0" expanded="false" />
@@ -680,7 +1043,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -688,51 +1050,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="667">
           <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FileManagment/FilesManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1479">
-          <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="docComment;class#FilesManager#0" expanded="false" />
-            <element signature="method#CreateFolder#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#CreateFolder#1;class#FilesManager#0" expanded="false" />
-            <element signature="method#CreateFile#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#CreateFile#1;class#FilesManager#0" expanded="false" />
-            <element signature="method#OpenToWrite#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#OpenToWrite#1;class#FilesManager#0" expanded="false" />
-            <element signature="method#OpenToWrite#2;class#FilesManager#0" expanded="false" />
-            <element signature="method#OpenToReade#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#OpenToReade#1;class#FilesManager#0" expanded="false" />
-            <element signature="method#AddLine#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#AddLineWithoutAppend#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#AddLineWithoutAppend#1;class#FilesManager#0" expanded="false" />
-            <element signature="method#ReadLine#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#ReadLine#1;class#FilesManager#0" expanded="false" />
-            <element signature="method#ReadLineoflogin#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#FileSearcherForID#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#FileSearcher#0;class#FilesManager#0" expanded="false" />
-            <element signature="e#8187#8188#0" expanded="false" />
-            <element signature="e#8237#8238#0" expanded="false" />
-            <element signature="method#DeleteFile#1;class#FilesManager#0" expanded="false" />
-            <element signature="method#RemoveLine#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#ReadIntoArrayList#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#Removefile#0;class#FilesManager#0" expanded="false" />
-            <element signature="e#9824#9862#0" expanded="false" />
-            <element signature="method#DeleteFile#2;class#FilesManager#0" expanded="false" />
-            <element signature="method#FileIsExist#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#WriteOnTop#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#WriteOnTop#1;class#FilesManager#0" expanded="false" />
-            <element signature="method#FileIsExist#1;class#FilesManager#0" expanded="false" />
-            <element signature="method#CreateFileBinary#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#ReadFromBinaryFile#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#LoginValidatior#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#readAllLines#0;class#FilesManager#0" expanded="false" />
-            <element signature="method#delete#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#1243#1244#0" expanded="false" />
+            <element signature="e#1285#1286#0" expanded="false" />
+            <element signature="e#1340#1341#0" expanded="false" />
+            <element signature="e#1420#1421#0" expanded="false" />
+            <element signature="e#1832#1833#0" expanded="false" />
+            <element signature="e#1916#1917#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -765,7 +1090,9 @@
             <element signature="e#8237#8238#0" expanded="false" />
             <element signature="method#DeleteFile#1;class#FilesManager#0" expanded="false" />
             <element signature="method#RemoveLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#8608#8616#0" expanded="false" />
             <element signature="method#ReadIntoArrayList#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#9001#9009#0" expanded="false" />
             <element signature="method#Removefile#0;class#FilesManager#0" expanded="false" />
             <element signature="e#9824#9862#0" expanded="false" />
             <element signature="method#DeleteFile#2;class#FilesManager#0" expanded="false" />
@@ -786,22 +1113,153 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Relation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
+        <state relative-caret-position="391">
           <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1243#1244#0" expanded="false" />
+            <element signature="e#1285#1286#0" expanded="false" />
+            <element signature="e#1340#1341#0" expanded="false" />
+            <element signature="e#1420#1421#0" expanded="false" />
+            <element signature="e#1832#1833#0" expanded="false" />
+            <element signature="e#1916#1917#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/RegisterUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileManagment/Saver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppGeneral/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding>
+            <element signature="e#728#729#0" expanded="true" />
+            <element signature="e#757#758#0" expanded="true" />
+            <element signature="e#810#811#0" expanded="true" />
+            <element signature="e#846#847#0" expanded="true" />
+            <element signature="e#885#886#0" expanded="true" />
+            <element signature="e#911#912#0" expanded="true" />
+            <element signature="e#958#959#0" expanded="true" />
+            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#1020#1021#0" expanded="true" />
+            <element signature="e#1050#1051#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1164#1165#0" expanded="true" />
+            <element signature="e#1194#1195#0" expanded="true" />
+            <element signature="e#1238#1239#0" expanded="true" />
+            <element signature="e#1276#1277#0" expanded="true" />
+            <element signature="e#1303#1304#0" expanded="true" />
+            <element signature="e#1328#1329#0" expanded="true" />
+            <element signature="e#1362#1363#0" expanded="true" />
+            <element signature="e#1385#1386#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileManagment/FilesManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="docComment;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFolder#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFolder#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFile#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFile#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToWrite#2;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToReade#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#OpenToReade#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLineWithoutAppend#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#AddLineWithoutAppend#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLine#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadLineoflogin#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileSearcherForID#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileSearcher#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#8187#8188#0" expanded="false" />
+            <element signature="e#8237#8238#0" expanded="false" />
+            <element signature="method#DeleteFile#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#RemoveLine#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#8608#8616#0" expanded="false" />
+            <element signature="method#ReadIntoArrayList#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#9001#9009#0" expanded="false" />
+            <element signature="method#Removefile#0;class#FilesManager#0" expanded="false" />
+            <element signature="e#9824#9862#0" expanded="false" />
+            <element signature="method#DeleteFile#2;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileIsExist#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#WriteOnTop#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#WriteOnTop#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#FileIsExist#1;class#FilesManager#0" expanded="false" />
+            <element signature="method#CreateFileBinary#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#ReadFromBinaryFile#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#LoginValidatior#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#readAllLines#0;class#FilesManager#0" expanded="false" />
+            <element signature="method#delete#0;class#FilesManager#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SocialAppServer/PostManger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+        <state relative-caret-position="170">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppGeneral/Admin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Generator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/GroupfileMangement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
