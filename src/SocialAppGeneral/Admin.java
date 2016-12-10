@@ -3,11 +3,16 @@ package SocialAppGeneral;
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppServer.Generator;
+import SocialAppServer.ServerLoggedUser;
 
 /**
  * Created by mosta on 27-Nov-16.
  */
-public class Admin extends LoggedUser implements FilesPath{
+public class Admin extends ServerLoggedUser implements FilesPath{
+    public Admin(String id) {
+        super(id);
+    }
+
     public void convertIntoPermnantUser(String Email) {
         String line = FilesManager.FileSearcher(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt", Email);
         RegisterInfo re = RegisterInfo.fromJsonString(line);

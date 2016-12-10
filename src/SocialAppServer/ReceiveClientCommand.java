@@ -14,7 +14,8 @@ import java.util.ArrayList;
  */
 class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
     private HalfDuplexConnection connection;
-    private String loggedUserId;
+//    private String loggedUserId;
+    private ServerLoggedUser serverLoggedUser;
     ReceiveClientCommand(Socket remote, HalfDuplexConnection connection) {
         super(remote);
         this.connection = connection;
@@ -39,14 +40,14 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             reg.getUserInfo().setProfileImage("default");
             Saver s=new Saver(reg,connection);
 
-            Admin a=new Admin();
+            Admin a=new Admin(serverLoggedUser.getID());
           a.convertIntoPermnantUser(reg.getLoginInfo().getEMAIL());
             //System.out.println("in");
         }
        else if(command.getKeyWord().equals(LoginInfo.KEYWORD)){
             LoginInfo log=LoginInfo.fromJsonString(command.getObjectStr());
-            loggedUserId = UserFinder.validate(log.getEMAIL(),log.getPassword());
-            command.setSharableObject(loggedUserId);
+            serverLoggedUser = new ServerLoggedUser( UserFinder.validate(log.getEMAIL(),log.getPassword()));
+            command.setSharableObject(serverLoggedUser.getID());
             connection.sendCommand(command);
         }
         else if (command.getKeyWord().equals(Group.CREATE_GROUP))
@@ -112,7 +113,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         else if (command.getKeyWord().equals(UserInfo.EDIT_INFO))
         {
 
-            FilesManager.Removefile(FilesPath.USERS + loggedUserId+"\\" + FilesPath.INFO, command.getObjectStr());
+            FilesManager.Removefile(FilesPath.USERS + serverLoggedUser.getID()+"\\" + FilesPath.INFO, command.getObjectStr());
             command.setSharableObject("true");
             connection.sendCommand(command);
 
@@ -120,11 +121,11 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         }else if(command.getKeyWord().equals(LoggedUser.ADD_FRIEND)){
 
             String  id =command.getObjectStr();
-            FilesManager.AddLine(USERS+id+"\\"+ FRIEND_REQUEST,loggedUserId);
+            FilesManager.AddLine(USERS+id+"\\"+ FRIEND_REQUEST,serverLoggedUser.getID());
             command.setSharableObject("true");
             connection.sendCommand(command);
             command.setKeyWord(LoggedUser.FRIEND_REQ);
-            command.setSharableObject(loggedUserId);
+            command.setSharableObject(serverLoggedUser.getID());
             SecondaryConnection.sendNotification(id,command);
         }
         else if(command.getKeyWord().equals("Search")) {
@@ -141,41 +142,38 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         else if(command.getKeyWord().equals(LoggedUser.FETCH_REQS))
         {
             ArrayList<Object> objects = new ArrayList<>();
-            objects.addAll(FilesManager.readAllLines(USERS+loggedUserId+"\\"+ FRIEND_REQUEST));
+            objects.addAll(FilesManager.readAllLines(USERS+serverLoggedUser+"\\"+ FRIEND_REQUEST));
             command.setSharableObject(new SocialArrayList(objects).convertToJsonString());
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(LoggedUser.GET_RELATION_STATUS))
         {
-            Relation relation = new Relation(loggedUserId);
-            command.setSharableObject(relation.getStatus(command.getObjectStr()) + "");
+
+            command.setSharableObject(serverLoggedUser.getRelation().getStatus(command.getObjectStr()) + "");
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(LoggedUser.ACCEPT_FRIEND))
         {
-            Relation relation = new Relation(loggedUserId);
-            relation.acceptFriendReq(command.getObjectStr());
+
+            serverLoggedUser.getRelation().acceptFriendReq(command.getObjectStr());
             command.setSharableObject("true");
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(LoggedUser.REMOVE_FRIEND))
         {
-            Relation relation = new Relation(loggedUserId);
-            relation.removeFriend(command.getObjectStr());
+            serverLoggedUser.getRelation().removeFriend(command.getObjectStr());
             command.setSharableObject("true");
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(LoggedUser.CANCEL_FRIEND_REQ))
         {
-            Relation relation = new Relation(loggedUserId);
-            relation.cancelFriendReq(command.getObjectStr());
+            serverLoggedUser.getRelation().cancelFriendReq(command.getObjectStr());
             command.setSharableObject("true");
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(LoggedUser.DECLINE_FRIEND))
         {
-            Relation relation = new Relation(loggedUserId);
-            relation.declineFriendReq(command.getObjectStr());
+            serverLoggedUser.getRelation().declineFriendReq(command.getObjectStr());
             command.setSharableObject("true");
             connection.sendCommand(command);
         }
