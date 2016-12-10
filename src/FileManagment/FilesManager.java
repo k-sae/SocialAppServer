@@ -244,7 +244,7 @@ public class FilesManager {
             Gson gson = new Gson();
             String line;
             while ((line = RL.readLine()) != null) {
-                line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
+           //    line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
                 re = gson.fromJson(line,RegisterInfo.class);
                 if (re.getLoginInfo().getEMAIL().equals(token)) {
                     RL.close();

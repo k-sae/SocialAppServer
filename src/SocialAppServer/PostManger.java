@@ -32,21 +32,30 @@ class PostManger {
      static Post PickonePost(String path,long id)  {
          return ((Post) FilesManager.ReadFromBinaryFile(path+FilesPath.POSTS+"\\"+id+Post_FILE));
     }
-     static ArrayList<Post> PickPosts(String path)  {
+     static ArrayList<Post> PickPosts(String path,long numberPost)  {
           ArrayList <Post> posts= new ArrayList<>();
           String uniqueID="1";
-//         int countenr=1;
+
+         long countenr=1;
+         int counter2= 1;
        if(FilesManager.FileIsExist(path+FilesPath.POSTS,"\\uniqueID.txt")) {
            uniqueID = (FilesManager.ReadLine(path + FilesPath.POSTS + "\\uniqueID.txt", 1));
            long uniqueidtemp = Long.valueOf(uniqueID);
-           while (uniqueidtemp != 0) {
+           do{
                if(FilesManager.FileIsExist(path +FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE)) {
-                   posts.add((Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
+                   if(counter2 >= ((numberPost-1)*10)+1) {
+                       posts.add((Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
 
-//                   countenr++;
-               }
+                   countenr++;
+                   }
+                   counter2++;
+         }
+
                uniqueidtemp--;
            }
+
+           while (uniqueidtemp != 0 && countenr % 11 != 0);
+
            return posts;
        }
        else return  null;

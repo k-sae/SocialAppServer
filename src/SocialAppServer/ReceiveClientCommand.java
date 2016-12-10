@@ -40,7 +40,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             reg.getUserInfo().setProfileImage("default");
             Saver s=new Saver(reg,connection);
 
-            Admin a=new Admin(serverLoggedUser.getID());
+            Admin a=new Admin("0"); //pass zero for now till we have a real admi with id
           a.convertIntoPermnantUser(reg.getLoginInfo().getEMAIL());
             //System.out.println("in");
         }
@@ -87,7 +87,9 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         else if(command.getKeyWord().equals(Post.LOAD_POST_USERS)){
             ArraylistPost posts;
             posts=(ArraylistPost.fromJsonString(command.getObjectStr()));
-            posts.setPosts(PostManger.PickPosts(FilesPath.USERS+posts.getOwnerPosts()));
+            System.out.println(command.getObjectStr());
+            posts.setPosts(PostManger.PickPosts(FilesPath.USERS+posts.getOwnerPosts(),posts.getNumberpost()));
+
             Command command1 = new Command();
             command1.setKeyWord(Post.LOAD_POST_USERS);
             command1.setSharableObject(posts.convertToJsonString());
@@ -142,7 +144,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         else if(command.getKeyWord().equals(LoggedUser.FETCH_REQS))
         {
             ArrayList<Object> objects = new ArrayList<>();
-            objects.addAll(FilesManager.readAllLines(USERS+serverLoggedUser+"\\"+ FRIEND_REQUEST));
+            objects.addAll(FilesManager.readAllLines(USERS+serverLoggedUser.getID()+"\\"+ FRIEND_REQUEST));
             command.setSharableObject(new SocialArrayList(objects).convertToJsonString());
             connection.sendCommand(command);
         }
