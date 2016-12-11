@@ -21,9 +21,11 @@ public class Post implements Shareable,Serializable{
     public static final String SAVE_POST_USER = "save_post_user";
     public static final String LOAD_POST_GROUPS = "load_post_groups";
     public static final String LOAD_POST_USERS = "load_post_user";
-    public static final String EDITE_POST_USERS = "save_post_without_id";
+    public static final String EDITE_POST_USERS = "save_post_user_without_id";
+    public static final String EDITE_POST_GROUPS = "save_post_group_without_id";
     public static final String SAVE_POST_GROUP = "save_post_group";
-    public static final String  DELETE_POST_USERS = "delete_post_user";
+    public static final String  DELETE_POST_USERS = "delete_user_post_user";
+    public static final String  DELETE_POST_GROUPS = "delete_groups_post_user";
     private  String imageID ;
     private ArrayList<Like> like;
     private  ArrayList<Comment> comments;
