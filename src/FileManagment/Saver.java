@@ -39,13 +39,13 @@ public Saver(RegisterInfo reg, HalfDuplexConnection connection) {
             connection.sendCommand(command);
     }else{
         FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString());
-            FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
+            FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL()+"&&&"+reg.getUserInfo().getAdminShip());
             command.setSharableObject("true");
             connection.sendCommand(command);
     }
 }
     else{
-        FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString());
+        FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString()+"&&&"+reg.getUserInfo().getAdminShip());
             FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
         command.setSharableObject("true");
         connection.sendCommand(command);

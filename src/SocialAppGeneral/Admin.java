@@ -8,7 +8,22 @@ import SocialAppServer.Generator;
  * Created by mosta on 27-Nov-16.
  */
 public class Admin extends LoggedUser implements FilesPath{
-    public void convertIntoPermnantUser(String Email) {
+    public static boolean adminCheck(String Email){
+if(FilesManager.FileIsExist(ADMINS)){
+    //wait admin approval to add another admin
+    return false;
+}else{
+    convertIntoPermnantUser(Email);
+String Line=FilesManager.FileSearcherForID(USERS+EMAILS+Generator.GenerateID(Email)+".txt",Email);
+    Line=Line.substring(Line.indexOf('[')+1,Line.indexOf(']'));
+    FilesManager.AddLine(ADMINS,Line);
+    return true;
+}
+    }
+    public static Boolean adminChecker(String ID){
+       return FilesManager.searcher(ADMINS,ID);
+    }
+    public  static void  convertIntoPermnantUser(String Email) {
         String line = FilesManager.FileSearcher(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt", Email);
         RegisterInfo re = RegisterInfo.fromJsonString(line);
         String ID = Generator.GenerateUnigueId(USERS);

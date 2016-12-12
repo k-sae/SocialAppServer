@@ -14,26 +14,6 @@ import java.util.Objects;
  */
 class UserFinder implements FilesPath {
     //TODO
-    //REwork Finder
-    public String findBy(String Token, String SearchedObject){
-String Id="0";
-    if(Objects.equals(Token, "email")){
-        String Line=FilesManager.FileSearcher(USERS+EMAILS+ Generator.GenerateID(SearchedObject)+".txt",SearchedObject);
-        if (Line != null) {
-            Id=Line.substring(Line.indexOf('[')+1,Line.indexOf(']'));
-        }
-        return Id;
-    }
-    if(Objects.equals(Token, "name")){
-        //array list of names
-        String Line=FilesManager.FileSearcher(USERS+NAMES+ Generator.GenerateID(SearchedObject)+".txt",SearchedObject);
-        if (Line != null) {
-            Id=Line.substring(Line.indexOf('[')+1,Line.indexOf(']'));
-        }
-        return Id;
-    }
-    return null;
-}
 public static String  validate(String email, String pass){
     Command command = new Command();
     command.setKeyWord(RegisterInfo.KEYWORD);
@@ -49,9 +29,9 @@ public static String  validate(String email, String pass){
 }
 //takes email or name
 public ArrayList<String> Search(String email){
-    ArrayList<String> a=new ArrayList<String>();
-    ArrayList<String> b=new ArrayList<String>();
-    ArrayList<String> finalsearch=new ArrayList<String>();
+    ArrayList<String> a=new ArrayList();
+    ArrayList<String> b=new ArrayList();
+    ArrayList<String> finalsearch=new ArrayList();
     a=FilesManager.ReadIntoArrayList(USERS+EMAILS+Generator.GenerateID(email)+".txt");
     b=FilesManager.ReadIntoArrayList(USERS+NAMES+Generator.GenerateID(email)+".txt");
     finalsearch.addAll(a);

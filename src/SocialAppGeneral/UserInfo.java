@@ -12,6 +12,7 @@ public class UserInfo implements Shareable {
   private String birthDate;
   private String gender;
   private String profileImage;
+  private Boolean adminship;
   public static transient final  String PICK_INFO = "pick_info";
   public static transient final  String EDIT_INFO = "edit_info";
   public UserInfo() {
@@ -24,6 +25,10 @@ public class UserInfo implements Shareable {
   public String getFullName() {
     return fullName;
   }
+
+  public void setAdminShip(){this.adminship=adminship;}
+
+    public boolean getAdminShip(){return adminship;}
 
   public void setFullName(String fullName) {
     this.fullName = fullName;
