@@ -114,8 +114,9 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
 
         }
         else if(command.getKeyWord().equals(Group.LOAD_GROUP)){
-
-
+           Long id= Long.valueOf(command.getObjectStr());
+           command.setSharableObject(GroupfileMangement.pickGroups(GroupfileMangement.pickMemberGroup(id)).convertToJsonString()) ;
+            connection.sendCommand(command);
 
         }
            else if (command.getKeyWord().equals(UserInfo.PICK_INFO))

@@ -8,25 +8,16 @@ import java.util.ArrayList;
 /**
  * Created by khaled hesham on 12/11/2016.
  */
-public class ArraylistGroup implements Shareable,Serializable {
+public class ArraylistGroup extends ArrayList<ArraylistGroup> implements Shareable,Serializable {
     private static final long serialVersionUID = 6529685098267757690L;
-    private ArrayList<Long> groups=new ArrayList<>();
-    private long OwnerGroups;
+    private ArrayList<Group> groups=new ArrayList<>();
 
-    public ArrayList<Long> getGroups() {
+    public ArrayList<Group> getGroups() {
         return groups;
     }
 
-    public void setGroups(ArrayList<Long> groups) {
+    public void setGroups(ArrayList<Group> groups) {
         this.groups = groups;
-    }
-
-    public long getOwnerGroups() {
-        return OwnerGroups;
-    }
-
-    public void setOwnerGroups(long ownerGroups) {
-        OwnerGroups = ownerGroups;
     }
 
     @Override
