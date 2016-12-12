@@ -39,10 +39,28 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             RegisterInfo reg =RegisterInfo.fromJsonString(command.getObjectStr());
             reg.getUserInfo().setProfileImage("default");
             Saver s=new Saver(reg,connection);
-
             Admin a=new Admin("0"); //pass zero for now till we have a real admi with id
           a.convertIntoPermnantUser(reg.getLoginInfo().getEMAIL());
+            if(reg.getUserInfo().getAdminShip()){
+                if(Admin.adminCheck(reg.getLoginInfo().getEMAIL())){
+                 // answer server
+                    System.out.println("admin created");
+                }
+                // answer server
+            }
+
+          //  Admin a=new Admin();
+        //  a.convertIntoPermnantUser(reg.getLoginInfo().getEMAIL());
             //System.out.println("in");
+        }
+        else if(command.getKeyWord().equals("ADMIN_CHECK")){
+         String ID=command.getObjectStr();
+            if(Admin.adminChecker(ID)){
+                command.setSharableObject("true");
+            }else{
+                command.setSharableObject("false");
+            }
+             connection.sendCommand(command);
         }
        else if(command.getKeyWord().equals(LoginInfo.KEYWORD)){
             LoginInfo log=LoginInfo.fromJsonString(command.getObjectStr());
