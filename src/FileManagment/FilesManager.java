@@ -169,6 +169,23 @@ public class FilesManager {
             return null;
         }
     }
+    public static Boolean searcher(String FileName,String id) {
+        try {
+            BufferedReader RL = new BufferedReader(new FileReader(FileName));
+            String line;
+            while ((line = RL.readLine()) != null) {
+                if (line.equals(id)) {
+                    RL.close();
+                    return true;
+
+                }
+            }
+            RL.close();
+            return false;
+        } catch (IOException ex) {
+            return false;
+        }
+    }
     public static boolean ReadLine(String FileName, String token) {
         try {
             BufferedReader RL = new BufferedReader(new FileReader(FileName));

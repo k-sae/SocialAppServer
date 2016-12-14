@@ -2,12 +2,9 @@ package SocialAppServer;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
-import SocialAppGeneral.ArraylistGroup;
 import SocialAppGeneral.Group;
 import SocialAppGeneral.SocialArrayList;
 
-import java.awt.*;
-import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -36,31 +33,49 @@ class GroupfileMangement implements FilesPath{
         FilesManager.CreateFileBinary(group,GROUPS+"\\"+group.getId()+INFO);
         FilesManager.AddLine(FilesPath.USERS+FilesPath.NAMES+Generator.GenerateID(group.getName()+".txt"),group.getName()+"&&&ID=["+group.getId()+"]");
     }
-    static ArraylistGroup pickGroups(ArrayList<ArraylistGroup> id) {
-        ArraylistGroup groups = new ArraylistGroup();
-        for (int i = 0; i < id.size(); i++) {
-            if (FilesManager.FileIsExist(FilesPath.GROUPS + "\\" + id.get(i))) {
-                groups.getGroups().add((Group) FilesManager.ReadFromBinaryFile(FilesPath.GROUPS + "\\" + id.get(i) +INFO));
+    static SocialArrayList pickGroups(SocialArrayList id) {
+        SocialArrayList groups = new SocialArrayList();
+        if ( !id.getItems().get(0).equals(0)){
+            for (int i = 0; i < id.getItems().size(); i++) {
+                if (FilesManager.FileIsExist(FilesPath.GROUPS + "\\" + id.getItems().get(i))) {
+                    groups.getItems().add(FilesManager.ReadFromBinaryFile(FilesPath.GROUPS + "\\" + id.getItems().get(i) + INFO));
+
+                }
+
 
             }
-
-
         }
-        return groups;
+            return groups;
+
     }
-    static ArraylistGroup pickMemberGroup(long id ){
-        if(FilesManager.FileIsExist(FilesPath.USERS+"\\"+id+GROUP)) {
-            return (ArraylistGroup) FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id + GROUP);
+    static SocialArrayList pickMemberGroup(long userid ){
+        SocialArrayList list=new SocialArrayList();
+        if(FilesManager.FileIsExist(FilesPath.USERS+"\\"+userid+GROUP)) {
+            list = (SocialArrayList) FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + userid + GROUP);
+
+            System.out.println(list.convertToJsonString());
         }
-        else return null;
-    }
-    static  void addgrouptomember(long id){
-        if(FilesManager.FileIsExist(FilesPath.USERS+"\\"+id+GROUP)) {
-            ArraylistGroup groups = (ArraylistGroup) FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id + GROUP);
+        else {
+            list.getItems().add(0);
+        }
+            return list;
 
 
-        }
+
     }
+    static  void addgrouptomember(long userid,long groupid){
+        SocialArrayList groups=new SocialArrayList();
+        if(FilesManager.FileIsExist(FilesPath.USERS+"\\"+userid+GROUP)) {
+             groups = (SocialArrayList) FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + userid + GROUP);
+            System.out.println(groups.convertToJsonString());
+            groups.getItems().add(groupid);
+        }
+         else {
+            groups.getItems().add(groupid);
+        }
+        FilesManager.CreateFileBinary(groups,FilesPath.USERS + "\\" + userid + GROUP);
+    }
+    /*
     static void addMembertogroup(long id){
         if(FilesManager.FileIsExist(FilesPath.USERS+"\\"+id+GROUP)) {
             ArraylistGroup groups = (ArraylistGroup) FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id + GROUP);
@@ -68,5 +83,6 @@ class GroupfileMangement implements FilesPath{
 
         }
     }
+    */
 
 }

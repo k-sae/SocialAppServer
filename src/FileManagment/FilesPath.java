@@ -15,5 +15,6 @@ public interface FilesPath {
     String INFO="Info.txt";
     String FRIEND_REQUEST ="pendingRequest.txt";
     String FRIENDS = "friends.sasf";
+    String ADMINS=USERS+"admins.txt";
 
 }

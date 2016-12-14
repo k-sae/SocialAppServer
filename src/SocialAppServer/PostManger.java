@@ -61,9 +61,10 @@ class PostManger {
        else return  null;
     }
 
-    static boolean saveAtachment(Post postNew,String path){
+    static  Post saveAtachment(Post postNew,String path){
+        Post post1 =new Post();
         if(FilesManager.FileIsExist(path +FilesPath.POSTS+ "\\" +postNew.getId() + Post_FILE)) {
-            Post post1 = (Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE);
+             post1 = (Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE);
             if (postNew.getLike().size() != 0) {
                 int i = 0;
                 int check = -1;
@@ -122,9 +123,10 @@ class PostManger {
 
 
             FilesManager.CreateFileBinary(post1, path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE);
-            return true;
+
         }
-        else return  false;
+        else{post1.setId(0);}
+            return post1;
     }
 
 static void deletepost(String path){
