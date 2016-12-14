@@ -3,6 +3,7 @@ package SocialAppServer;
 import FileManagment.FilesPath;
 import SocialAppGeneral.Group;
 import SocialAppGeneral.LoggedUser;
+import SocialAppGeneral.ReqGroup;
 import SocialAppGeneral.SocialArrayList;
 
 /**
@@ -17,10 +18,8 @@ public class ServerLoggedUser extends LoggedUser {
 
     @Override
     public Group createGroup(Group group) {
-
         group.setId(Long.parseLong(Generator.GenerateUnigueId(FilesPath.GROUPS)));
         GroupfileMangement.create(group);
-        System.out.println(group.convertToJsonString());
         GroupfileMangement.addgrouptomember(group.getAdminId(),group.getId());
         return group;
     }
@@ -57,9 +56,15 @@ public class ServerLoggedUser extends LoggedUser {
         System.out.println(groups.convertToJsonString());
         return groups;
     }
-  public  void  joinTogroup(long  id){
+  public  void  reqtouser(ReqGroup req){
+      GroupfileMangement.reqFile(req,FilesPath.USERS);
 
   }
+    public  void  reqtogroup(ReqGroup req){
+        GroupfileMangement.reqFile(req,FilesPath.GROUPS);
+
+    }
+
     Relation getRelation() {
         return relation;
     }

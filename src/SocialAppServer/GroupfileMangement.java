@@ -3,6 +3,7 @@ package SocialAppServer;
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppGeneral.Group;
+import SocialAppGeneral.ReqGroup;
 import SocialAppGeneral.SocialArrayList;
 
 import java.io.File;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  */
 class GroupfileMangement implements FilesPath{
 
-    private static final String REQ = "\\req";
+    private static final String REQ = "\\reqGroups";
     private static final String INFO= "\\info";
     private static final String GROUP= "\\groupId";
 
@@ -78,7 +79,17 @@ class GroupfileMangement implements FilesPath{
         }
         FilesManager.CreateFileBinary(groups,FilesPath.USERS + "\\" + userid + GROUP);
     }
-
+static  void  reqFile(ReqGroup req ,String path){
+    SocialArrayList  reqest=new SocialArrayList();
+    if(FilesManager.FileIsExist(path+"\\"+req.getPostion()+REQ)) {
+        reqest = (SocialArrayList) FilesManager.ReadFromBinaryFile(path + "\\" + req.getPostion() + REQ);
+        reqest.getItems().add(req);
+    }
+    else {
+        reqest.getItems().add(req);
+    }
+    FilesManager.CreateFileBinary(reqest,path + "\\" + req.getPostion() + GROUP);
+}
 
 
 }
