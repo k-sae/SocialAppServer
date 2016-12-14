@@ -493,7 +493,7 @@ public class FilesManager {
         }
         return strings;
     }
-    public  static  void delete(File file){
+    private   static  void deleteFolder(File file){
 
         if(file.isDirectory()){
             //directory is empty, then delete it
@@ -509,7 +509,7 @@ public class FilesManager {
                     File fileDelete = new File(file, temp);
 
                     //recursive delete
-                    delete(fileDelete);
+                    deleteFolder(fileDelete);
                 }
                 //check the directory again, if empty then delete it
                 if(file.list().length==0){
@@ -524,7 +524,10 @@ public class FilesManager {
 
         }
     }
-
+    public static void delete(String path){
+        File file =new File (path);
+        deleteFolder(file);
+    }
 
 }
 

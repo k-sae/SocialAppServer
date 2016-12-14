@@ -73,7 +73,12 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             command.setSharableObject(serverLoggedUser.createGroup(Group.fromJsonString(command.getObjectStr())));
             connection.sendCommand(command);
         }
-
+        else if (command.getKeyWord().equals(Group.DELETE_GROUP))
+        {
+            Group group= Group.fromJsonString(command.getObjectStr());
+            FilesManager.delete(FilesPath.GROUPS+"\\"+group.getId());
+            connection.sendCommand(command);
+        }
 
        else if(command.getKeyWord().equals(Post.SAVE_POST_USER)){
             Post post=Post.fromJsonString(command.getObjectStr());
@@ -110,17 +115,22 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
        Post post1= Post.fromJsonString(command.getObjectStr());
             post1=PostManger.saveAtachment(post1, FilesPath.USERS+post1.getPostPos());
             command.setSharableObject(post1.convertToJsonString());
-            System.out.println(post1.convertToJsonString());
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(Post.EDITE_POST_GROUPS)){
+            Post post1= Post.fromJsonString(command.getObjectStr());
+            post1=PostManger.saveAtachment(post1, FilesPath.GROUPS+post1.getPostPos());
+            command.setSharableObject(post1.convertToJsonString());
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(Post.DELETE_POST_GROUPS)){
             Post post1= Post.fromJsonString(command.getObjectStr());
-            command.setSharableObject(String.valueOf(PostManger.saveAtachment(post1, FilesPath.GROUPS+post1.getPostPos())));
+            FilesManager.delete(FilesPath.GROUPS+"\\"+post1.getPostPos()+FilesPath.POSTS+"\\"+post1.getId());
             connection.sendCommand(command);
         }
         else if (command.getKeyWord().equals(Post.DELETE_POST_USERS)){
             Post post1= Post.fromJsonString(command.getObjectStr());
-            PostManger.deletepost(FilesPath.USERS+"\\"+post1.getPostPos()+FilesPath.POSTS+"\\"+post1.getId());
+            FilesManager.delete(FilesPath.USERS+"\\"+post1.getPostPos()+FilesPath.POSTS+"\\"+post1.getId());
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(Group.LOAD_GROUP)){

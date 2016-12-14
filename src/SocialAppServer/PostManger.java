@@ -129,8 +129,5 @@ class PostManger {
             return post1;
     }
 
-static void deletepost(String path){
-    File file =new File (path);
-     FilesManager.delete(file);
-}
+
 }
