@@ -6,9 +6,6 @@ import SocialAppGeneral.Group;
 import SocialAppGeneral.ReqGroup;
 import SocialAppGeneral.SocialArrayList;
 
-import java.io.File;
-import java.util.ArrayList;
-
 /**
  * Created by khaled hesham on 11/25/2016.
  */
@@ -43,7 +40,7 @@ class GroupfileMangement implements FilesPath{
         if ( !id.getItems().get(0).equals(0)){
             for (int i = 0; i < id.getItems().size(); i++) {
                 if (FilesManager.FileIsExist(FilesPath.GROUPS + "\\" + id.getItems().get(i))) {
-                    groups.getItems().add(FilesManager.ReadFromBinaryFile(FilesPath.GROUPS + "\\" + id.getItems().get(i) + INFO));
+                    groups.getItems().add(((Group)FilesManager.ReadFromBinaryFile(FilesPath.GROUPS + "\\" + id.getItems().get(i) + INFO)).convertToJsonString());
 
                 }
 
