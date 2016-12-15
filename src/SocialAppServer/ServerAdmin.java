@@ -8,6 +8,11 @@ import SocialAppServer.Generator;
 import SocialAppServer.ServerLoggedUser;
 
 import java.util.ArrayList;
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * Created by mosta on 12-Dec-16.
@@ -81,5 +86,41 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
         String Line=FilesManager.FileSearcherForID(USERS+EMAILS+ Generator.GenerateID(Email)+".txt",Email);
         Line=Line.substring(Line.indexOf('[')+1,Line.indexOf(']'));
         FilesManager.AddLine(USERS+ADMINS,Line);
+    }
+    public static boolean sendMail(String from,String pass,String to,String subject,String body)
+    {
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", from);
+        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props,null);
+        MimeMessage message = new MimeMessage(session);
+
+        try {
+            message.setFrom(new InternetAddress(from));
+            InternetAddress toAddress = new InternetAddress(to);
+
+            message.addRecipient(Message.RecipientType.TO, toAddress);
+            message.setSubject(subject);
+            message.setText(body);
+
+            Transport transport = session.getTransport("smtp");
+            transport.connect(host, from, pass);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+            return true;
+        }
+        catch (AddressException ae) {
+            ae.printStackTrace();
+        }
+        catch (MessagingException me) {
+            me.printStackTrace();
+        }
+        return false;
     }
 }
