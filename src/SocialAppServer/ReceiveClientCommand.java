@@ -39,33 +39,62 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             RegisterInfo reg =RegisterInfo.fromJsonString(command.getObjectStr());
             reg.getUserInfo().setProfileImage("default");
             Saver s=new Saver(reg,connection);
-            Admin a=new Admin("0"); //pass zero for now till we have a real admi with id
-          a.convertIntoPermnantUser(reg.getLoginInfo().getEMAIL());
+      //      Admin a=new Admin("0"); //pass zero for now till we have a real admi with id
+        //  a.convertIntoPermnantUser(reg.getLoginInfo().getEMAIL());
             if(reg.getUserInfo().getAdminShip()){
-                if(Admin.adminCheck(reg.getLoginInfo().getEMAIL())){
-                 // answer server
+                if(ServerAdmin.adminCheck(reg.getLoginInfo().getEMAIL())){
+                    new ServerAdmin("").approveAsAdmin(reg.getLoginInfo().getEMAIL());
                     System.out.println("admin created");
                 }
-                // answer server
+
             }
 
           //  Admin a=new Admin();
         //  a.convertIntoPermnantUser(reg.getLoginInfo().getEMAIL());
             //System.out.println("in");
         }
-        else if(command.getKeyWord().equals("ADMIN_CHECK")){
-         String ID=command.getObjectStr();
-            if(Admin.adminChecker(ID)){
-                command.setSharableObject("true");
-            }else{
-                command.setSharableObject("false");
-            }
-             connection.sendCommand(command);
+        else if(command.getKeyWord().equals(Admin.KEYWORD)){
+                //String ID=command.getObjectStr();
+                if(serverLoggedUser instanceof Admin){
+                    command.setSharableObject("true");
+                }else{
+                    command.setSharableObject("false");
+                }
+                connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(Admin.APPROVEASADMIN)){
+            ((ServerAdmin)serverLoggedUser).approveAsAdmin(command.getObjectStr());
+            command.setSharableObject("true");
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(Admin.REJECT)){
+            ((ServerAdmin)serverLoggedUser).reject(command.getObjectStr());
+            command.setSharableObject("true");
+            connection.sendCommand(command);
         }
        else if(command.getKeyWord().equals(LoginInfo.KEYWORD)){
             LoginInfo log=LoginInfo.fromJsonString(command.getObjectStr());
-            serverLoggedUser = new ServerLoggedUser( UserFinder.validate(log.getEMAIL(),log.getPassword()));
-            command.setSharableObject(serverLoggedUser.getID());
+            String id = UserFinder.validate(log.getEMAIL(),log.getPassword());
+            if (!id.equals("-1")) {
+                if (ServerAdmin.adminChecker(id)) {
+                    serverLoggedUser = new ServerAdmin(id);
+                } else {
+                    serverLoggedUser = new ServerLoggedUser(id);
+                }
+            }
+            command.setSharableObject(id);
+            connection.sendCommand(command);
+        }else if(command.getKeyWord().equals(Admin.RetrieveData)){
+
+            ArrayList<Object> objects = new ArrayList<>();
+            ArrayList<String> strings = ((ServerAdmin)serverLoggedUser).fetchRequests();
+            objects.addAll(strings);
+            SocialArrayList socialArrayList = new SocialArrayList(objects);
+            command.setSharableObject(socialArrayList.convertToJsonString());
+            connection.sendCommand(command);
+        }else if(command.getKeyWord().equals(Admin.APPROVE)){
+            ((ServerAdmin)serverLoggedUser).approve(command.getObjectStr());
+            command.setSharableObject("true");
             connection.sendCommand(command);
         }
         else if (command.getKeyWord().equals(Group.CREATE_GROUP))

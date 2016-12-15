@@ -8,13 +8,13 @@ public interface FilesPath {
     String GROUPS="groups\\";
     String UNREIGESTERDUSERS= "temp\\";
     String BLOCKEDUSERS = "bannedusers\\";
-    String AllUSERS="allemails\\";
+    String AllUSERS="allemails";
     String NAMES="names\\";
     String EMAILS="emails\\";
     String POSTS= "\\posts";
     String INFO="Info.txt";
     String FRIEND_REQUEST ="pendingRequest.txt";
     String FRIENDS = "friends.sasf";
-    String ADMINS=USERS+"admins.txt";
+    String ADMINS="admins.txt";
 
 }
