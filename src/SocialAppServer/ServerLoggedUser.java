@@ -1,10 +1,16 @@
 package SocialAppServer;
 
+import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppGeneral.Group;
 import SocialAppGeneral.LoggedUser;
 import SocialAppGeneral.ReqGroup;
 import SocialAppGeneral.SocialArrayList;
+
+import java.util.ArrayList;
+
+import static FileManagment.FilesPath.FRIENDS;
+import static FileManagment.FilesPath.USERS;
 
 /**
  * Created by kemo on 10/12/2016.
@@ -39,9 +45,8 @@ public class ServerLoggedUser extends LoggedUser {
 
     }
 
-    @Override
-    public void getFriends() {
-
+    public ArrayList<String> getFriends() {
+       return FilesManager.readAllLines(USERS + getID()+"\\" + FRIENDS);
     }
 
     @Override
@@ -57,7 +62,7 @@ public class ServerLoggedUser extends LoggedUser {
         return groups;
     }
   public  void  reqtouser(ReqGroup req){
-      GroupfileMangement.reqFile(req,FilesPath.USERS);
+      GroupfileMangement.reqFile(req, USERS);
 
   }
     public  void  reqtogroup(ReqGroup req){
