@@ -5,9 +5,7 @@ import FileManagment.FilesPath;
 import SocialAppGeneral.Command;
 import SocialAppGeneral.RegisterInfo;
 
-import java.nio.file.FileStore;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by mosta on 30-Nov-16.
@@ -29,13 +27,39 @@ public static String  validate(String email, String pass){
 }
 //takes email or name
 public ArrayList<String> Search(String email){
-    ArrayList<String> a=new ArrayList();
-    ArrayList<String> b=new ArrayList();
+
+    ArrayList<String> Emails=FilesManager.FoldderSearcher(USERS+EMAILS);
+    ArrayList<String> Names=FilesManager.FoldderSearcher(USERS+NAMES);
     ArrayList<String> finalsearch=new ArrayList();
-    a=FilesManager.ReadIntoArrayList(USERS+EMAILS+Generator.GenerateID(email)+".txt");
-    b=FilesManager.ReadIntoArrayList(USERS+NAMES+Generator.GenerateID(email)+".txt");
-    finalsearch.addAll(a);
-    finalsearch.addAll(b);
+    //ArrayList<String> EmailSearch=new ArrayList<>();
+    ArrayList<String> IDs=new ArrayList<>();
+    String ID=Generator.GenerateID(email);
+    ID = (ID.length() > 3 )?  ID.substring(0, ID.length()-3) : ID;
+    for(int i=Names.size()-1;i>=0;i--){
+          if(!Names.get(i).startsWith(ID)){
+              Names.remove(Names.get(i));
+          }
+         }
+    for(int i=Emails.size()-1;i>=0;i--){
+        if(!Emails.get(i).startsWith(ID)){
+            Emails.remove(Emails.get(i));
+        }
+    }
+    for(int i=Names.size()-1;i>=0;i--){
+        IDs=FilesManager.ReadIntoArrayList(USERS+NAMES+Names.get(i));
+        for(int j=IDs.size()-1;j>=0;j--){
+            finalsearch.add(IDs.get(j));
+        }
+    }
+    for(int i=Emails.size()-1;i>=0;i--){
+        IDs=FilesManager.ReadIntoArrayList(USERS+EMAILS+Emails.get(i));
+        for(int j=IDs.size()-1;j>=0;j--){
+            finalsearch.add(IDs.get(j));
+        }
+    }
+    //finalsearch.addAll(EmailSearch);
+    //finalsearch.addAll(NamesSearch);
+   // FilesManager.readAllLines()
 return finalsearch;
 }
 }

@@ -34,18 +34,18 @@ public Saver(RegisterInfo reg, HalfDuplexConnection connection) {
     Command command = new Command();
     command.setKeyWord(RegisterInfo.KEYWORD);
     if (FilesManager.FileIsExist(UNREIGESTERDUSERS, Id + ".txt")) {
-        if(FilesManager.ReadLine(UNREIGESTERDUSERS + Id + ".txt", reg.getLoginInfo().getEMAIL()) || FilesManager.ReadLineoflogin(USERS + EMAILS + Id + ".txt", reg.getLoginInfo().getEMAIL())){
+        if(FilesManager.ReadLine(UNREIGESTERDUSERS + Id + ".txt", reg.getLoginInfo().getEMAIL()) || FilesManager.ReadLineoflogin(USERS + EMAILS + Id + ".txt", reg.getLoginInfo().getEMAIL())||FilesManager. ReadBanned(BLOCKEDUSERS+Id+".txt",reg.getLoginInfo().getEMAIL())){
             command.setSharableObject("false");
             connection.sendCommand(command);
     }else{
         FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString());
-            FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL()+"&&&"+reg.getUserInfo().getAdminShip());
+            FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
             command.setSharableObject("true");
             connection.sendCommand(command);
     }
 }
     else{
-        FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString()+"&&&"+reg.getUserInfo().getAdminShip());
+        FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString());
             FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
         command.setSharableObject("true");
         connection.sendCommand(command);
