@@ -96,13 +96,14 @@ class PostManger {
                                 post1.getId()))));
                         post1.addcomment(postNew.getComments().get(0));
                     } else {
-                        int i = 0;
+                        int i = -1;
                         int check = -1;
                         do {
+                            i++;
                             if (post1.getComments().get(i).getCommentId() == postNew.getComments().get(0).getCommentId()) {
                                 check = i;
                             }
-                            i++;
+
                         }
                         while (i < post1.getComments().size() && post1.getComments().get(i).getCommentId() != postNew.getComments().get(0).getCommentId());
 
