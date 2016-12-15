@@ -88,6 +88,12 @@ static  void  reqFile(ReqGroup req ,String path){
     FilesManager.CreateFileBinary(reqest,path + "\\" + req.getPostion() + GROUP);
 }
 
-
+static  Group load(long id){
+    Group group=new Group();
+    if(FilesManager.FileIsExist(FilesPath.GROUPS+"\\"+id+INFO)) {
+        group= (Group) FilesManager.ReadFromBinaryFile(FilesPath.GROUPS+"\\"+id+INFO);
+    }
+    return  group;
+}
 }
 

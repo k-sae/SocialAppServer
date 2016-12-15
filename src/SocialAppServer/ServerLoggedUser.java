@@ -68,5 +68,9 @@ public class ServerLoggedUser extends LoggedUser {
     Relation getRelation() {
         return relation;
     }
+    public  Group loadGroup(long Id){
+        return  GroupfileMangement.load(Id);
+
+    }
 
 }
