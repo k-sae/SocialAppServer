@@ -209,6 +209,25 @@ public class FilesManager {
             return false;
         }
     }
+    //Change name later
+    public static boolean ReadBanned(String FileName, String token) {
+        try {
+            BufferedReader RL = new BufferedReader(new FileReader(FileName));
+            String line ;
+            while ((line = RL.readLine()) != null) {
+                if(!line.isEmpty()) {
+                    if (line.equals(token)) {
+                        RL.close();
+                        return true;
+                    }
+                }
+            }
+            RL.close();
+            return false;
+        } catch (IOException ex) {
+            return false;
+        }
+    }
     public static boolean ReadLineoflogin(String FileName, String token) {
         try {
             BufferedReader RL = new BufferedReader(new FileReader(FileName));
@@ -310,6 +329,28 @@ public class FilesManager {
             }
             return a;
         }catch (IOException ex){
+        }
+        return a;
+    }
+    public static ArrayList<String> ReadArrayList(String FilePath){
+        ArrayList <String> a =new ArrayList<String>();
+        try {
+            BufferedReader RL=new BufferedReader(new FileReader(FilePath));
+            String Line;
+            while((Line= RL.readLine())!=null) {
+                a.add(Line);
+            }
+            return a;
+        }catch (IOException ex){
+        }
+        return a;
+    }
+    public static ArrayList<String > FoldderSearcher(String FilePath){
+        ArrayList<String> a=new ArrayList<>();
+        File folder = new File(FilePath);
+        File[] listOfFiles = folder.listFiles();
+        for (File file : listOfFiles) {
+          a.add(file.getName());
         }
         return a;
     }
