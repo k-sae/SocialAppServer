@@ -4,8 +4,6 @@ import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppGeneral.Admin;
 import SocialAppGeneral.RegisterInfo;
-import SocialAppServer.Generator;
-import SocialAppServer.ServerLoggedUser;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -55,6 +53,8 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
 
         FilesManager.RemoveLine(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt",Email);
         FilesManager.RemoveLine(UNREIGESTERDUSERS+AllUSERS,Email);
+        /** SENDING ACCEPTED EMAIL IF THE ADMIN ACCEPT*/
+        sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,Credentials.ACCEPTED_MSG_SUBJECT,Credentials.ACCEPTED_MSG_BODY);
     }
     //Check if needing modification
     public void convertIntoBannedUser(String Email) {
@@ -64,6 +64,9 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
         FilesManager.AddLine(BLOCKEDUSERS+Generator.GenerateID(re.getLoginInfo().getEMAIL())+".txt",re.getLoginInfo().getEMAIL());
         FilesManager.RemoveLine(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt",Email);
         FilesManager.RemoveLine(UNREIGESTERDUSERS+AllUSERS,Email);
+        /** SENDING REJECTED EMAIL IF THE ADMIN REFUSE*/
+        sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,Credentials.REJECTED_MSG_SUBJECT,Credentials.REJECTED_MSG_BODY);
+
     }
    public ArrayList<String> fetchRequests(){
        ArrayList<String> strings = new ArrayList<>();
@@ -86,6 +89,9 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
         String Line=FilesManager.FileSearcherForID(USERS+EMAILS+ Generator.GenerateID(Email)+".txt",Email);
         Line=Line.substring(Line.indexOf('[')+1,Line.indexOf(']'));
         FilesManager.AddLine(USERS+ADMINS,Line);
+        /** SENDING ACCEPTED AS ADMIN EMAIL IF THE ADMIN ACCEPT*/
+        sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,Credentials.ACCEPTED_AS_ADMIN_MSG_SUBJECT,Credentials.ACCEPTED_AS_ADMIN_MSG_BODY);
+
     }
     public static boolean sendMail(String from,String pass,String to,String subject,String body)
     {
