@@ -5,12 +5,14 @@ import FileManagment.FilesPath;
 import SocialAppGeneral.Admin;
 import SocialAppGeneral.RegisterInfo;
 
-import java.util.ArrayList;
-import java.util.Properties;
-import javax.mail.*;
-import javax.mail.internet.AddressException;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * Created by mosta on 12-Dec-16.
@@ -54,7 +56,7 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
         FilesManager.RemoveLine(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt",Email);
         FilesManager.RemoveLine(UNREIGESTERDUSERS+AllUSERS,Email);
         /** SENDING ACCEPTED EMAIL IF THE ADMIN ACCEPT*/
-        sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,Credentials.ACCEPTED_MSG_SUBJECT,Credentials.ACCEPTED_MSG_BODY);
+        sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,EmailContent.ACCEPTED_MSG_SUBJECT,EmailContent.ACCEPTED_MSG_BODY);
     }
     //Check if needing modification
     public void convertIntoBannedUser(String Email) {
@@ -65,7 +67,7 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
         FilesManager.RemoveLine(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt",Email);
         FilesManager.RemoveLine(UNREIGESTERDUSERS+AllUSERS,Email);
         /** SENDING REJECTED EMAIL IF THE ADMIN REFUSE*/
-        sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,Credentials.REJECTED_MSG_SUBJECT,Credentials.REJECTED_MSG_BODY);
+        sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,EmailContent.REJECTED_MSG_SUBJECT,EmailContent.REJECTED_MSG_BODY);
 
     }
    public ArrayList<String> fetchRequests(){
@@ -90,7 +92,9 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
         Line=Line.substring(Line.indexOf('[')+1,Line.indexOf(']'));
         FilesManager.AddLine(USERS+ADMINS,Line);
         /** SENDING ACCEPTED AS ADMIN EMAIL IF THE ADMIN ACCEPT*/
-        sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,Credentials.ACCEPTED_AS_ADMIN_MSG_SUBJECT,Credentials.ACCEPTED_AS_ADMIN_MSG_BODY);
+        sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email, //u must pass a valid name and pass up here
+                EmailContent.ACCEPTED_AS_ADMIN_MSG_SUBJECT
+                ,EmailContent.ACCEPTED_AS_ADMIN_MSG_BODY);
 
     }
     public static boolean sendMail(String from,String pass,String to,String subject,String body)
@@ -120,11 +124,7 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
             return true;
-        }
-        catch (AddressException ae) {
-            ae.printStackTrace();
-        }
-        catch (MessagingException me) {
+        } catch (MessagingException me) {
             me.printStackTrace();
         }
         return false;
