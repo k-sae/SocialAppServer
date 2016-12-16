@@ -81,9 +81,11 @@ class PostManger {
                             if (counter2 >= ((numberPost-1)*10)+1 && level==counter4) {
                                 posts.getItems().add(FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
                                 counter1++;
-                                check=false;
-                            }
 
+                            }
+                            if(level==counter4) {
+                                check = false;
+                            }
                             counter4++;
                             counter2++;
                         }
