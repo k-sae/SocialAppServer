@@ -64,6 +64,7 @@ class PostManger {
         int counter1=1;// count 10 posts
         int counter2;//count number post
         boolean check;//check post add or no
+        boolean check2;//check post found or no
         int  level = 0;//check level posts
         int counter4 ;//count number leves
         do {
@@ -75,13 +76,14 @@ class PostManger {
                     long uniqueidtemp = Long.valueOf(uniqueID);
                     counter2=1;
                     do {
-                        check=false;
+                        check=true;
                         if (FilesManager.FileIsExist(FilesPath.USERS + "\\" +id.get(i)+ FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE)) {
                             if (counter2 >= ((numberPost-1)*10)+1 && level==counter4) {
                                 posts.getItems().add(FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
                                 counter1++;
-                                check=true;
+                                check=false;
                             }
+
                             counter4++;
                             counter2++;
                         }
@@ -90,7 +92,7 @@ class PostManger {
                         if(uniqueidtemp==0){
                             counter3++;
                         }
-                    } while (uniqueidtemp != 0 && !check&& counter1 % 11 != 0);
+                    } while (uniqueidtemp != 0 && check&& counter1 % 11 != 0);
                 }
                 else {counter3++;}
             }
