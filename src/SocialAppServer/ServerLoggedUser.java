@@ -21,7 +21,7 @@ public class ServerLoggedUser extends LoggedUser {
 
     @Override
     public Group createGroup(Group group) {
-        group.setId(Long.parseLong(Generator.GenerateUnigueId(FilesPath.GROUPS)));
+
         GroupfileMangement.create(group);
         GroupfileMangement.addgrouptomember(group.getAdminId(),group.getId());
         return group;

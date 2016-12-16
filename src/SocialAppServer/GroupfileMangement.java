@@ -28,6 +28,7 @@ class GroupfileMangement implements FilesPath{
 
     static void create (Group group) {
         FilesManager.CreateFolder(GROUPS);
+        group.setId(Long.parseLong(Generator.GenerateUnigueId(FilesPath.GROUPS)));
         FilesManager.CreateFolder(GROUPS,group.getId()+"");
         FilesManager.CreateFileBinary(group,GROUPS+"\\"+group.getId()+INFO);
         FilesManager.AddLine(FilesPath.USERS+FilesPath.NAMES+Generator.GenerateID(group.getName()+".txt"),group.getName()+"&&&ID=["+group.getId()+"]");
