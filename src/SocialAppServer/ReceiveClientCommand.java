@@ -81,6 +81,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 } else {
                     serverLoggedUser = new ServerLoggedUser(id);
                 }
+                serverLoggedUser.setLoginInfo(log);
             }
             command.setSharableObject(id);
             connection.sendCommand(command);

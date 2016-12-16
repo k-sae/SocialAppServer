@@ -14,6 +14,7 @@ import static FileManagment.FilesPath.USERS;
  */
 public class ServerLoggedUser extends LoggedUser {
     private Relation relation;
+    private LoginInfo loginInfo;
     public ServerLoggedUser(String id) {
         super(id);
         relation = new Relation(id);
@@ -107,5 +108,12 @@ public class ServerLoggedUser extends LoggedUser {
     }
     void deletePostGroup(Post post){
         FilesManager.delete(FilesPath.GROUPS+"\\"+post.getPostPos()+FilesPath.POSTS+"\\"+post.getId());
+    }
+    public LoginInfo getLoginInfo() {
+        return loginInfo;
+    }
+
+    public void setLoginInfo(LoginInfo loginInfo) {
+        this.loginInfo = loginInfo;
     }
 }
