@@ -2,10 +2,7 @@ package SocialAppServer;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
-import SocialAppGeneral.Comment;
-import SocialAppGeneral.Like;
-import SocialAppGeneral.Post;
-import SocialAppGeneral.PostAtachmment;
+import SocialAppGeneral.*;
 
 
 import java.io.*;
@@ -59,6 +56,42 @@ class PostManger {
            return posts;
        }
        else return  null;
+    }
+    static SocialArrayList pickPostHome(ArrayList<String> id, long numberPost){
+      SocialArrayList posts =new SocialArrayList();
+        String uniqueID="1";
+        int counter3=1;//count the file empty or no
+        int counter1=1;// count 10 posts
+        int counter2;//count number post
+        boolean check;//check post add or no
+        do {
+            for(int i=id.size()-1;i>=0&&counter1 % 11 != 0;i--) {
+                if (FilesManager.FileIsExist(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS, "\\uniqueID.txt")) {
+                    uniqueID = (FilesManager.ReadLine(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\uniqueID.txt", 1));
+                    long uniqueidtemp = Long.valueOf(uniqueID);
+                    counter2=1;
+                    do {
+                        check=false;
+                        if (FilesManager.FileIsExist(FilesPath.USERS + "\\" +id.get(i)+ FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE)) {
+                            if (counter2 >= ((numberPost-1)*10)+1) {
+                                posts.getItems().add(FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
+                                counter1++;
+                                check=true;
+                            }
+                            counter2++;
+                        }
+
+                        uniqueidtemp--;
+                        if(uniqueidtemp==0){
+                            counter3++;
+                        }
+                    } while (uniqueidtemp != 0 && !check&& counter1 % 11 != 0);
+                }
+                else {counter3++;}
+            }
+
+        }while(counter1 % 11 != 0 &&counter3 < id.size());
+        return posts;
     }
 
     static  Post saveAtachment(Post postNew,String path){

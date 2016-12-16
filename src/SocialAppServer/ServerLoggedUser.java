@@ -2,10 +2,7 @@ package SocialAppServer;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
-import SocialAppGeneral.Group;
-import SocialAppGeneral.LoggedUser;
-import SocialAppGeneral.ReqGroup;
-import SocialAppGeneral.SocialArrayList;
+import SocialAppGeneral.*;
 
 import java.util.ArrayList;
 
@@ -58,7 +55,7 @@ public class ServerLoggedUser extends LoggedUser {
     public SocialArrayList getgroups() {
 
        SocialArrayList groups= GroupfileMangement.pickGroups(GroupfileMangement.pickMemberGroup(Long.parseLong(getID())));
-        System.out.println(groups.convertToJsonString());
+
         return groups;
     }
   public  void  reqtouser(ReqGroup req){
@@ -76,6 +73,11 @@ public class ServerLoggedUser extends LoggedUser {
     public  Group loadGroup(long Id){
         return  GroupfileMangement.load(Id);
 
+    }
+    public SocialArrayList homePost(long numberPost){
+        ArrayList <String> ids=getFriends();
+        ids.add(getID());
+        return PostManger.pickPostHome(ids,numberPost);
     }
 
 }
