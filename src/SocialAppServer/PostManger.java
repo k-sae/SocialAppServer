@@ -79,7 +79,7 @@ class PostManger {
                         check=true;
                         if (FilesManager.FileIsExist(FilesPath.USERS + "\\" +id.get(i)+ FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE)) {
                             if (counter2 >= ((numberPost-1)*10)+1 && level==counter4) {
-                                posts.getItems().add(FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
+                                posts.getItems().add(((Post)FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE)).convertToJsonString());
                                 counter1++;
                                 check=false;
                             }
