@@ -70,14 +70,42 @@ public class ServerLoggedUser extends LoggedUser {
     Relation getRelation() {
         return relation;
     }
-    public  Group loadGroup(long Id){
+      Group loadGroup(long Id){
         return  GroupfileMangement.load(Id);
 
     }
-    public SocialArrayList homePost(long numberPost){
+     SocialArrayList homePost(long numberPost){
         ArrayList <String> ids=getFriends();
         ids.add(getID());
         return PostManger.pickPostHome(ids,numberPost);
     }
-
+    //TODO# ovried to member
+     Post savePostGroup(Post post){
+       PostManger.SavePost(post,FilesPath.GROUPS+post.getPostPos());
+       return  post;
+   }
+      Post savePost(Post post){
+        PostManger.SavePost(post,FilesPath.USERS+post.getPostPos());
+        return  post;
+    }
+      SocialArrayList loadPost(SocialArrayList posts){
+       return PostManger.PickPosts(FilesPath.USERS+posts.getExtra(), Long.parseLong(posts.getTarget()));
+    }
+    SocialArrayList loadPostGroup(SocialArrayList posts){
+        return PostManger.PickPosts(FilesPath.GROUPS+posts.getExtra(), Long.parseLong(posts.getTarget()));
+    }
+    Post Edit(Post post){
+        post=PostManger.saveAtachment(post, FilesPath.USERS+post.getPostPos());
+        return post;
+    }
+    Post EditGroup(Post post){
+        post=PostManger.saveAtachment(post, FilesPath.GROUPS+post.getPostPos());
+        return post;
+    }
+    void deletePost(Post post){
+        FilesManager.delete(FilesPath.USERS+"\\"+post.getPostPos()+FilesPath.POSTS+"\\"+post.getId());
+    }
+    void deletePostGroup(Post post){
+        FilesManager.delete(FilesPath.GROUPS+"\\"+post.getPostPos()+FilesPath.POSTS+"\\"+post.getId());
+    }
 }

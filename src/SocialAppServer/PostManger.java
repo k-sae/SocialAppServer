@@ -29,42 +29,36 @@ class PostManger {
      static Post PickonePost(String path,long id)  {
          return ((Post) FilesManager.ReadFromBinaryFile(path+FilesPath.POSTS+"\\"+id+Post_FILE));
     }
-     static ArrayList<Post> PickPosts(String path,long numberPost)  {
-          ArrayList <Post> posts= new ArrayList<>();
-          String uniqueID="1";
-
-         long countenr=1;
+     static SocialArrayList PickPosts(String path,long numberPost)  {
+          SocialArrayList posts= new SocialArrayList();
+          String uniqueID;
+         long counter=1;
          int counter2= 1;
        if(FilesManager.FileIsExist(path+FilesPath.POSTS,"\\uniqueID.txt")) {
            uniqueID = (FilesManager.ReadLine(path + FilesPath.POSTS + "\\uniqueID.txt", 1));
-           long uniqueidtemp = Long.valueOf(uniqueID);
+           long uniqueIdTemp = Long.valueOf(uniqueID);
            do{
-               if(FilesManager.FileIsExist(path +FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE)) {
+               if(FilesManager.FileIsExist(path +FilesPath.POSTS + "\\" + uniqueIdTemp + Post_FILE)) {
                    if(counter2 >= ((numberPost-1)*10)+1) {
-                       posts.add((Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
-
-                   countenr++;
+                       posts.getItems().add(((Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + uniqueIdTemp + Post_FILE)).convertToJsonString());
+                       counter++;
                    }
                    counter2++;
          }
-
-               uniqueidtemp--;
+               uniqueIdTemp--;
            }
-
-           while (uniqueidtemp != 0 && countenr % 11 != 0);
-
-           return posts;
+           while (uniqueIdTemp != 0 && counter % 11 != 0);
        }
-       else return  null;
+
+       return  posts;
     }
     static SocialArrayList pickPostHome(ArrayList<String> id, long numberPost){
       SocialArrayList posts =new SocialArrayList();
-        String uniqueID="1";
+        String uniqueID;
         int counter3;//count the file empty or no
         int counter1=1;// count 10 posts
         int counter2;//count number post
         boolean check;//check post add or no
-        boolean check2;//check post found or no
         int  level = 0;//check level posts
         int counter4 ;//count number leves
         do {
@@ -73,28 +67,27 @@ class PostManger {
                 counter4=0;
                 if (FilesManager.FileIsExist(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS, "\\uniqueID.txt")) {
                     uniqueID = (FilesManager.ReadLine(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\uniqueID.txt", 1));
-                    long uniqueidtemp = Long.valueOf(uniqueID);
+                    long uniqueIdTemp = Long.valueOf(uniqueID);
                     counter2=1;
                     do {
                         check=true;
-                        if (FilesManager.FileIsExist(FilesPath.USERS + "\\" +id.get(i)+ FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE)) {
-                            if (counter2 >= ((numberPost-1)*10)+1 && level==counter4) {
-                                posts.getItems().add(FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
-                                counter1++;
-
-                            }
+                        if (FilesManager.FileIsExist(FilesPath.USERS + "\\" +id.get(i)+ FilesPath.POSTS + "\\" + uniqueIdTemp + Post_FILE)) {
                             if(level==counter4) {
                                 check = false;
+                                if (counter2 >= ((numberPost - 1) * 10) + 1 ) {
+
+                                    posts.getItems().add(((Post) FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueIdTemp + Post_FILE)).convertToJsonString());
+                                    counter1++;
+                                }
                             }
                             counter4++;
                             counter2++;
                         }
-
-                        uniqueidtemp--;
-                        if(uniqueidtemp==0){
+                        uniqueIdTemp--;
+                        if(uniqueIdTemp==0){
                             counter3++;
                         }
-                    } while (uniqueidtemp != 0 && check&& counter1 % 11 != 0);
+                    } while (uniqueIdTemp != 0 && check&& counter1 % 11 != 0);
                 }
                 else {counter3++;}
             }
@@ -163,14 +156,9 @@ class PostManger {
 
 
             }
-
-
             FilesManager.CreateFileBinary(post1, path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE);
-
         }
         else{post1.setId(0);}
             return post1;
     }
-
-
 }

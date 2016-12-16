@@ -110,83 +110,56 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         }
 
        else if(command.getKeyWord().equals(Post.SAVE_POST_USER)){
-            Post post=Post.fromJsonString(command.getObjectStr());
-           PostManger.SavePost(post,FilesPath.USERS+post.getPostPos());
-            command.setSharableObject(post.convertToJsonString());
+            command.setSharableObject(serverLoggedUser.savePost(Post.fromJsonString(command.getObjectStr())).convertToJsonString());
             connection.sendCommand(command);
-
         }
         else if(command.getKeyWord().equals(Post.SAVE_POST_GROUP)){
-            Post post=Post.fromJsonString(command.getObjectStr());
-            PostManger.SavePost(post,FilesPath.GROUPS+post.getPostPos());
-            command.setSharableObject(post.convertToJsonString());
+            command.setSharableObject(serverLoggedUser.savePostGroup(Post.fromJsonString(command.getObjectStr())).convertToJsonString());
             connection.sendCommand(command);
-
         }
-
         else if(command.getKeyWord().equals(Post.LOAD_POST_USERS)){
-            ArraylistPost posts;
-            posts=(ArraylistPost.fromJsonString(command.getObjectStr()));
-            posts.setPosts(PostManger.PickPosts(FilesPath.USERS+posts.getOwnerPosts(),posts.getNumberpost()));
-            command.setSharableObject(posts.convertToJsonString());
+            command.setSharableObject(serverLoggedUser.loadPost((SocialArrayList.convertFromJsonString(command.getObjectStr()))).convertToJsonString());
             connection.sendCommand(command);
-
         }
         else if(command.getKeyWord().equals(Post.LOAD_POST_GROUPS)){
-            ArraylistPost posts;
-            posts=(ArraylistPost.fromJsonString(command.getObjectStr()));
-            posts.setPosts(PostManger.PickPosts(FilesPath.GROUPS+posts.getOwnerPosts(),posts.getNumberpost()));
-            command.setSharableObject(posts.convertToJsonString());
+            command.setSharableObject(serverLoggedUser.loadPostGroup((SocialArrayList.convertFromJsonString(command.getObjectStr()))).convertToJsonString());
             connection.sendCommand(command);
-
         }
         else if(command.getKeyWord().equals(Post.LOAD_POST_HOME)){
             command.setSharableObject(serverLoggedUser.homePost(Long.parseLong(command.getObjectStr())).convertToJsonString());
-
             connection.sendCommand(command);
-
         }
        else if(command.getKeyWord().equals(Post.EDITE_POST_USERS)){
-       Post post1= Post.fromJsonString(command.getObjectStr());
-            post1=PostManger.saveAtachment(post1, FilesPath.USERS+post1.getPostPos());
-            command.setSharableObject(post1.convertToJsonString());
+            command.setSharableObject(serverLoggedUser.Edit( Post.fromJsonString(command.getObjectStr())).convertToJsonString());
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(Post.EDITE_POST_GROUPS)){
-            Post post1= Post.fromJsonString(command.getObjectStr());
-            post1=PostManger.saveAtachment(post1, FilesPath.GROUPS+post1.getPostPos());
-            command.setSharableObject(post1.convertToJsonString());
+            command.setSharableObject(serverLoggedUser.EditGroup( Post.fromJsonString(command.getObjectStr())).convertToJsonString());
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(Post.DELETE_POST_GROUPS)){
-            Post post1= Post.fromJsonString(command.getObjectStr());
-            FilesManager.delete(FilesPath.GROUPS+"\\"+post1.getPostPos()+FilesPath.POSTS+"\\"+post1.getId());
+            serverLoggedUser.deletePostGroup(Post.fromJsonString(command.getObjectStr()));
             connection.sendCommand(command);
         }
         else if (command.getKeyWord().equals(Post.DELETE_POST_USERS)){
-            Post post1= Post.fromJsonString(command.getObjectStr());
-            FilesManager.delete(FilesPath.USERS+"\\"+post1.getPostPos()+FilesPath.POSTS+"\\"+post1.getId());
+            serverLoggedUser.deletePost(Post.fromJsonString(command.getObjectStr()));
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(Group.LOAD_GROUPS)){
-
             command.setSharableObject(serverLoggedUser.getgroups().convertToJsonString());
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(Group.LOAD_GROUP)){
-
             command.setSharableObject(serverLoggedUser.loadGroup(Long.parseLong(command.getObjectStr())));
             connection.sendCommand(command);
         }
-
-           else if (command.getKeyWord().equals(UserInfo.PICK_INFO))
+        else if (command.getKeyWord().equals(UserInfo.PICK_INFO))
         {
             command.setSharableObject(UserPicker.pickUserInfo(command.getObjectStr()));
             connection.sendCommand(command);
         }
         else if (command.getKeyWord().equals(UserInfo.EDIT_INFO))
         {
-
             FilesManager.Removefile(FilesPath.USERS + serverLoggedUser.getID()+"\\" + FilesPath.INFO, command.getObjectStr());
             command.setSharableObject("true");
             connection.sendCommand(command);
