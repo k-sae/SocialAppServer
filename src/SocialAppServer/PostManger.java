@@ -60,12 +60,16 @@ class PostManger {
     static SocialArrayList pickPostHome(ArrayList<String> id, long numberPost){
       SocialArrayList posts =new SocialArrayList();
         String uniqueID="1";
-        int counter3=1;//count the file empty or no
+        int counter3;//count the file empty or no
         int counter1=1;// count 10 posts
         int counter2;//count number post
         boolean check;//check post add or no
+        int  level = 0;//check level posts
+        int counter4 ;//count number leves
         do {
+           counter3=1;
             for(int i=id.size()-1;i>=0&&counter1 % 11 != 0;i--) {
+                counter4=0;
                 if (FilesManager.FileIsExist(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS, "\\uniqueID.txt")) {
                     uniqueID = (FilesManager.ReadLine(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\uniqueID.txt", 1));
                     long uniqueidtemp = Long.valueOf(uniqueID);
@@ -73,11 +77,12 @@ class PostManger {
                     do {
                         check=false;
                         if (FilesManager.FileIsExist(FilesPath.USERS + "\\" +id.get(i)+ FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE)) {
-                            if (counter2 >= ((numberPost-1)*10)+1) {
+                            if (counter2 >= ((numberPost-1)*10)+1 && level==counter4) {
                                 posts.getItems().add(FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueidtemp + Post_FILE));
                                 counter1++;
                                 check=true;
                             }
+                            counter4++;
                             counter2++;
                         }
 
@@ -89,8 +94,8 @@ class PostManger {
                 }
                 else {counter3++;}
             }
-
-        }while(counter1 % 11 != 0 &&counter3 < id.size());
+        level++;
+        }while(counter1 % 11 != 0 &&counter3 <= id.size());
         return posts;
     }
 
