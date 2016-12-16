@@ -14,6 +14,7 @@ public abstract class LoggedUser extends AppUser {
     public static final String DECLINE_FRIEND = "decline_friend_req";
     public static final String REMOVE_FRIEND = "remove_friend";
     public static final String CANCEL_FRIEND_REQ = "cancel_friend_req";
+    public static final String DEACTIVATE = "deactivate";
     //TO DO
     // may change later check with kareem
     protected ArrayList<Integer> friends;

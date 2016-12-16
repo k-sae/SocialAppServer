@@ -225,5 +225,16 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             command.setSharableObject("true");
             connection.sendCommand(command);
         }
+        else if(command.getKeyWord().equals(LoggedUser.DEACTIVATE)){
+            UserInfo userInfo = UserInfo.fromJsonString(command.getObjectStr());
+            command.setSharableObject(userInfo.convertToJsonString());
+            connection.sendCommand(command);
+            /**SENDING AN EVALUATION E-MAIL*/
+            ServerAdmin.sendMail(Credentials.E_MAIL,Credentials.PASSWORD,
+                    serverLoggedUser.getLoginInfo().getEMAIL(),
+                    EmailContent.DEACTIVATE_MSG_SUBJECT,
+                    EmailContent.DEACTIVATE_MSG_BODY
+                    );
+        }
     }
 }
