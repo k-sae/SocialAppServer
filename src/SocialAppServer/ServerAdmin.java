@@ -56,8 +56,8 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
         FilesManager.RemoveLine(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt",Email);
         FilesManager.RemoveLine(UNREIGESTERDUSERS+AllUSERS,Email);
         /** SENDING ACCEPTED EMAIL IF THE ADMIN ACCEPT*/
-        sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,EmailContent.ACCEPTED_MSG_SUBJECT,EmailContent.ACCEPTED_MSG_BODY);
-    }
+        new Thread(() -> sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,EmailContent.ACCEPTED_MSG_SUBJECT,EmailContent.ACCEPTED_MSG_BODY)).start();
+      }
     //Check if needing modification
     public void convertIntoBannedUser(String Email) {
         String line = FilesManager.FileSearcher(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt", Email);
@@ -125,7 +125,7 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
             transport.close();
             return true;
         } catch (MessagingException me) {
-            me.printStackTrace();
+          System.out.println("Failed to send mail");
         }
         return false;
     }

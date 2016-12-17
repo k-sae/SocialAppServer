@@ -303,8 +303,9 @@ public class FilesManager {
 
 
     public static synchronized void RemoveLine(String FilePath,String token){
+        BufferedReader RL = null;
       try {
-      BufferedReader RL=new BufferedReader(new FileReader(FilePath));
+       RL=new BufferedReader(new FileReader(FilePath));
       String Line;
           ArrayList <String> a =new ArrayList<String>();
           while((Line= RL.readLine())!=null) {
@@ -312,10 +313,14 @@ public class FilesManager {
                   a.add(Line);
               }
           }
-          RL.close();
           AddLineWithoutAppend(a,FilePath);
 
       }catch (IOException ignored){
+
+      }
+      if (RL != null) try {
+          RL.close();
+      } catch (IOException ignored) {
       }
     }
     public static ArrayList<String> ReadIntoArrayList(String FilePath){
@@ -521,16 +526,20 @@ public class FilesManager {
     }
     public static ArrayList<String> readAllLines(String file) {
         ArrayList<String> strings = new ArrayList<>();
+        BufferedReader bufferedReader = null;
         try {
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+             bufferedReader = new BufferedReader(new FileReader(file));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 strings.add(line);
             }
 
+        } catch (IOException ignored) {
+        }
+        if (bufferedReader != null) try {
+            bufferedReader.close();
         } catch (IOException e) {
-            e.printStackTrace();
         }
         return strings;
     }

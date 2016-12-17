@@ -34,4 +34,6 @@ public abstract class LoggedUser extends AppUser {
     public abstract void setFriends();
     public abstract void getNotfications();
     public abstract SocialArrayList getgroups();
+    public abstract void deactivate();
+
 }
