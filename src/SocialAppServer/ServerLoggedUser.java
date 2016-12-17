@@ -2,10 +2,7 @@ package SocialAppServer;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
-import SocialAppGeneral.Group;
-import SocialAppGeneral.LoggedUser;
-import SocialAppGeneral.ReqGroup;
-import SocialAppGeneral.SocialArrayList;
+import SocialAppGeneral.*;
 
 import java.util.ArrayList;
 
@@ -17,6 +14,7 @@ import static FileManagment.FilesPath.USERS;
  */
 public class ServerLoggedUser extends LoggedUser {
     private Relation relation;
+    private LoginInfo loginInfo;
     public ServerLoggedUser(String id) {
         super(id);
         relation = new Relation(id);
@@ -78,4 +76,11 @@ public class ServerLoggedUser extends LoggedUser {
 
     }
 
+    public LoginInfo getLoginInfo() {
+        return loginInfo;
+    }
+
+    public void setLoginInfo(LoginInfo loginInfo) {
+        this.loginInfo = loginInfo;
+    }
 }

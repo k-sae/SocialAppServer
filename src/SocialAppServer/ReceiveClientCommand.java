@@ -81,6 +81,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 } else {
                     serverLoggedUser = new ServerLoggedUser(id);
                 }
+                serverLoggedUser.setLoginInfo(log);
             }
             command.setSharableObject(id);
             connection.sendCommand(command);
@@ -255,6 +256,17 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             serverLoggedUser.getRelation().declineFriendReq(command.getObjectStr());
             command.setSharableObject("true");
             connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(LoggedUser.DEACTIVATE)){
+            UserInfo userInfo = UserInfo.fromJsonString(command.getObjectStr());
+            command.setSharableObject(userInfo.convertToJsonString());
+            connection.sendCommand(command);
+            /**SENDING AN EVALUATION E-MAIL*/
+            ServerAdmin.sendMail(Credentials.E_MAIL,Credentials.PASSWORD,
+                    serverLoggedUser.getLoginInfo().getEMAIL(),
+                    EmailContent.DEACTIVATE_MSG_SUBJECT,
+                    EmailContent.DEACTIVATE_MSG_BODY
+                    );
         }
     }
 }
