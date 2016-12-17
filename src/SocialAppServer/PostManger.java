@@ -184,4 +184,9 @@ class PostManger {
         else{post1.setId(0);}
             return post1;
     }
+    static  void  saveNoti(Notification noti){
+        FilesManager.CreateFolder(FilesPath.USERS + noti.getPost().getOwnerId(), FilesPath.NOTI);
+        noti.setId(Long.valueOf(Generator.GenerateUnigueId(FilesPath.USERS + noti.getPost().getOwnerId()+FilesPath.NOTI)));
+        FilesManager.CreateFileBinary(noti,FilesPath.USERS + noti.getPost().getOwnerId()  );
+    }
 }

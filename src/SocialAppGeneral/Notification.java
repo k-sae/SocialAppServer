@@ -11,7 +11,24 @@ public class Notification implements Shareable,Serializable {
     private static final long serialVersionUID = 6529685098267757690L;
     private  Post post;
     private  String keyword;
-    private  String  id;//id whose  send noftication
+    private  String  idSender;//id whose  send noftication
+    private  long id;
+
+    public Notification() {
+        this.post=new Post();
+    }
+
+    public String getIdSender() {
+        return idSender;
+    }
+
+    public void setIdSender(String idSender) {
+        this.idSender = idSender;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public Post getPost() {
         return post;
@@ -29,12 +46,8 @@ public class Notification implements Shareable,Serializable {
         this.keyword = keyword;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     @Override
