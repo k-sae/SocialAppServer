@@ -133,7 +133,7 @@ class PostManger {
                         }
 
                     }
-                    while (i < post1.getLike().size() && post1.getLike().get(i).getOwnerID() != postNew.getLike().get(0).getOwnerID());
+                    while (i < post1.getLike().size()-1 && post1.getLike().get(i).getOwnerID() != postNew.getLike().get(0).getOwnerID());
                 }
                 if (postNew.getLike().get(0).getLike() != -1) {
                     if (check == -1) {
@@ -163,7 +163,7 @@ class PostManger {
                             }
 
                         }
-                        while (i < post1.getComments().size() && post1.getComments().get(i).getCommentId() != postNew.getComments().get(0).getCommentId());
+                        while (i < post1.getComments().size() -1&& post1.getComments().get(i).getCommentId() != postNew.getComments().get(0).getCommentId());
 
                         if (postNew.getComments().get(0).getShow() == -1) {
                             if (check != -1)

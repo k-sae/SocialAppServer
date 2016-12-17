@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8dc66616-badd-471c-9ad5-0984f3e97d31" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FileManagment/FilesPath.java" afterPath="$PROJECT_DIR$/src/FileManagment/FilesPath.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SocialAppGeneral/Notification.java" afterPath="$PROJECT_DIR$/src/SocialAppGeneral/Notification.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SocialAppServer/PostManger.java" afterPath="$PROJECT_DIR$/src/SocialAppServer/PostManger.java" />
     </list>
     <ignored path="SocialAppServer.iws" />
@@ -33,8 +31,8 @@
       <file leaf-file-name="PostManger.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SocialAppServer/PostManger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="189" column="90" selection-start-line="189" selection-start-column="90" selection-end-line="189" selection-end-column="90" />
+            <state relative-caret-position="326">
+              <caret line="189" column="64" selection-start-line="189" selection-start-column="64" selection-end-line="189" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -1032,8 +1030,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SocialAppServer/PostManger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="189" column="90" selection-start-line="189" selection-start-column="90" selection-end-line="189" selection-end-column="90" />
+        <state relative-caret-position="326">
+          <caret line="189" column="64" selection-start-line="189" selection-start-column="64" selection-end-line="189" selection-end-column="64" />
           <folding />
         </state>
       </provider>
