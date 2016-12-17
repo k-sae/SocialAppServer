@@ -119,7 +119,12 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(Post.LOAD_POST_USERS)){
-            command.setSharableObject(serverLoggedUser.loadPost((SocialArrayList.convertFromJsonString(command.getObjectStr()))).convertToJsonString());
+            try {
+                command.setSharableObject(serverLoggedUser.loadPost((SocialArrayList.convertFromJsonString(command.getObjectStr()))).convertToJsonString());
+            }catch (Exception e)
+            {
+                command.setSharableObject(new SocialArrayList());
+            }
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(Post.LOAD_POST_GROUPS)){
@@ -156,7 +161,13 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         }
         else if (command.getKeyWord().equals(UserInfo.PICK_INFO))
         {
-            command.setSharableObject(UserPicker.pickUserInfo(command.getObjectStr()));
+            try{
+                command.setSharableObject(UserPicker.pickUserInfo(command.getObjectStr()));
+            }catch (Exception e)
+            {
+                command.setSharableObject(UserInfo.getDefaultUserInfo());
+            }
+
             connection.sendCommand(command);
         }
         else if (command.getKeyWord().equals(UserInfo.EDIT_INFO))
@@ -237,15 +248,9 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(LoggedUser.DEACTIVATE)){
-            UserInfo userInfo = UserInfo.fromJsonString(command.getObjectStr());
-            command.setSharableObject(userInfo.convertToJsonString());
-            connection.sendCommand(command);
             /**SENDING AN EVALUATION E-MAIL*/
-            ServerAdmin.sendMail(Credentials.E_MAIL,Credentials.PASSWORD,
-                    serverLoggedUser.getLoginInfo().getEMAIL(),
-                    EmailContent.DEACTIVATE_MSG_SUBJECT,
-                    EmailContent.DEACTIVATE_MSG_BODY
-                    );
+            serverLoggedUser.deactivate();
+            connection.sendCommand(command);
         }
     }
 }
