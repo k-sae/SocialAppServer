@@ -123,14 +123,15 @@ class PostManger {
         if(FilesManager.FileIsExist(path +FilesPath.POSTS+ "\\" +postNew.getId() + Post_FILE)) {
              post1 = (Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE);
             if (postNew.getLike().size() != 0) {
-                int i = 0;
+                int i = -1;
                 int check = -1;
                 if (post1.getLike().size() != 0) {
                     do {
+                        i++;
                         if (post1.getLike().get(i).getOwnerID() == postNew.getLike().get(0).getOwnerID()) {
                             check = i;
                         }
-                        i++;
+
                     }
                     while (i < post1.getLike().size() && post1.getLike().get(i).getOwnerID() != postNew.getLike().get(0).getOwnerID());
                 }
