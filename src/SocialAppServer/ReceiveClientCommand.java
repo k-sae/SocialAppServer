@@ -187,6 +187,17 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             command.setSharableObject(socialArrayList.convertToJsonString());
             connection.sendCommand(command);
         }
+        else if(command.getKeyWord().equals("Search_Group")) {
+            UserFinder f = new UserFinder();
+            //ArrayList <String>a=new ArrayList<String>();
+            ArrayList<Object> objects = new ArrayList<>();
+            ArrayList<String> strings = new ArrayList<>();
+            strings = f.SearchInGroups(command.getObjectStr());
+            objects.addAll(strings);
+            SocialArrayList socialArrayList = new SocialArrayList(objects);
+            command.setSharableObject(socialArrayList.convertToJsonString());
+            connection.sendCommand(command);
+        }
         else if(command.getKeyWord().equals(LoggedUser.FETCH_REQS))
         {
             ArrayList<Object> objects = new ArrayList<>();
