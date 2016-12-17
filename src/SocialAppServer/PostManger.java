@@ -2,14 +2,14 @@ package SocialAppServer;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
-import SocialAppGeneral.*;
+import SocialAppGeneral.Notification;
+import SocialAppGeneral.Post;
+import SocialAppGeneral.SocialArrayList;
 
-
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static FileManagment.FilesManager.*;
+import static FileManagment.FilesManager.FileIsExist;
 
 /**
  * Created by khaled hesham on 12/2/2016.
@@ -206,17 +206,12 @@ class PostManger {
             return post1;
     }
     static  void  saveNoti(Notification noti){
-        SocialArrayList list=new SocialArrayList();
-         if(FilesManager.FileIsExist(FilesPath.USERS + noti.getPost().getOwnerId()+FilesPath.NOTI)){
-             list= SocialArrayList.convertFromJsonString(FilesManager.ReadLine(FilesPath.USERS + noti.getPost().getOwnerId()+FilesPath.NOTI,0)) ;
-         }
-         list.getItems().add(noti);
-        FilesManager.AddLineWithoutAppend(FilesPath.USERS + noti.getPost().getOwnerId() +FilesPath.NOTI,list.convertToJsonString() );
+            FilesManager.AddLine(FilesPath.USERS + noti.getPost().getOwnerId() +FilesPath.NOTI, noti.convertToJsonString());
     }
     static  SocialArrayList loadNoti(String id){
         SocialArrayList list =new SocialArrayList();
         if(FileIsExist(FilesPath.USERS + id+FilesPath.NOTI))
-            list= SocialArrayList.convertFromJsonString(FilesManager.ReadLine(FilesPath.USERS +"\\"+ id+FilesPath.NOTI,0)) ;
+            list.getItems().addAll( FilesManager.readAllLines(FilesPath.USERS +"\\"+ id+FilesPath.NOTI));
        else  list.setExtra("1");
         return  list;
     }
