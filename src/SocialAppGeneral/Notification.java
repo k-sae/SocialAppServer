@@ -12,10 +12,13 @@ public class Notification implements Shareable,Serializable {
     private  Post post;
     private  String keyword;
     private  String  idSender;//id whose  send noftication
-    private  long id;
-
+    public static final String SUMPUP = "sumup";
+    public static final String SUMPDOWN = "sumdown";
+    public static final String COMMENT = "comment";
+    public static final String LOAD_NOTI = "loadNoti";
     public Notification() {
         this.post=new Post();
+        this.idSender="";
     }
 
     public String getIdSender() {
@@ -26,9 +29,7 @@ public class Notification implements Shareable,Serializable {
         this.idSender = idSender;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+
 
     public Post getPost() {
         return post;
@@ -46,9 +47,6 @@ public class Notification implements Shareable,Serializable {
         this.keyword = keyword;
     }
 
-    public long getId() {
-        return id;
-    }
 
     @Override
     public String convertToJsonString() {

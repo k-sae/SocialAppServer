@@ -120,6 +120,7 @@ class PostManger {
     }
     static  Post saveAtachment(Post postNew,String path){
         Post post1 =new Post();
+        Notification notification=new Notification();
         if(FilesManager.FileIsExist(path +FilesPath.POSTS+ "\\" +postNew.getId() + Post_FILE)) {
              post1 = (Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE);
             if (postNew.getLike().size() != 0) {
@@ -138,8 +139,20 @@ class PostManger {
                 if (postNew.getLike().get(0).getLike() != -1) {
                     if (check == -1) {
                         post1.addlike((postNew.getLike().get(0)));
+
                     } else {
                         post1.getLike().get(check).setLike(postNew.getLike().get(0).getLike());
+                    }
+                    if(postNew.getLike().get(0).getOwnerID()!=post1.getOwnerId()) {
+                        if ((postNew.getLike().get(0).getLike() == 1)) {
+                            notification.setKeyword(Notification.SUMPUP);
+                        } else {
+                            if ((postNew.getLike().get(0).getLike() == 0)) {
+                                notification.setKeyword(Notification.SUMPDOWN);
+                            }
+                        }
+
+                        notification.setIdSender(String.valueOf(postNew.getLike().get(0).getOwnerID()));
                     }
                 } else if (postNew.getLike().get(0).getLike() == -1) {
                     if (check != -1) {
@@ -153,6 +166,10 @@ class PostManger {
                         postNew.getComments().get(0).setCommentId((Long.valueOf(Generator.GenerateUnigueId(path + FilesPath.POSTS + "\\" +
                                 post1.getId()))));
                         post1.addcomment(postNew.getComments().get(0));
+                           if(postNew.getComments().get(0).getOwnerID()!=post1.getOwnerId()) {
+                               notification.setKeyword(Notification.COMMENT);
+                               notification.setIdSender(String.valueOf(postNew.getComments().get(0).getOwnerID()));
+                           }
                     } else {
                         int i = -1;
                         int check = -1;
@@ -179,14 +196,28 @@ class PostManger {
 
 
             }
+            notification.setPost(post1);
             FilesManager.CreateFileBinary(post1, path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE);
+            if(!notification.getIdSender().equals("")){
+                saveNoti(notification);
+            }
         }
         else{post1.setId(0);}
             return post1;
     }
     static  void  saveNoti(Notification noti){
-        FilesManager.CreateFolder(FilesPath.USERS + noti.getPost().getOwnerId(), FilesPath.NOTI);
-        noti.setId(Long.valueOf(Generator.GenerateUnigueId(FilesPath.USERS + noti.getPost().getOwnerId()+FilesPath.NOTI)));
-        FilesManager.CreateFileBinary(noti,FilesPath.USERS + noti.getPost().getOwnerId()  );
+        SocialArrayList list=new SocialArrayList();
+         if(FilesManager.FileIsExist(FilesPath.USERS + noti.getPost().getOwnerId()+FilesPath.NOTI)){
+             list= SocialArrayList.convertFromJsonString(FilesManager.ReadLine(FilesPath.USERS + noti.getPost().getOwnerId()+FilesPath.NOTI,0)) ;
+         }
+         list.getItems().add(noti);
+        FilesManager.AddLineWithoutAppend(FilesPath.USERS + noti.getPost().getOwnerId() +FilesPath.NOTI,list.convertToJsonString() );
+    }
+    static  SocialArrayList loadNoti(String id){
+        SocialArrayList list =new SocialArrayList();
+        if(FileIsExist(FilesPath.USERS + id+FilesPath.NOTI))
+            list= SocialArrayList.convertFromJsonString(FilesManager.ReadLine(FilesPath.USERS +"\\"+ id+FilesPath.NOTI,0)) ;
+       else  list.setExtra("1");
+        return  list;
     }
 }

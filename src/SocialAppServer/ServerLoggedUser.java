@@ -103,6 +103,10 @@ public class ServerLoggedUser extends LoggedUser {
         post=PostManger.saveAtachment(post, FilesPath.GROUPS+post.getPostPos());
         return post;
     }
+    SocialArrayList loadNotification(){
+
+        return PostManger.loadNoti(getID());
+    }
     void deletePost(Post post){
         FilesManager.delete(FilesPath.USERS+"\\"+post.getPostPos()+FilesPath.POSTS+"\\"+post.getId());
     }

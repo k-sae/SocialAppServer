@@ -146,6 +146,10 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             serverLoggedUser.deletePost(Post.fromJsonString(command.getObjectStr()));
             connection.sendCommand(command);
         }
+        else if (command.getKeyWord().equals(Notification.LOAD_NOTI)){
+            command.setSharableObject(serverLoggedUser.loadNotification().convertToJsonString());
+            connection.sendCommand(command);
+        }
         else if(command.getKeyWord().equals(Group.LOAD_GROUPS)){
             command.setSharableObject(serverLoggedUser.getgroups().convertToJsonString());
             connection.sendCommand(command);
