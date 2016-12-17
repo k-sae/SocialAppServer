@@ -163,7 +163,7 @@ class PostManger {
                             }
 
                         }
-                        while (i < post1.getComments().size() -1&& post1.getComments().get(i).getCommentId() != postNew.getComments().get(0).getCommentId());
+                        while (i < post1.getComments().size()-1 && post1.getComments().get(i).getCommentId() != postNew.getComments().get(0).getCommentId());
 
                         if (postNew.getComments().get(0).getShow() == -1) {
                             if (check != -1)
