@@ -127,7 +127,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(Post.LOAD_POST_HOME)){
-            command.setSharableObject(serverLoggedUser.homePost(Long.parseLong(command.getObjectStr())).convertToJsonString());
+            command.setSharableObject(serverLoggedUser.homePost().convertToJsonString());
             connection.sendCommand(command);
         }
        else if(command.getKeyWord().equals(Post.EDITE_POST_USERS)){

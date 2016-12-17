@@ -75,10 +75,10 @@ public class ServerLoggedUser extends LoggedUser {
         return  GroupfileMangement.load(Id);
 
     }
-     SocialArrayList homePost(long numberPost){
+     SocialArrayList homePost(){
         ArrayList <String> ids=getFriends();
         ids.add(getID());
-        return PostManger.pickPostHome(ids,numberPost);
+        return PostManger.pickPostHome(ids);
     }
     //TODO# ovried to member
      Post savePostGroup(Post post){

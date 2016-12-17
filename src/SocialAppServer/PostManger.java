@@ -96,7 +96,7 @@ class PostManger {
         }while(counter1 % 11 != 0 &&counter3 <= id.size());
         return posts;
     }
-    static SocialArrayList pickPostHome(ArrayList<String> id, long numberPost){
+    static SocialArrayList pickPostHome(ArrayList<String> id){
         SocialArrayList posts =new SocialArrayList();
         String uniqueID;
         int counter;
