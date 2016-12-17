@@ -2,8 +2,7 @@ package SocialAppServer;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
-import SocialAppGeneral.Command;
-import SocialAppGeneral.RegisterInfo;
+import SocialAppGeneral.*;
 
 import java.util.ArrayList;
 
@@ -62,4 +61,57 @@ public ArrayList<String> Search(String email){
    // FilesManager.readAllLines()
 return finalsearch;
 }
+    public ArrayList<String> SearchInFreinds(String email,String Id){
+        ArrayList<String> Names=FilesManager.FoldderSearcher(USERS+NAMES);
+        ArrayList<String> IDs=new ArrayList<>();
+        ArrayList<String> Friend=new ArrayList<>();
+        ArrayList<String> Search=new ArrayList<>();
+        String ID=Generator.GenerateID(email);
+        ID = (ID.length() > 3 )?  ID.substring(0, ID.length()-3) : ID;
+        for(int i=Names.size()-1;i>=0;i--){
+            if(!Names.get(i).startsWith(ID)){
+                Names.remove(Names.get(i));
+            }
+        }
+        for(int i=Names.size()-1;i>=0;i--){
+            IDs=FilesManager.ReadIntoArrayList(USERS+NAMES+Names.get(i));
+            for(int j=IDs.size()-1;j>=0;j--){
+                Search.add(IDs.get(j));
+            }
+        }
+        Friend=FilesManager.ReadIntoArrayList(USERS+Id+FRIENDS);
+        for(int i=Search.size()-1;i>=0;i--){
+            for(int j =Friend.size()-1;j>=0;j--){
+            if(!Search.get(i).equals(Friend.get(j))){
+            Search.remove(Search.get(i));
+            }
+            }
+        }
+        return Search;
+    }
+    public ArrayList<String> SearchInGroups(String email){
+        ArrayList<String> Names=FilesManager.FoldderSearcher(USERS+NAMES);
+        ArrayList<String> finalsearch=new ArrayList();
+        ArrayList<String> IDs=new ArrayList<>();
+        String ID=Generator.GenerateID(email);
+        ID = (ID.length() > 3 )?  ID.substring(0, ID.length()-3) : ID;
+        for(int i=Names.size()-1;i>=0;i--){
+            if(Names.get(i).endsWith(".txt")){
+                Names.remove(Names.get(i));
+            }
+        }
+        for(int i=Names.size()-1;i>=0;i--){
+            if(!Names.get(i).startsWith(ID)){
+                Names.remove(Names.get(i));
+            }
+        }
+
+        for(int i=Names.size()-1;i>=0;i--){
+            IDs=FilesManager.ReadIntoArrayList(USERS+NAMES+Names.get(i));
+            for(int j=IDs.size()-1;j>=0;j--){
+                finalsearch.add(IDs.get(j));
+            }
+        }
+    return finalsearch;
+    }
 }
