@@ -52,7 +52,7 @@ class PostManger {
 
        return  posts;
     }
-    static SocialArrayList pickPostHome(ArrayList<String> id, long numberPost){
+    static SocialArrayList pickPostsHome(ArrayList<String> id, long numberPost){
       SocialArrayList posts =new SocialArrayList();
         String uniqueID;
         int counter3;//count the file empty or no
@@ -74,6 +74,7 @@ class PostManger {
                         if (FilesManager.FileIsExist(FilesPath.USERS + "\\" +id.get(i)+ FilesPath.POSTS + "\\" + uniqueIdTemp + Post_FILE)) {
                             if(level==counter4) {
                                 check = false;
+                                counter2++;
                                 if (counter2 >= ((numberPost - 1) * 10) + 1 ) {
 
                                     posts.getItems().add(((Post) FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueIdTemp + Post_FILE)).convertToJsonString());
@@ -81,7 +82,7 @@ class PostManger {
                                 }
                             }
                             counter4++;
-                            counter2++;
+
                         }
                         uniqueIdTemp--;
                         if(uniqueIdTemp==0){
@@ -95,7 +96,28 @@ class PostManger {
         }while(counter1 % 11 != 0 &&counter3 <= id.size());
         return posts;
     }
+    static SocialArrayList pickPostHome(ArrayList<String> id, long numberPost){
+        SocialArrayList posts =new SocialArrayList();
+        String uniqueID;
+        int counter;
+        for(int i=id.size()-1;i>=0;i--) {
+            counter = 0;
+            if (FilesManager.FileIsExist(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS, "\\uniqueID.txt")) {
+                uniqueID = (FilesManager.ReadLine(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\uniqueID.txt", 1));
+                long uniqueIdTemp = Long.valueOf(uniqueID);
+                do {
+                    if (FilesManager.FileIsExist(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueIdTemp + Post_FILE)) {
+                        counter = 1;
+                        posts.getItems().add(((Post) FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueIdTemp + Post_FILE)).convertToJsonString());
+                    }
+                    uniqueIdTemp--;
 
+                } while (uniqueIdTemp != 0 && counter != 1);
+            }
+        }
+
+                return posts;
+    }
     static  Post saveAtachment(Post postNew,String path){
         Post post1 =new Post();
         if(FilesManager.FileIsExist(path +FilesPath.POSTS+ "\\" +postNew.getId() + Post_FILE)) {
