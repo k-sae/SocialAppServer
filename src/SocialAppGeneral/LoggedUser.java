@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public abstract class LoggedUser extends AppUser {
     public static final String ADD_FRIEND="add_Friend";
+    public static final String GET_FRIENDS="get_Friends";
     public static final String FRIEND_REQ = "friend_req";
     public static final String FETCH_REQS = "fetch_reqs";
     public static final String GET_RELATION_STATUS = "get_relation_status";

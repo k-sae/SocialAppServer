@@ -252,5 +252,12 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             serverLoggedUser.deactivate();
             connection.sendCommand(command);
         }
+        else if (command.getKeyWord().equals(LoggedUser.GET_FRIENDS))
+        {
+            SocialArrayList socialArrayList = new SocialArrayList();
+            socialArrayList.getItems().addAll(serverLoggedUser.getFriends());
+           command.setSharableObject(socialArrayList.convertToJsonString());
+            connection.sendCommand(command);
+        }
     }
 }
