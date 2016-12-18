@@ -152,7 +152,7 @@ class PostManger {
                 notification.setIdSender(String.valueOf(postnew.getComments().get(0).getOwnerID()));
                 log.setKeyword(Relations.COMMENT);
                 log.setSenderId(String.valueOf(postnew.getComments().get(0).getOwnerID()));
-                log.setOwnerId(String.valueOf(postnew.getOwnerId()));
+                log.setOwnerId(String.valueOf(post.getOwnerId()));
             }
         } else {
             int i = -1;
@@ -216,7 +216,7 @@ class PostManger {
 
                 notification.setIdSender(String.valueOf(postnew.getLike().get(0).getOwnerID()));
                 log.setSenderId(String.valueOf(postnew.getLike().get(0).getOwnerID()));
-                log.setOwnerId(String.valueOf(postnew.getOwnerId()));
+                log.setOwnerId(String.valueOf(post.getOwnerId()));
             }
         } else if (postnew.getLike().get(0).getLike().equals(Relations.DELETE)) {
             if (check != -1) {
@@ -243,6 +243,7 @@ class PostManger {
         return  list.convertToJsonString();
     }
     static  void  saveLog(Log log){
+
         FilesManager.AddLine(FilesPath.USERS + FilesPath.LOG,log.convertToJsonString());
     }
     static  String loadLog(String id){
