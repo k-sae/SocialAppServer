@@ -4,8 +4,10 @@ import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppGeneral.*;
 
+import java.io.File;
 import java.util.ArrayList;
 
+import static FileManagment.FilesPath.ADMINS;
 import static FileManagment.FilesPath.FRIENDS;
 import static FileManagment.FilesPath.USERS;
 
@@ -59,7 +61,26 @@ public class ServerLoggedUser extends LoggedUser {
 
         return groups;
     }
-  public  void  reqtouser(ReqGroup req){
+
+    @Override
+    public void deactivate() {
+        new Thread(() -> ServerAdmin.sendMail(Credentials.E_MAIL,Credentials.PASSWORD,
+                getLoginInfo().getEMAIL(),
+                EmailContent.DEACTIVATE_MSG_SUBJECT,
+                EmailContent.DEACTIVATE_MSG_BODY
+        )).start();
+
+       FilesManager.RemoveLine(USERS + ADMINS, getID());
+        if(FilesManager.readAllLines(USERS + ADMINS).size() < 1)
+        {
+            FilesManager.delete(USERS + ADMINS);
+        }
+        File file  = new File(USERS + getID());
+        //noinspection ResultOfMethodCallIgnored
+        file.renameTo(new File(USERS + "#" + getID()));
+    }
+
+    public  void  reqtouser(ReqGroup req){
       GroupfileMangement.reqFile(req, USERS);
 
   }

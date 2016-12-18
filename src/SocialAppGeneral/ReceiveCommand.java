@@ -2,6 +2,7 @@ package SocialAppGeneral;
 
 import java.io.DataInputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  * Created by kemo on 25/10/2016.
@@ -16,6 +17,7 @@ public abstract class ReceiveCommand extends Thread {
     public void run() {
         super.run();
         try {
+            //noinspection InfiniteLoopStatement
             while (true) {
                 //TODO update 1 #kareem
                 //choose whether to
@@ -25,7 +27,11 @@ public abstract class ReceiveCommand extends Thread {
                 Command command = Command.fromString(objectInputStream.readUTF()); //generate command from string
                 Analyze(command); //send it to the abstract function Analyze so other team members do there work
             }
-        }catch (Exception e)
+        }catch (SocketException e)
+        {
+            System.out.println("User Disconnected");
+        }
+        catch (Exception e)
         {
             //Export to log
             System.out.println("ReadClientData\t" + e.getMessage());
