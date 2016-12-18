@@ -69,4 +69,13 @@ public class UserInfo implements Shareable {
   public void setProfileImage(String profileImage) {
     this.profileImage = profileImage;
   }
+  public  static UserInfo getDefaultUserInfo()
+  {
+      UserInfo userInfo = new UserInfo();
+      userInfo.setFullName("Batates User");
+      userInfo.setProfileImage("unknown");
+      userInfo.setGender("unknown");
+      userInfo.setBirthDate("unknown");
+      return userInfo;
+  }
 }
