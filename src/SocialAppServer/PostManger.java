@@ -4,6 +4,7 @@ import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppGeneral.Notification;
 import SocialAppGeneral.Post;
+import SocialAppGeneral.Relations;
 import SocialAppGeneral.SocialArrayList;
 
 import java.util.ArrayList;
@@ -139,12 +140,12 @@ class PostManger {
     }
     static  Post setComment(Post postnew,Post post,String path){
         Notification notification=new Notification();
-        if (postnew.getComments().get(0).getShow() == 1) {
+        if (postnew.getComments().get(0).getShow().equals(Relations.ADD)) {
             postnew.getComments().get(0).setCommentId((Long.valueOf(Generator.GenerateUnigueId(path + FilesPath.POSTS + "\\" +
                     post.getId()))));
             post.addcomment(postnew.getComments().get(0));
             if(postnew.getComments().get(0).getOwnerID()!=post.getOwnerId()) {
-                notification.setKeyword(Notification.COMMENT);
+                notification.setKeyword(Relations.COMMENT);
                 notification.setIdSender(String.valueOf(postnew.getComments().get(0).getOwnerID()));
             }
         } else {
@@ -159,10 +160,10 @@ class PostManger {
             }
             while (i < post.getComments().size() - 1 && post.getComments().get(i).getCommentId() != postnew.getComments().get(0).getCommentId());
 
-            if (postnew.getComments().get(0).getShow() == -1) {
+            if (postnew.getComments().get(0).getShow().equals(Relations.DELETE)) {
                 if (check != -1)
                     post.deletecomment(check);
-            } else if (postnew.getComments().get(0).getShow() == 0) {
+            } else if (postnew.getComments().get(0).getShow().equals(Relations.EDIT)) {
                 if (check != -1)
                     post.getComments().get(check).setCommentcontent(postnew.getComments().get(0).getCommentcontent());
             }
@@ -187,7 +188,7 @@ class PostManger {
             }
             while (i < post.getLike().size()-1 && post.getLike().get(i).getOwnerID() != postnew.getLike().get(0).getOwnerID());
         }
-        if (postnew.getLike().get(0).getLike() != -1) {
+        if (!postnew.getLike().get(0).getLike().equals(Relations.DELETE)) {
             if (check == -1) {
                 post.addlike((postnew.getLike().get(0)));
 
@@ -195,17 +196,17 @@ class PostManger {
                 post.getLike().get(check).setLike(postnew.getLike().get(0).getLike());
             }
             if(postnew.getLike().get(0).getOwnerID()!=post.getOwnerId()) {
-                if ((postnew.getLike().get(0).getLike() == 1)) {
-                    notification.setKeyword(Notification.SUMPUP);
+                if ((postnew.getLike().get(0).getLike().equals(Relations.THUMP_UP))) {
+                    notification.setKeyword(Relations.THUMP_UP);
                 } else {
-                    if ((postnew.getLike().get(0).getLike() == 0)) {
-                        notification.setKeyword(Notification.SUMPDOWN);
+                    if ((postnew.getLike().get(0).getLike().equals(Relations.THUMP_DOWN))) {
+                        notification.setKeyword(Relations.THUMP_DOWN);
                     }
                 }
 
                 notification.setIdSender(String.valueOf(postnew.getLike().get(0).getOwnerID()));
             }
-        } else if (postnew.getLike().get(0).getLike() == -1) {
+        } else if (postnew.getLike().get(0).getLike().equals(Relations.DELETE)) {
             if (check != -1) {
                 post.deletelike(check);
             }
