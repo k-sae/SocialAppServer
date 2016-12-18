@@ -53,9 +53,9 @@ public class Notification implements Shareable,Serializable {
         Gson gson = new Gson();
         return gson.toJson(this);
     }
-    public static Post fromJsonString(String jsonStr)
+    public static Notification fromJsonString(String jsonStr)
     {
         Gson gson = new Gson();
-        return gson.fromJson(jsonStr, Post.class);
+        return gson.fromJson(jsonStr, Notification.class);
     }
 }
