@@ -2,6 +2,7 @@ package SocialAppServer;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
+import SocialAppGeneral.Command;
 import SocialAppGeneral.Notification;
 import SocialAppGeneral.Post;
 import SocialAppGeneral.SocialArrayList;
@@ -218,14 +219,31 @@ class PostManger {
 
         return  post;
     }
-    static  void  saveNoti(Notification noti){
+    private static  void  saveNoti(Notification noti){
+        //TODO #now 6
+        sendLiveNotification(noti);
             FilesManager.AddLine(FilesPath.USERS + noti.getPost().getOwnerId() +FilesPath.NOTI, noti.convertToJsonString());
     }
-    static  String loadNoti(String id){
+    static  void loadNoti(String id){
         SocialArrayList list =new SocialArrayList();
         if(FileIsExist(FilesPath.USERS + id+FilesPath.NOTI))
             list.getItems().addAll( FilesManager.readAllLines(FilesPath.USERS +"\\"+ id+FilesPath.NOTI));
        else  list.setExtra("1");
-        return  list.convertToJsonString();
+//        return  list.convertToJsonString();
+        sendLiveNotification(list,id);
+    }
+    private static void sendLiveNotification(Notification notification)
+    {
+
+        SocialArrayList socialArrayList = new SocialArrayList();
+        socialArrayList.getItems().add(notification.convertToJsonString());
+        sendLiveNotification(socialArrayList, notification.getPost().getOwnerId() + "");
+        }
+    private static void sendLiveNotification(SocialArrayList socialArrayList, String id)
+    {
+        Command command = new Command();
+        command.setKeyWord(Notification.LOAD_NOTI);
+        command.setSharableObject(socialArrayList);
+        SecondaryConnection.sendNotification(id + "",command);
     }
 }

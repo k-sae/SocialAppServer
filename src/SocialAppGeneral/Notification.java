@@ -16,6 +16,7 @@ public class Notification implements Shareable,Serializable {
     public static final String SUMPDOWN = "sumdown";
     public static final String COMMENT = "comment";
     public static final String LOAD_NOTI = "loadNoti";
+    public  static final String NEW_NOTIFICATION = "new_notification";
     public Notification() {
         this.post=new Post();
         this.idSender="";

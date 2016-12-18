@@ -124,9 +124,9 @@ public class ServerLoggedUser extends LoggedUser {
         post=PostManger.saveAtachment(post, FilesPath.GROUPS+post.getPostPos());
         return post;
     }
-    String loadNotification(){
+    void loadNotification(){
 
-        return PostManger.loadNoti(getID());
+         PostManger.loadNoti(getID());
     }
     void deletePost(Post post){
         FilesManager.delete(FilesPath.USERS+"\\"+post.getPostPos()+FilesPath.POSTS+"\\"+post.getId());
