@@ -4,6 +4,9 @@ out/
 .idea/
 *.~vsdx
 *.class
+groups/
+temp/
+users/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
