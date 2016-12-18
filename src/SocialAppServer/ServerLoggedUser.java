@@ -103,7 +103,7 @@ public class ServerLoggedUser extends LoggedUser {
         post=PostManger.saveAtachment(post, FilesPath.GROUPS+post.getPostPos());
         return post;
     }
-    SocialArrayList loadNotification(){
+    String loadNotification(){
 
         return PostManger.loadNoti(getID());
     }

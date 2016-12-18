@@ -147,7 +147,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             connection.sendCommand(command);
         }
         else if (command.getKeyWord().equals(Notification.LOAD_NOTI)){
-            command.setSharableObject(serverLoggedUser.loadNotification().convertToJsonString());
+            command.setSharableObject(PostManger.loadNoti("4"));
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(Group.LOAD_GROUPS)){
