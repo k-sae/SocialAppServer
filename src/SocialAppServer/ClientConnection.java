@@ -33,7 +33,7 @@ abstract class ClientConnection implements Connection {
                 IOException e)
         {
             //For debugging
-            System.out.println("send Data\t" + e.getMessage());
+            e.printStackTrace();
         } catch (
                 Exception e)
         {

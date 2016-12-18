@@ -10,11 +10,8 @@ import java.io.Serializable;
 public class Notification implements Shareable,Serializable {
     private static final long serialVersionUID = 6529685098267757690L;
     private  Post post;
-    private  String keyword;
+    private  Relations keyword;
     private  String  idSender;//id whose  send noftication
-    public static final String SUMPUP = "sumup";
-    public static final String SUMPDOWN = "sumdown";
-    public static final String COMMENT = "comment";
     public static final String LOAD_NOTI = "loadNoti";
     public  static final String NEW_NOTIFICATION = "new_notification";
     public Notification() {
@@ -40,11 +37,11 @@ public class Notification implements Shareable,Serializable {
         this.post = post;
     }
 
-    public String getKeyword() {
+    public Relations getKeyword() {
         return keyword;
     }
 
-    public void setKeyword(String keyword) {
+    public void setKeyword(Relations keyword) {
         this.keyword = keyword;
     }
 

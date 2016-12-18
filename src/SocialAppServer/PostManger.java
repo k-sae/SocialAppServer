@@ -2,10 +2,7 @@ package SocialAppServer;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
-import SocialAppGeneral.Command;
-import SocialAppGeneral.Notification;
-import SocialAppGeneral.Post;
-import SocialAppGeneral.SocialArrayList;
+import SocialAppGeneral.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,11 +17,16 @@ class PostManger {
     private static final String Post_FILE="\\post";
 
     static Post SavePost(Post post,String path)  {
+        Log log = new Log();
         post.setDate(new Date());
         FilesManager.CreateFolder(path, FilesPath.POSTS);
         post.setId(Long.valueOf(Generator.GenerateUnigueId(path+FilesPath.POSTS)));
         FilesManager.CreateFolder(path+FilesPath.POSTS,"\\"+post.getId()+"");
         FilesManager.CreateFileBinary(post,path+FilesPath.POSTS+"\\"+post.getId()+Post_FILE);
+        log.setKeyword(Relations.POST);
+        log.setSenderId(String.valueOf(post.getPostPos()));
+        log.setOwnerId(String.valueOf(post.getOwnerId()));
+        saveLog(log);
         return (post);
     }
      static Post PickonePost(String path,long id)  {
@@ -140,13 +142,17 @@ class PostManger {
     }
     static  Post setComment(Post postnew,Post post,String path){
         Notification notification=new Notification();
-        if (postnew.getComments().get(0).getShow() == 1) {
+        Log log = new Log();
+        if (postnew.getComments().get(0).getShow().equals(Relations.ADD)) {
             postnew.getComments().get(0).setCommentId((Long.valueOf(Generator.GenerateUnigueId(path + FilesPath.POSTS + "\\" +
                     post.getId()))));
             post.addcomment(postnew.getComments().get(0));
             if(postnew.getComments().get(0).getOwnerID()!=post.getOwnerId()) {
-                notification.setKeyword(Notification.COMMENT);
+                notification.setKeyword(Relations.COMMENT);
                 notification.setIdSender(String.valueOf(postnew.getComments().get(0).getOwnerID()));
+                log.setKeyword(Relations.COMMENT);
+                log.setSenderId(String.valueOf(postnew.getComments().get(0).getOwnerID()));
+                log.setOwnerId(String.valueOf(post.getOwnerId()));
             }
         } else {
             int i = -1;
@@ -160,10 +166,10 @@ class PostManger {
             }
             while (i < post.getComments().size() - 1 && post.getComments().get(i).getCommentId() != postnew.getComments().get(0).getCommentId());
 
-            if (postnew.getComments().get(0).getShow() == -1) {
+            if (postnew.getComments().get(0).getShow().equals(Relations.DELETE)) {
                 if (check != -1)
                     post.deletecomment(check);
-            } else if (postnew.getComments().get(0).getShow() == 0) {
+            } else if (postnew.getComments().get(0).getShow().equals(Relations.EDIT)) {
                 if (check != -1)
                     post.getComments().get(check).setCommentcontent(postnew.getComments().get(0).getCommentcontent());
             }
@@ -172,10 +178,12 @@ class PostManger {
                 notification.setPost(post);
                 saveNoti(notification);
             }
+            saveLog(log);
             return post;
     }
     static  Post setLike(Post postnew,Post post){
         Notification notification=new Notification();
+        Log log = new Log();
         int i = -1;
         int check = -1;
         if (post.getLike().size() != 0) {
@@ -188,7 +196,7 @@ class PostManger {
             }
             while (i < post.getLike().size()-1 && post.getLike().get(i).getOwnerID() != postnew.getLike().get(0).getOwnerID());
         }
-        if (postnew.getLike().get(0).getLike() != -1) {
+        if (!postnew.getLike().get(0).getLike().equals(Relations.DELETE)) {
             if (check == -1) {
                 post.addlike((postnew.getLike().get(0)));
 
@@ -196,17 +204,21 @@ class PostManger {
                 post.getLike().get(check).setLike(postnew.getLike().get(0).getLike());
             }
             if(postnew.getLike().get(0).getOwnerID()!=post.getOwnerId()) {
-                if ((postnew.getLike().get(0).getLike() == 1)) {
-                    notification.setKeyword(Notification.SUMPUP);
+                if ((postnew.getLike().get(0).getLike().equals(Relations.THUMP_UP))) {
+                    notification.setKeyword(Relations.THUMP_UP);
+                    log.setKeyword(Relations.THUMP_UP);
                 } else {
-                    if ((postnew.getLike().get(0).getLike() == 0)) {
-                        notification.setKeyword(Notification.SUMPDOWN);
+                    if ((postnew.getLike().get(0).getLike().equals(Relations.THUMP_DOWN))) {
+                        notification.setKeyword(Relations.THUMP_DOWN);
+                        log.setKeyword(Relations.THUMP_DOWN);
                     }
                 }
 
                 notification.setIdSender(String.valueOf(postnew.getLike().get(0).getOwnerID()));
+                log.setSenderId(String.valueOf(postnew.getLike().get(0).getOwnerID()));
+                log.setOwnerId(String.valueOf(post.getOwnerId()));
             }
-        } else if (postnew.getLike().get(0).getLike() == -1) {
+        } else if (postnew.getLike().get(0).getLike().equals(Relations.DELETE)) {
             if (check != -1) {
                 post.deletelike(check);
             }
@@ -216,6 +228,7 @@ class PostManger {
             notification.setPost(post);
             saveNoti(notification);
         }
+        saveLog(log);
 
         return  post;
     }
@@ -245,5 +258,16 @@ class PostManger {
         command.setKeyWord(Notification.LOAD_NOTI);
         command.setSharableObject(socialArrayList);
         SecondaryConnection.sendNotification(id + "",command);
+    }
+    static  void  saveLog(Log log){
+
+        FilesManager.AddLine(FilesPath.USERS + FilesPath.LOG,log.convertToJsonString());
+    }
+    static  String loadLog(String id){
+        SocialArrayList list =new SocialArrayList();
+        if(FileIsExist(FilesPath.USERS + FilesPath.LOG))
+            list.getItems().addAll( FilesManager.readAllLines(FilesPath.USERS + FilesPath.LOG));
+        else  list.setExtra("1");
+        return  list.convertToJsonString();
     }
 }

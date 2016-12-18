@@ -128,6 +128,10 @@ public class ServerLoggedUser extends LoggedUser {
 
          PostManger.loadNoti(getID());
     }
+    String loadLog(){
+
+        return PostManger.loadLog(getID());
+    }
     void deletePost(Post post){
         FilesManager.delete(FilesPath.USERS+"\\"+post.getPostPos()+FilesPath.POSTS+"\\"+post.getId());
     }
