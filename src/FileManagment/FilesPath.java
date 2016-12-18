@@ -17,4 +17,5 @@ public interface FilesPath {
     String FRIENDS = "friends.sasf";
     String ADMINS="admins.txt";
     String NOTI="\\notifications";
+    String LOG="\\logs";
 }
