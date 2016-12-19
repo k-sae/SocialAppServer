@@ -25,8 +25,8 @@ public class ServerLoggedUser extends LoggedUser {
     @Override
     public Group createGroup(Group group) {
 
-        GroupfileMangement.create(group);
-        GroupfileMangement.addgrouptomember(group.getAdminId(),group.getId());
+        GroupFileManagement.create(group);
+        GroupFileManagement.addGroupToMember(group.getAdminId(),group.getId());
         return group;
     }
 
@@ -57,7 +57,7 @@ public class ServerLoggedUser extends LoggedUser {
     @Override
     public SocialArrayList getgroups() {
 
-       SocialArrayList groups= GroupfileMangement.pickGroups(GroupfileMangement.pickMemberGroup(Long.parseLong(getID())));
+       SocialArrayList groups= GroupFileManagement.pickGroups(GroupFileManagement.pickMemberGroup(Long.parseLong(getID())));
 
         return groups;
     }
@@ -79,21 +79,11 @@ public class ServerLoggedUser extends LoggedUser {
         //noinspection ResultOfMethodCallIgnored
         file.renameTo(new File(USERS + "#" + getID()));
     }
-
-    public  void  reqtouser(ReqGroup req){
-      GroupfileMangement.reqFile(req, USERS);
-
-  }
-    public  void  reqtogroup(ReqGroup req){
-        GroupfileMangement.reqFile(req,FilesPath.GROUPS);
-
-    }
-
     Relation getRelation() {
         return relation;
     }
       Group loadGroup(long Id){
-        return  GroupfileMangement.load(Id);
+        return  GroupFileManagement.load(Id);
 
     }
      SocialArrayList homePost(){
@@ -117,11 +107,11 @@ public class ServerLoggedUser extends LoggedUser {
         return PostManger.PickPosts(FilesPath.GROUPS+posts.getExtra(), Long.parseLong(posts.getTarget()));
     }
     Post Edit(Post post){
-        post=PostManger.saveAtachment(post, FilesPath.USERS+post.getPostPos());
+        post=PostManger.saveAttachment(post, FilesPath.USERS+post.getPostPos());
         return post;
     }
     Post EditGroup(Post post){
-        post=PostManger.saveAtachment(post, FilesPath.GROUPS+post.getPostPos());
+        post=PostManger.saveAttachment(post, FilesPath.GROUPS+post.getPostPos());
         return post;
     }
     void loadNotification(){
@@ -130,7 +120,7 @@ public class ServerLoggedUser extends LoggedUser {
     }
     String loadLog(){
 
-        return PostManger.loadLog(getID());
+        return PostManger.loadLog();
     }
     void deletePost(Post post){
         FilesManager.delete(FilesPath.USERS+"\\"+post.getPostPos()+FilesPath.POSTS+"\\"+post.getId());

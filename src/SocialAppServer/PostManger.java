@@ -13,9 +13,7 @@ import static FileManagment.FilesManager.FileIsExist;
  * Created by khaled hesham on 12/2/2016.
  */
 class PostManger {
-
     private static final String Post_FILE="\\post";
-
     static Post SavePost(Post post,String path)  {
         Log log = new Log();
         post.setDate(new Date());
@@ -29,10 +27,7 @@ class PostManger {
         saveLog(log);
         return (post);
     }
-     static Post PickonePost(String path,long id)  {
-         return ((Post) FilesManager.ReadFromBinaryFile(path+FilesPath.POSTS+"\\"+id+Post_FILE));
-    }
-     static SocialArrayList PickPosts(String path,long numberPost)  {
+    static SocialArrayList PickPosts(String path,long numberPost)  {
           SocialArrayList posts= new SocialArrayList();
           String uniqueID;
          long counter=1;
@@ -52,54 +47,9 @@ class PostManger {
            }
            while (uniqueIdTemp != 0 && counter % 11 != 0);
        }
-
-       return  posts;
+        return  posts;
     }
-    static SocialArrayList pickPostsHome(ArrayList<String> id, long numberPost){
-      SocialArrayList posts =new SocialArrayList();
-        String uniqueID;
-        int counter3;//count the file empty or no
-        int counter1=1;// count 10 posts
-        int counter2;//count number post
-        boolean check;//check post add or no
-        int  level = 0;//check level posts
-        int counter4 ;//count number leves
-        do {
-           counter3=1;
-            for(int i=id.size()-1;i>=0&&counter1 % 11 != 0;i--) {
-                counter4=0;
-                if (FilesManager.FileIsExist(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS, "\\uniqueID.txt")) {
-                    uniqueID = (FilesManager.ReadLine(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\uniqueID.txt", 1));
-                    long uniqueIdTemp = Long.valueOf(uniqueID);
-                    counter2=1;
-                    do {
-                        check=true;
-                        if (FilesManager.FileIsExist(FilesPath.USERS + "\\" +id.get(i)+ FilesPath.POSTS + "\\" + uniqueIdTemp + Post_FILE)) {
-                            if(level==counter4) {
-                                check = false;
-                                counter2++;
-                                if (counter2 >= ((numberPost - 1) * 10) + 1 ) {
-
-                                    posts.getItems().add(((Post) FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + id.get(i) + FilesPath.POSTS + "\\" + uniqueIdTemp + Post_FILE)).convertToJsonString());
-                                    counter1++;
-                                }
-                            }
-                            counter4++;
-
-                        }
-                        uniqueIdTemp--;
-                        if(uniqueIdTemp==0){
-                            counter3++;
-                        }
-                    } while (uniqueIdTemp != 0 && check&& counter1 % 11 != 0);
-                }
-                else {counter3++;}
-            }
-        level++;
-        }while(counter1 % 11 != 0 &&counter3 <= id.size());
-        return posts;
-    }
-    static SocialArrayList pickPostHome(ArrayList<String> id){
+     static SocialArrayList pickPostHome(ArrayList<String> id){
         SocialArrayList posts =new SocialArrayList();
         String uniqueID;
         int counter;
@@ -121,7 +71,7 @@ class PostManger {
 
                 return posts;
     }
-    static  Post saveAtachment(Post postNew,String path){
+    static  Post saveAttachment(Post postNew, String path){
         Post post1 =new Post();
         if(FilesManager.FileIsExist(path +FilesPath.POSTS+ "\\" +postNew.getId() + Post_FILE)) {
              post1 = (Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE);
@@ -171,7 +121,7 @@ class PostManger {
                     post.deletecomment(check);
             } else if (postnew.getComments().get(0).getShow().equals(Relations.EDIT)) {
                 if (check != -1)
-                    post.getComments().get(check).setCommentcontent(postnew.getComments().get(0).getCommentcontent());
+                    post.getComments().get(check).setCommentContent(postnew.getComments().get(0).getCommentContent());
             }
         }
             if(!notification.getIdSender().equals("")){
@@ -229,7 +179,6 @@ class PostManger {
             saveNoti(notification);
         }
         saveLog(log);
-
         return  post;
     }
     private static  void  saveNoti(Notification noti){
@@ -242,12 +191,10 @@ class PostManger {
         if(FileIsExist(FilesPath.USERS + id+FilesPath.NOTI))
             list.getItems().addAll( FilesManager.readAllLines(FilesPath.USERS +"\\"+ id+FilesPath.NOTI));
        else  list.setExtra("1");
-//        return  list.convertToJsonString();
         sendLiveNotification(list,id);
     }
     private static void sendLiveNotification(Notification notification)
     {
-
         SocialArrayList socialArrayList = new SocialArrayList();
         socialArrayList.getItems().add(notification.convertToJsonString());
         sendLiveNotification(socialArrayList, notification.getPost().getOwnerId() + "");
@@ -263,7 +210,7 @@ class PostManger {
 
         FilesManager.AddLine(FilesPath.USERS + FilesPath.LOG,log.convertToJsonString());
     }
-    static  String loadLog(String id){
+    static  String loadLog(){
         SocialArrayList list =new SocialArrayList();
         if(FileIsExist(FilesPath.USERS + FilesPath.LOG))
             list.getItems().addAll( FilesManager.readAllLines(FilesPath.USERS + FilesPath.LOG));
