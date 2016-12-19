@@ -1,6 +1,7 @@
 package SocialAppGeneral;
 
 
+import SocialAppServer.GroupRelations;
 import com.google.gson.Gson;
 
 import java.io.Serializable;
@@ -18,10 +19,16 @@ public class Group implements Shareable,Serializable {
     private long imageId;
     private long Id;
     public static final String CREATE_GROUP = "CreateGroup";
+    public static final String FETCH_DATA="GROUP_DATA";
+    public static final String Group_Leave = "LEAVE_GROUP";
+    public static final String Group_relation = "Get_Relations";
     public static final String EDITE_GROUP = "EditGroup";
+    public static final String Group_Accept = "Group_Accept";
+    public static final String Group_ADD = "Group_ADD";
     public static final String DELETE_GROUP = "DeleteGroup";
     public static final String LOAD_GROUPS = "LoadGroups";
     public static final String LOAD_GROUP = "LoadGroup";
+    private GroupRelations groupRelations;
     public Group(String name) {
         this.name = name;
         member = new ArrayList<>();
@@ -34,8 +41,11 @@ public class Group implements Shareable,Serializable {
         req = new ArrayList<>();
 
     }
-
-
+     public Group(Long id){
+    groupRelations = new GroupRelations(Long.toString(id));
+    }
+    public GroupRelations getGroupRelation(){
+        return groupRelations;}
     public ArrayList<Long> getMember() {
         return member;
     }

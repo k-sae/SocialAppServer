@@ -219,6 +219,17 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             command.setSharableObject(socialArrayList.convertToJsonString());
             connection.sendCommand(command);
         }
+//        else if(command.getKeyWord().equals("Search_In_Friends")) {
+//            UserFinder f = new UserFinder();
+//            //ArrayList <String>a=new ArrayList<String>();
+//            ArrayList<Object> objects = new ArrayList<>();
+//            ArrayList<String> strings = new ArrayList<>();
+//            strings = f.SearchInFreinds(command.getObjectStr(),serverLoggedUser.getID());
+//            objects.addAll(strings);
+//            SocialArrayList socialArrayList = new SocialArrayList(objects);
+//            command.setSharableObject(socialArrayList.convertToJsonString());
+//            connection.sendCommand(command);
+//        }
         else if(command.getKeyWord().equals(LoggedUser.FETCH_REQS))
         {
             ArrayList<Object> objects = new ArrayList<>();
@@ -230,6 +241,35 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         {
 
             command.setSharableObject(serverLoggedUser.getRelation().getStatus(command.getObjectStr()) + "");
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(Group.Group_relation))
+        {
+
+            command.setSharableObject(new Group(Long.parseLong(command.getObjectStr())).getGroupRelation().getStatus(serverLoggedUser.getID())+"");
+            connection.sendCommand(command);
+        }else if(command.getKeyWord().equals(Group.Group_Leave)){
+            command.setSharableObject(new Group(Long.parseLong(command.getObjectStr())).getGroupRelation().leaveGroup(serverLoggedUser.getID())+"");
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(Group.Group_ADD)){
+            command.setSharableObject(new Group(Long.parseLong(command.getObjectStr())).getGroupRelation().addToGroup(serverLoggedUser.getID())+"");
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(Group.Group_Accept)){
+String Groupid=command.getObjectStr().substring(0,command.getObjectStr().indexOf(':'));
+            String id=command.getObjectStr().substring(command.getObjectStr().indexOf(':')+1,command.getObjectStr().length());
+            new Group((Long.parseLong(Groupid))).getGroupRelation().AcceptRequest(id);
+            command.setSharableObject("true");
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(Group.FETCH_DATA)){
+            ArrayList<Object> objects = new ArrayList<>();
+            ArrayList<String> strings = new ArrayList<>();
+            strings = new Group(Long.parseLong(command.getObjectStr())).getGroupRelation().fetch();
+            objects.addAll(strings);
+            SocialArrayList socialArrayList = new SocialArrayList(objects);
+            command.setSharableObject(socialArrayList.convertToJsonString());
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(LoggedUser.ACCEPT_FRIEND))

@@ -79,14 +79,8 @@ return finalsearch;
                 Search.add(IDs.get(j));
             }
         }
-        Friend=FilesManager.ReadIntoArrayList(USERS+Id+FRIENDS);
-        for(int i=Search.size()-1;i>=0;i--){
-            for(int j =Friend.size()-1;j>=0;j--){
-            if(!Search.get(i).equals(Friend.get(j))){
-            Search.remove(Search.get(i));
-            }
-            }
-        }
+        Friend=FilesManager.ReadArrayList(USERS+Id+"\\"+FRIENDS);
+      Search.retainAll(Friend);
         return Search;
     }
     public ArrayList<String> SearchInGroups(String email){

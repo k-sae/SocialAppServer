@@ -14,6 +14,8 @@ public interface FilesPath {
     String POSTS= "\\posts";
     String INFO="Info.txt";
     String FRIEND_REQUEST ="pendingRequest.txt";
+    String GROUP_REQUEST="grouppendingrequests.txt";
+    String MEMBERS="members.txt";
     String FRIENDS = "friends.sasf";
     String ADMINS="admins.txt";
 

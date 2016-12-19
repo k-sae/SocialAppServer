@@ -24,7 +24,7 @@ public class ServerLoggedUser extends LoggedUser {
     public Group createGroup(Group group) {
         group.setId(Long.parseLong(Generator.GenerateUnigueId(FilesPath.GROUPS)));
         GroupfileMangement.create(group);
-        GroupfileMangement.addgrouptomember(group.getAdminId(),group.getId());
+        GroupfileMangement.addgrouptomember(group.getAdminId()+"",group.getId()+"");
         return group;
     }
 
@@ -56,7 +56,6 @@ public class ServerLoggedUser extends LoggedUser {
     public SocialArrayList getgroups() {
 
        SocialArrayList groups= GroupfileMangement.pickGroups(GroupfileMangement.pickMemberGroup(Long.parseLong(getID())));
-        System.out.println(groups.convertToJsonString());
         return groups;
     }
   public  void  reqtouser(ReqGroup req){
