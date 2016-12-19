@@ -11,6 +11,7 @@ import SocialAppGeneral.LoginInfo;
 import SocialAppGeneral.RegisterInfo;
 import com.google.gson.Gson;
 
+import javax.sound.sampled.Line;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -138,7 +139,7 @@ public class FilesManager {
             BufferedReader RL = new BufferedReader(new FileReader(FileName));
             String line;
             while ((line = RL.readLine()) != null) {
-                if (line.contains(token)) {
+                if (line.equals(token)) {
                     RL.close();
                     return true;
                 }
@@ -149,7 +150,6 @@ public class FilesManager {
             return false;
         }
     }
-
     public static String ReadLine(String FileName, int lineNum) {
         try {
             BufferedReader RL = new BufferedReader(new FileReader(FileName));
