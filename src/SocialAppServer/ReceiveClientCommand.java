@@ -201,6 +201,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             ArrayList<Object> objects = new ArrayList<>();
             ArrayList<String> strings;
             strings = f.Search(command.getObjectStr());
+            strings.addAll(f.SearchInGroups(command.getObjectStr()));
             objects.addAll(strings);
             SocialArrayList socialArrayList = new SocialArrayList(objects);
             command.setSharableObject(socialArrayList.convertToJsonString());

@@ -103,7 +103,7 @@ return finalsearch;
         for(int i=Names.size()-1;i>=0;i--){
             IDs=FilesManager.ReadIntoArrayList(USERS+NAMES+Names.get(i));
             for(int j=IDs.size()-1;j>=0;j--){
-                finalsearch.add(IDs.get(j));
+                finalsearch.add((Long.parseLong (IDs.get(j)) * -1) + "");
             }
         }
     return finalsearch;
