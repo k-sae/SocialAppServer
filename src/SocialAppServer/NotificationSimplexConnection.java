@@ -14,6 +14,7 @@ import java.util.Objects;
 class NotificationSimplexConnection extends ClientConnection {
     String id;
     private volatile static ArrayList<NotificationSimplexConnection> connections;
+    private volatile static ArrayList<NotificationSimplexConnection> connectionsToKill;
     NotificationSimplexConnection(Socket clientSocket) {
         super(clientSocket);
         //Read Client data im another thread so it doesnt disturb the server
@@ -21,6 +22,7 @@ class NotificationSimplexConnection extends ClientConnection {
         if (connections == null)
         {
             connections= new ArrayList<>();
+            connectionsToKill = new ArrayList<>();
         }
         connections.add(this);
     }
@@ -42,12 +44,23 @@ class NotificationSimplexConnection extends ClientConnection {
     {
         //IDK i have just wrote a normal foreach statement then intellij modified it :D
         //i will try it if it worked i'll leave it
-        connections.stream().filter(connection -> Objects.equals(connection.id, id)).forEach(connection -> connection.sendCommand(cmd));
-    }
+        new Thread(() -> loopThrough(id, cmd)).start();
 
+
+    }
+    private synchronized static void loopThrough(String id, Command cmd)
+    {
+        connections.stream().filter(connection -> Objects.equals(connection.id, id)).forEach(connection -> connection.sendCommand(cmd));
+        removeDcUsers();
+    }
     @Override
     protected void onUserDisconnection() {
         super.onUserDisconnection();
-        connections.remove(this);
+        connectionsToKill.add(this);
+    }
+    private static void removeDcUsers()
+    {
+        connections.removeAll(connectionsToKill);
+        connectionsToKill.clear();
     }
 }

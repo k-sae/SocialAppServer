@@ -153,13 +153,9 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             connection.sendCommand(command);
         }
         else if (command.getKeyWord().equals(Notification.LOAD_NOTI)){
-
-//            command.setSharableObject(serverLoggedUser.loadNotification());
-            serverLoggedUser.loadNotification();
-            connection.sendCommand(command);
+            connection.sendCommand( serverLoggedUser.loadNotification());
         }
         else if (command.getKeyWord().equals(Log.LOAD_LOG)){
-
             command.setSharableObject(serverLoggedUser.loadLog());
             connection.sendCommand(command);
         }
@@ -203,7 +199,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             UserFinder f = new UserFinder();
             //ArrayList <String>a=new ArrayList<String>();
             ArrayList<Object> objects = new ArrayList<>();
-            ArrayList<String> strings = new ArrayList<>();
+            ArrayList<String> strings;
             strings = f.Search(command.getObjectStr());
             objects.addAll(strings);
             SocialArrayList socialArrayList = new SocialArrayList(objects);

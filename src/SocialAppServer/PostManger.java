@@ -183,30 +183,25 @@ class PostManger {
     }
     private static  void  saveNoti(Notification noti){
         //TODO #now 6
-        sendLiveNotification(noti);
+
             FilesManager.AddLine(FilesPath.USERS + noti.getPost().getOwnerId() +FilesPath.NOTI, noti.convertToJsonString());
+        sendLiveNotification(noti);
     }
-    static  void loadNoti(String id){
+    static  SocialArrayList loadNoti(String id){
         SocialArrayList list =new SocialArrayList();
         if(FileIsExist(FilesPath.USERS + id+FilesPath.NOTI))
             list.getItems().addAll( FilesManager.readAllLines(FilesPath.USERS +"\\"+ id+FilesPath.NOTI));
        else  list.setExtra("1");
-        sendLiveNotification(list,id);
+//        sendLiveNotification(list,id);
+        return list;
     }
-    private static void sendLiveNotification(Notification notification)
-    {
-        SocialArrayList socialArrayList = new SocialArrayList();
-        socialArrayList.getItems().add(notification.convertToJsonString());
-        sendLiveNotification(socialArrayList, notification.getPost().getOwnerId() + "");
-        }
-    private static void sendLiveNotification(SocialArrayList socialArrayList, String id)
-    {
+    private static void sendLiveNotification(Notification notification) {
         Command command = new Command();
-        command.setKeyWord(Notification.LOAD_NOTI);
-        command.setSharableObject(socialArrayList);
-        NotificationSimplexConnection.sendNotification(id + "",command);
+        command.setKeyWord(Notification.NEW_NOTIFICATION);
+        command.setSharableObject(notification);
+        NotificationSimplexConnection.sendNotification(notification.getPost().getOwnerId() + "",command);
     }
-    static  void  saveLog(Log log){
+    private static  void  saveLog(Log log){
 
         FilesManager.AddLine(FilesPath.USERS + FilesPath.LOG,log.convertToJsonString());
     }

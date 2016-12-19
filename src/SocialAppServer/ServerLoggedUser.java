@@ -122,9 +122,13 @@ public class ServerLoggedUser extends LoggedUser {
         post=PostManger.saveAttachment(post, FilesPath.GROUPS+post.getPostPos());
         return post;
     }
-    void loadNotification(){
+    Command loadNotification(){
 
-         PostManger.loadNoti(getID());
+         SocialArrayList socialArrayList = PostManger.loadNoti(getID());
+        Command  command   = new Command();
+        command.setKeyWord(Notification.LOAD_NOTI);
+        command.setSharableObject(socialArrayList);
+        return command;
     }
     String loadLog(){
 
