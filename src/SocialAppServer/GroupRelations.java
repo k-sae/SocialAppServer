@@ -22,7 +22,10 @@ public class GroupRelations implements FilesPath{
 
          if(FilesManager.StringFinder(currentDirectory + MEMBERS, id )) {
             return RelationGroup.MEMBER;
-        } else{
+        }else if(FilesManager.StringFinder(currentDirectory+GROUP_REQUEST,id)){
+             return RelationGroup.PENDING_MEMBER;
+         }
+        else{
        return RelationGroup.NOT_MEMBER;
     }
     }
@@ -37,11 +40,16 @@ public class GroupRelations implements FilesPath{
         GroupFileManagement.addgrouptomember(id,this.id);
         return true;
     }
+
     ArrayList<String> fetch(){
     return  FilesManager.ReadArrayList(currentDirectory+GROUP_REQUEST);
     }
     void AcceptRequest(String id){
 FilesManager.RemoveLine(currentDirectory+GROUP_REQUEST,id);
         FilesManager.AddLine(currentDirectory+MEMBERS,id);
+    }
+    void cancelRequest(String id) {
+        FilesManager.RemoveLine(currentDirectory+GROUP_REQUEST,id);
+        GroupFileManagement.deleteFromGroup(id,this.id);
     }
 }

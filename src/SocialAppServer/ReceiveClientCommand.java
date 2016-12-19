@@ -82,6 +82,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                     serverLoggedUser = new ServerLoggedUser(id);
                 }
                 serverLoggedUser.setLoginInfo(log);
+                serverLoggedUser.setUserInfo(UserPicker.pickUserInfo(id));
             }
             command.setSharableObject(id);
             connection.sendCommand(command);
@@ -183,7 +184,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         }
         else if (command.getKeyWord().equals(UserInfo.EDIT_INFO))
         {
-            FilesManager.Removefile(FilesPath.USERS + serverLoggedUser.getID()+"\\" + FilesPath.INFO, command.getObjectStr());
+            serverLoggedUser.modify(UserInfo.fromJsonString(command.getObjectStr()));
             command.setSharableObject("true");
             connection.sendCommand(command);
 
@@ -255,6 +256,11 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
         }
         else if(command.getKeyWord().equals(Group.Group_ADD)){
             command.setSharableObject(new Group(Long.parseLong(command.getObjectStr())).getGroupRelation().addToGroup(serverLoggedUser.getID())+"");
+            connection.sendCommand(command);
+        }
+        else if(command.getKeyWord().equals(Group.GROUP_CANCEL_REQ)){
+            new Group(Long.parseLong(command.getObjectStr())).getGroupRelation().cancelRequest(serverLoggedUser.getID());
+            command.setSharableObject("true");
             connection.sendCommand(command);
         }
         else if(command.getKeyWord().equals(Group.Group_Accept)){

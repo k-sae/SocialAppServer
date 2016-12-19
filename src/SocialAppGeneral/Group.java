@@ -19,6 +19,7 @@ public class Group implements Shareable,Serializable {
     private long imageId;
     private long Id;
     public static final String CREATE_GROUP = "CreateGroup";
+    public static final String GROUP_CANCEL_REQ = "CANCEL_REQUEST";
     public static final String FETCH_DATA="GROUP_DATA";
     public static final String Group_Leave = "LEAVE_GROUP";
     public static final String Group_relation = "Get_Relations";

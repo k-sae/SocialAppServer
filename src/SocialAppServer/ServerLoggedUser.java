@@ -7,9 +7,7 @@ import SocialAppGeneral.*;
 import java.io.File;
 import java.util.ArrayList;
 
-import static FileManagment.FilesPath.ADMINS;
-import static FileManagment.FilesPath.FRIENDS;
-import static FileManagment.FilesPath.USERS;
+import static FileManagment.FilesPath.*;
 
 /**
  * Created by kemo on 10/12/2016.
@@ -131,6 +129,21 @@ public class ServerLoggedUser extends LoggedUser {
     String loadLog(){
 
         return PostManger.loadLog();
+    }
+    public void modify(UserInfo newUserInfo) {
+        FilesManager.Removefile(FilesPath.USERS + getID()+"\\" + FilesPath.INFO, newUserInfo.convertToJsonString());
+      String fileName=USERS+NAMES+Generator.GenerateID(getUserInfo().getFullName())+".txt";
+        //BufferedReader RL = new BufferedReader(new FileReader(FileName));
+        ArrayList<String> strings = FilesManager.readAllLines(fileName);
+        for (int i = strings.size()-1;i>=0;i--) {
+            String Line = strings.get(i).substring(strings.get(i).indexOf('[') + 1, strings.get(i).indexOf(']'));
+            //strings.get(i)=strings.get(i).substring(strings.get(i).indexOf('[')+1,strings.get(i).indexOf(']'));
+            if (Line.equals(getID())) {
+                strings.get(i).replace(getUserInfo().getFullName(),newUserInfo.getFullName());
+            }
+        }
+        FilesManager.AddLineWithoutAppend(strings,fileName);
+        //RL.close();
     }
     void deletePost(Post post){
         FilesManager.delete(FilesPath.USERS+"\\"+post.getPostPos()+FilesPath.POSTS+"\\"+post.getId());
