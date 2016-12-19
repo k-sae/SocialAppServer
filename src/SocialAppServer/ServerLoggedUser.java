@@ -7,9 +7,7 @@ import SocialAppGeneral.*;
 import java.io.File;
 import java.util.ArrayList;
 
-import static FileManagment.FilesPath.ADMINS;
-import static FileManagment.FilesPath.FRIENDS;
-import static FileManagment.FilesPath.USERS;
+import static FileManagment.FilesPath.*;
 
 /**
  * Created by kemo on 10/12/2016.
@@ -124,9 +122,13 @@ public class ServerLoggedUser extends LoggedUser {
         post=PostManger.saveAttachment(post, FilesPath.GROUPS+post.getPostPos());
         return post;
     }
-    void loadNotification(){
+    Command loadNotification(){
 
-         PostManger.loadNoti(getID());
+         SocialArrayList socialArrayList = PostManger.loadNoti(getID());
+        Command  command   = new Command();
+        command.setKeyWord(Notification.LOAD_NOTI);
+        command.setSharableObject(socialArrayList);
+        return command;
     }
     String loadLog(){
 
