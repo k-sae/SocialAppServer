@@ -3,25 +3,27 @@ package SocialAppGeneral;
 /**
  * Created by khaled hesham on 12/2/2016.
  */
-public class Comment extends PostAtachmment {
-    private String commentcontent;
+public class Comment extends PostAttachment {
+    private static final long serialVersionUID = 6529685098267757690L;
+    private String commentContent;
     private  long CommentId;
-    private int show;
+    private Relations show;
 
 
-    public int getShow() {
+    public Relations getShow() {
         return show;
     }
 
-    public void setShow(int show) {
+    public void setShow(Relations show) {
         this.show = show;
     }
-    public String getCommentcontent() {
-        return commentcontent;
+
+    public String getCommentContent() {
+        return commentContent;
     }
 
-    public void setCommentcontent(String commentcontent) {
-        this.commentcontent = commentcontent;
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
     }
 
     public long getCommentId() {

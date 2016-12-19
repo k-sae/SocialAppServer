@@ -29,12 +29,12 @@ public class GroupRelations implements FilesPath{
     //id user
     Boolean leaveGroup(String id){
         FilesManager.RemoveLine(currentDirectory+MEMBERS,id);
-        GroupfileMangement.deleteFromGroup(id,this.id);
+        GroupFileManagement.deleteFromGroup(id,this.id);
         return true;
     }
     Boolean addToGroup(String id){
         FilesManager.AddLine(currentDirectory+GROUP_REQUEST,id);
-        GroupfileMangement.addgrouptomember(id,this.id);
+        GroupFileManagement.addgrouptomember(id,this.id);
         return true;
     }
     ArrayList<String> fetch(){

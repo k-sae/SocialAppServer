@@ -11,8 +11,8 @@ import java.util.List;
  */
 public class SocialArrayList implements Shareable,Serializable {
     private static final long serialVersionUID = 6529685098267757690L;
-    private Object extra;
-    private Object target;
+    private String extra;
+    private String target;
     private List<Object> items;
     public SocialArrayList(List<Object> items)
     {
@@ -41,19 +41,19 @@ public class SocialArrayList implements Shareable,Serializable {
         this.items = items;
     }
 
-    public Object getTarget() {
-        return target;
-    }
-
-    public void setTarget(Object target) {
-        this.target = target;
-    }
-
-    public Object getExtra() {
+    public String getExtra() {
         return extra;
     }
 
-    public void setExtra(Object extra) {
+    public void setExtra(String extra) {
         this.extra = extra;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
     }
 }
