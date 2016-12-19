@@ -7,6 +7,8 @@ out/
 groups/
 temp/
 users/
+libs/
+.idea/workspace.xml
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
