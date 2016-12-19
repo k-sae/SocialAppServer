@@ -196,7 +196,7 @@ class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             connection.sendCommand(command);
             command.setKeyWord(LoggedUser.FRIEND_REQ);
             command.setSharableObject(serverLoggedUser.getID());
-            SecondaryConnection.sendNotification(id,command);
+            NotificationSimplexConnection.sendNotification(id,command);
         }
         else if(command.getKeyWord().equals("Search")) {
             UserFinder f = new UserFinder();

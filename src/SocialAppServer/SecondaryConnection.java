@@ -13,11 +13,10 @@ import java.util.Objects;
  */
 class SecondaryConnection extends Thread {
     private int port;
-    private static ArrayList<NotificationSimplexConnection> connections;
+
     SecondaryConnection(int port)
     {
         this.port = port;
-        connections = new ArrayList<>();
     }
 
     @Override
@@ -31,7 +30,7 @@ class SecondaryConnection extends Thread {
                 while (true) {
 
                     Socket client = serverSocket.accept();
-                    connections.add(new NotificationSimplexConnection(client));
+                   new NotificationSimplexConnection(client);
                 }
             }
             catch (IOException e) {
@@ -39,10 +38,5 @@ class SecondaryConnection extends Thread {
             }
         }
     }
-    public static void sendNotification(String id, Command cmd)
-    {
-        //IDK i have just wrote a normal foreach statement then intellij modified it :D
-        //i will try it if it worked i'll leave it
-        connections.stream().filter(connection -> Objects.equals(connection.id, id)).forEach(connection -> connection.sendCommand(cmd));
-    }
+
 }

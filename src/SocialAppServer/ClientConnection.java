@@ -33,7 +33,8 @@ abstract class ClientConnection implements Connection {
                 IOException e)
         {
             //For debugging
-            e.printStackTrace();
+            onUserDisconnection();
+            System.out.println("User Disconnected");
         } catch (
                 Exception e)
         {
@@ -51,6 +52,10 @@ abstract class ClientConnection implements Connection {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    protected void onUserDisconnection()
+    {
+
     }
 }
 

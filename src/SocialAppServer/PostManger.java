@@ -204,7 +204,7 @@ class PostManger {
         Command command = new Command();
         command.setKeyWord(Notification.LOAD_NOTI);
         command.setSharableObject(socialArrayList);
-        SecondaryConnection.sendNotification(id + "",command);
+        NotificationSimplexConnection.sendNotification(id + "",command);
     }
     static  void  saveLog(Log log){
 
