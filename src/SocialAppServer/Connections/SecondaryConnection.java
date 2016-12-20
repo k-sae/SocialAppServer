@@ -1,4 +1,4 @@
-package SocialAppServer;
+package SocialAppServer.Connections;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -7,10 +7,10 @@ import java.net.Socket;
 /**
  * Created by kemo on 06/11/2016.
  */
-class SecondaryConnection extends Thread {
+public class SecondaryConnection extends Thread {
     private int port;
 
-    SecondaryConnection(int port)
+    public SecondaryConnection(int port)
     {
         this.port = port;
     }

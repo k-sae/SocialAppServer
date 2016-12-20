@@ -1,11 +1,10 @@
 package SocialAppGeneral;
 
 
-import SocialAppServer.GroupRelations;
+import SocialAppServer.Control.GroupRelations;
 import com.google.gson.Gson;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Created by khaled hesham on 11/24/2016.

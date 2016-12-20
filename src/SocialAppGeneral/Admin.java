@@ -1,10 +1,5 @@
 package SocialAppGeneral;
 
-import FileManagment.FilesManager;
-import FileManagment.FilesPath;
-import SocialAppServer.Generator;
-import SocialAppServer.ServerLoggedUser;
-
 /**
  * Created by mosta on 27-Nov-16.
  */

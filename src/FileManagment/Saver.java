@@ -1,12 +1,9 @@
 package FileManagment;
 
 import SocialAppGeneral.*;
-import SocialAppServer.Generator;
-import SocialAppServer.HalfDuplexConnection;
-import SocialAppServer.RegisterUser;
-import SocialAppServer.Verifier;
-
-import java.nio.file.Files;
+import SocialAppServer.Control.Generator;
+import SocialAppServer.Connections.HalfDuplexConnection;
+import SocialAppServer.Control.Verifier;
 
 /**
  * Created by begad on 10/30/2016.

@@ -1,9 +1,9 @@
-package SocialAppServer;
+package SocialAppServer.Connections;
 
 /**
  * Created by kemo on 15/12/2016.
  */
-interface EmailContent {
+public interface EmailContent {
     String ACCEPTED_MSG_SUBJECT = "ACCEPTED";
     String ACCEPTED_MSG_BODY = "u have been accepted you in Batates Network..HF!";
     String REJECTED_MSG_SUBJECT = "REJECTED";

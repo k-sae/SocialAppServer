@@ -1,4 +1,4 @@
-package SocialAppServer;
+package SocialAppServer.Control;
 
 import FileManagment.FilesManager;
 import SocialAppGeneral.LoginInfo;
@@ -59,7 +59,7 @@ public class Verifier {
         }
         return "";
     }
-    static String FileSearcherForID(String FileName, String token) {
+    public static String FileSearcherForID(String FileName, String token) {
         ArrayList<String> lines;
         lines= FilesManager.ReadArrayList(FileName);
         Gson gson = new Gson();
@@ -75,7 +75,7 @@ public class Verifier {
         }
         return "";
     }
-    static boolean LoginValidatior(String FileName, String mail, String pass) {
+    public static boolean LoginValidatior(String FileName, String mail, String pass) {
             ArrayList<String> lines;
             lines= FilesManager.ReadArrayList(FileName);
             Gson gson = new Gson();

@@ -1,4 +1,4 @@
-package SocialAppServer;
+package SocialAppServer.Connections;
 
 import SocialAppGeneral.Command;
 import SocialAppGeneral.Connection;
@@ -12,7 +12,7 @@ import java.net.Socket;
  */
 //
 
-abstract class ClientConnection implements Connection {
+public abstract class ClientConnection implements Connection {
     Socket clientSocket;
 
     ClientConnection(Socket clientSocket) {

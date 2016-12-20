@@ -1,4 +1,4 @@
-package SocialAppServer;
+package SocialAppServer.Control;
 
 import SocialAppGeneral.LoginInfo;
 import SocialAppGeneral.UserInfo;

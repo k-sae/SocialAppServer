@@ -1,4 +1,4 @@
-package SocialAppServer;
+package SocialAppServer.Connections;
 
 import SocialAppGeneral.Command;
 
@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * Created by kemo on 06/11/2016.
  */
-class NotificationSimplexConnection extends ClientConnection {
+public class NotificationSimplexConnection extends ClientConnection {
     String id;
     private volatile static ArrayList<NotificationSimplexConnection> connections;
     private volatile static ArrayList<NotificationSimplexConnection> connectionsToKill;
@@ -40,7 +40,7 @@ class NotificationSimplexConnection extends ClientConnection {
         }).start();
 
     }
-    static void sendNotification(String id, Command cmd)
+    public static void sendNotification(String id, Command cmd)
     {
         //IDK i have just wrote a normal foreach statement then intellij modified it :D
         //i will try it if it worked i'll leave it

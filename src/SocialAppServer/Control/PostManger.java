@@ -1,8 +1,9 @@
-package SocialAppServer;
+package SocialAppServer.Control;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppGeneral.*;
+import SocialAppServer.Connections.NotificationSimplexConnection;
 
 import java.util.ArrayList;
 import java.util.Date;

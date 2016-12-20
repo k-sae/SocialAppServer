@@ -1,17 +1,19 @@
-package SocialAppServer;
+package SocialAppServer.Module;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppGeneral.*;
+import SocialAppServer.Control.Generator;
+import SocialAppServer.Control.Verifier;
 
 import java.util.ArrayList;
 
 /**
  * Created by mosta on 30-Nov-16.
  */
-class UserFinder implements FilesPath {
+public class UserFinder implements FilesPath {
     //TODO
-static String  validate(String email, String pass){
+public static String  validate(String email, String pass){
     Command command = new Command();
     command.setKeyWord(RegisterInfo.KEYWORD);
     String id="-1";
@@ -25,7 +27,7 @@ static String  validate(String email, String pass){
     return id;
 }
 //takes email or name
-ArrayList<String> Search(String email){
+public ArrayList<String> Search(String email){
 
     ArrayList<String> Emails=FilesManager.FoldderSearcher(USERS+EMAILS);
     ArrayList<String> Names=FilesManager.FoldderSearcher(USERS+NAMES);
@@ -60,7 +62,7 @@ ArrayList<String> Search(String email){
 return finalsearch;
 }
 
-    ArrayList<String> SearchInGroups(String email){
+    public ArrayList<String> SearchInGroups(String email){
         ArrayList<String> Names=FilesManager.FoldderSearcher(USERS+NAMES);
         ArrayList<String> finalsearch=new ArrayList<>();
         ArrayList<String> IDs;

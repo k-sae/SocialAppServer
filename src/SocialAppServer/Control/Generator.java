@@ -1,9 +1,7 @@
-package SocialAppServer;
+package SocialAppServer.Control;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
-
-import java.io.File;
 
 /**
  * Created by begad on 10/30/2016.

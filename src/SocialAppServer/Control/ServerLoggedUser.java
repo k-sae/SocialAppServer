@@ -1,8 +1,11 @@
-package SocialAppServer;
+package SocialAppServer.Control;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppGeneral.*;
+import SocialAppServer.Connections.Credentials;
+import SocialAppServer.Connections.EmailContent;
+import SocialAppServer.Module.GroupFileManagement;
 
 import java.io.File;
 import java.util.ArrayList;

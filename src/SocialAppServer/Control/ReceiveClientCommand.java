@@ -1,8 +1,12 @@
-package SocialAppServer;
+package SocialAppServer.Control;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppGeneral.*;
+import SocialAppServer.Connections.HalfDuplexConnection;
+import SocialAppServer.Connections.NotificationSimplexConnection;
+import SocialAppServer.Module.UserFinder;
+import SocialAppServer.Module.UserPicker;
 
 import java.net.Socket;
 import java.util.ArrayList;
@@ -11,10 +15,10 @@ import java.util.ArrayList;
 /**
  * Created by kemo on 25/10/2016.
  */
-class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
+public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
     private HalfDuplexConnection connection;
     private ServerLoggedUser serverLoggedUser;
-    ReceiveClientCommand(Socket remote, HalfDuplexConnection connection) {
+    public ReceiveClientCommand(Socket remote, HalfDuplexConnection connection) {
         super(remote);
         this.connection = connection;
     }

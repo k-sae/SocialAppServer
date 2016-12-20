@@ -1,4 +1,6 @@
-package SocialAppServer;
+package SocialAppServer.Connections;
+
+import SocialAppServer.Control.ReceiveClientCommand;
 
 import java.net.Socket;
 
@@ -6,7 +8,7 @@ import java.net.Socket;
  * Created by kemo on 06/11/2016.
  */
 public class HalfDuplexConnection extends ClientConnection {
-    HalfDuplexConnection(Socket clientSocket) {
+    public HalfDuplexConnection(Socket clientSocket) {
         super(clientSocket);
     }
 

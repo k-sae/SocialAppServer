@@ -1,6 +1,10 @@
 package SocialAppServer;
 
 
+import SocialAppServer.Connections.ClientConnection;
+import SocialAppServer.Connections.HalfDuplexConnection;
+import SocialAppServer.Connections.SecondaryConnection;
+
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
