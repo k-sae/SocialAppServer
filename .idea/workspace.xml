@@ -12,7 +12,6 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Desktop Manger" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MovieApp" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SocialAppClientJavaFX" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/gson-2.8.0.zip" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SunShine" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SunShine2" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Sunshine-Version-2" />
@@ -43,36 +42,10 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../AndroidTest/gradlew" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../AndroidTest/gradlew.bat" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../AndroidTest/settings.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitattributes" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SocialAppServer.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/SocialAppServer/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FileManagment/FilesManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FileManagment/FilesPath.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FileManagment/Saver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppGeneral/AppUser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppGeneral/Command.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppGeneral/Connection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppGeneral/LoginInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppGeneral/ReceiveCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppGeneral/RegisterInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppGeneral/Shareable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppGeneral/UserInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppServer/ClientConnection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppServer/Generator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppServer/HalfDuplexConnection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppServer/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppServer/NotificationSimplexConnection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppServer/RegisterUser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SocialAppServer/SecondaryConnection.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../TileLayout/.gitignore" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../test/src/com/company/Main.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../test/test.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SocialAppClientJavaFX/src/SocialAppClient/HomePage.java" afterPath="$PROJECT_DIR$/../SocialAppClientJavaFX/src/SocialAppClient/HomePage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SocialAppGeneral/LoggedUser.java" afterPath="$PROJECT_DIR$/src/SocialAppGeneral/LoggedUser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java" afterPath="$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SocialAppServer/ServerLoggedUser.java" afterPath="$PROJECT_DIR$/src/SocialAppServer/ServerLoggedUser.java" />
     </list>
     <ignored path="SocialAppServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,21 +67,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ServerLoggedUser.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ServerLoggedUser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SocialAppServer/ServerLoggedUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="170" column="42" selection-start-line="170" selection-start-column="42" selection-end-line="170" selection-end-column="42" />
+            <state relative-caret-position="-28">
+              <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReceiveClientCommand.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ReceiveClientCommand.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="317" column="75" selection-start-line="317" selection-start-column="75" selection-end-line="317" selection-end-column="75" />
+            <state relative-caret-position="4403">
+              <caret line="318" column="5" selection-start-line="318" selection-start-column="5" selection-end-line="318" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-125">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserPicker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SocialAppServer/UserPicker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FilesManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/FileManagment/FilesManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -138,8 +141,8 @@
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/SocialAppServer/GroupFileManagement.java" />
         <option value="$PROJECT_DIR$/src/SocialAppGeneral/LoggedUser.java" />
-        <option value="$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java" />
         <option value="$PROJECT_DIR$/src/SocialAppServer/ServerLoggedUser.java" />
+        <option value="$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java" />
       </list>
     </option>
   </component>
@@ -571,7 +574,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39930555" sideWeight="0.49389312" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39770868" sideWeight="0.49389312" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -601,12 +604,6 @@
           <url>file://$PROJECT_DIR$/src/FileManagment/Saver.java</url>
           <line>22</line>
           <properties class="FileManagment.Saver" method="&lt;init&gt;" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java</url>
-          <line>20</line>
-          <properties class="SocialAppServer.ReceiveClientCommand" />
-          <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FileManagment/Saver.java</url>
@@ -638,110 +635,8 @@
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java</url>
-          <line>19</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java</url>
-          <line>21</line>
-          <properties />
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java</url>
-          <line>22</line>
-          <properties />
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java</url>
-          <line>23</line>
-          <properties />
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>19</line>
-          <properties />
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>18</line>
-          <properties />
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>20</line>
-          <properties />
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>21</line>
-          <properties />
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>23</line>
-          <properties />
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>25</line>
-          <properties />
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>24</line>
-          <properties />
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>27</line>
-          <properties />
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>26</line>
-          <properties />
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>28</line>
-          <properties />
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>29</line>
-          <properties />
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>31</line>
-          <properties />
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/SocialAppServer/Main.java</url>
-          <line>16</line>
-          <properties field="clientConnections" class="SocialAppServer.Main" />
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="48" />
+      <option name="time" value="51" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -750,13 +645,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SocialAppServer/ClientConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
@@ -837,14 +725,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SocialAppGeneral/FormedLine.java" />
     <entry file="file://$PROJECT_DIR$/src/SocialAppGeneral/Partition.java" />
-    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SocialAppServer/ClientConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -853,7 +733,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SocialAppServer/AcceptSecondaryConnection.java" />
-    <entry file="file://$PROJECT_DIR$/src/FileManagment/FilesManager.java" />
     <entry file="file://$PROJECT_DIR$/src/SocialAppGeneral/LoginInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -965,18 +844,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java">
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/ServerLoggedUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="317" column="75" selection-start-line="317" selection-start-column="75" selection-end-line="317" selection-end-column="75" />
+        <state relative-caret-position="-28">
+          <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/ServerLoggedUser.java">
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="170" column="42" selection-start-line="170" selection-start-column="42" selection-end-line="170" selection-end-column="42" />
+        <state relative-caret-position="-125">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileManagment/FilesManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/UserPicker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SocialAppServer/ReceiveClientCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4403">
+          <caret line="318" column="5" selection-start-line="318" selection-start-column="5" selection-end-line="318" selection-end-column="5" />
           <folding />
         </state>
       </provider>

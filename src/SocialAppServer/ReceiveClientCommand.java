@@ -315,7 +315,9 @@ String Groupid=command.getObjectStr().substring(0,command.getObjectStr().indexOf
         }
         else if (command.getKeyWord().equals(LoggedUser.REACTIVATE))
         {
+
             command.setSharableObject(Boolean.toString(serverLoggedUser.reactivate()));
+            serverLoggedUser.setUserInfo(UserPicker.pickUserInfo(serverLoggedUser.getID()));
             connection.sendCommand(command);
         }
     }
