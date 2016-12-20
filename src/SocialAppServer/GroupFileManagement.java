@@ -82,7 +82,7 @@ class GroupFileManagement implements FilesPath{
 //>>>>>>> develop:src/SocialAppServer/GroupFileManagement.java
     }
     static  Group load(long id){
-    Group group=new Group();
+    Group group=new Group(id);
     if(FilesManager.FileIsExist(FilesPath.GROUPS+"\\"+id+INFO)) {
         group= (Group) FilesManager.ReadFromBinaryFile(FilesPath.GROUPS+"\\"+id+INFO);
     }
