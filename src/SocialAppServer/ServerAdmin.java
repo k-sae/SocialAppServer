@@ -17,23 +17,18 @@ import java.util.Properties;
 /**
  * Created by mosta on 12-Dec-16.
  */
-public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
-    public ServerAdmin(String id) {
+class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
+    ServerAdmin(String id) {
         super(id);
     }
-    public static Boolean adminChecker(String ID){
+    static Boolean adminChecker(String ID){
         return FilesManager.searcher(USERS+ADMINS,ID);
     }
-    public static boolean adminCheck(String Email){
-        if(FilesManager.FileIsExist(USERS+ADMINS)){
-            //wait admin approval to add another admin
-            return false;
-        }else{
-            return true;
-        }
+    static boolean adminCheck(){
+        return !FilesManager.FileIsExist(USERS + ADMINS);
     }
 
-    public  static void  convertIntoPermnantUser(String Email) {
+    private static void  convertIntoPermnantUser(String Email) {
         String line = Verifier.FileSearcher(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt", Email);
         RegisterInfo re = RegisterInfo.fromJsonString(line);
         String ID = Generator.GenerateUnigueId(USERS);
@@ -59,7 +54,7 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
         new Thread(() -> sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,EmailContent.ACCEPTED_MSG_SUBJECT,EmailContent.ACCEPTED_MSG_BODY)).start();
       }
     //Check if needing modification
-    public void convertIntoBannedUser(String Email) {
+    private void convertIntoBannedUser(String Email) {
         String line = Verifier.FileSearcher(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt", Email);
         RegisterInfo re = RegisterInfo.fromJsonString(line);
        // String ID = Generator.GenerateUnigueId(BLOCKEDUSERS);
@@ -70,8 +65,8 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
         sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email,EmailContent.REJECTED_MSG_SUBJECT,EmailContent.REJECTED_MSG_BODY);
 
     }
-   public ArrayList<String> fetchRequests(){
-       ArrayList<String> strings = new ArrayList<>();
+   ArrayList<String> fetchRequests(){
+       ArrayList<String> strings;
        strings = FilesManager.ReadArrayList(UNREIGESTERDUSERS+AllUSERS);
        return strings;
    }
@@ -97,7 +92,7 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
                 ,EmailContent.ACCEPTED_AS_ADMIN_MSG_BODY);
 
     }
-    public static boolean sendMail(String from,String pass,String to,String subject,String body)
+    static boolean sendMail(String from, String pass, String to, String subject, String body)
     {
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";

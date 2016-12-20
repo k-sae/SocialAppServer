@@ -40,7 +40,7 @@ class NotificationSimplexConnection extends ClientConnection {
         }).start();
 
     }
-    public static void sendNotification(String id, Command cmd)
+    static void sendNotification(String id, Command cmd)
     {
         //IDK i have just wrote a normal foreach statement then intellij modified it :D
         //i will try it if it worked i'll leave it

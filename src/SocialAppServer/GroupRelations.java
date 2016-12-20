@@ -2,7 +2,6 @@ package SocialAppServer;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
-import SocialAppGeneral.Group;
 import SocialAppGeneral.RelationGroup;
 
 import java.util.ArrayList;

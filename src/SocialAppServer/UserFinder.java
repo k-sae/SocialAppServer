@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 class UserFinder implements FilesPath {
     //TODO
-public static String  validate(String email, String pass){
+static String  validate(String email, String pass){
     Command command = new Command();
     command.setKeyWord(RegisterInfo.KEYWORD);
     String id="-1";
@@ -25,13 +25,13 @@ public static String  validate(String email, String pass){
     return id;
 }
 //takes email or name
-public ArrayList<String> Search(String email){
+ArrayList<String> Search(String email){
 
     ArrayList<String> Emails=FilesManager.FoldderSearcher(USERS+EMAILS);
     ArrayList<String> Names=FilesManager.FoldderSearcher(USERS+NAMES);
-    ArrayList<String> finalsearch=new ArrayList();
+    ArrayList<String> finalsearch=new ArrayList<>();
     //ArrayList<String> EmailSearch=new ArrayList<>();
-    ArrayList<String> IDs=new ArrayList<>();
+    ArrayList<String> IDs;
     String ID=Generator.GenerateID(email);
     ID = (ID.length() > 3 )?  ID.substring(0, ID.length()-3) : ID;
     for(int i=Names.size()-1;i>=0;i--){
@@ -56,37 +56,14 @@ public ArrayList<String> Search(String email){
             finalsearch.add(IDs.get(j));
         }
     }
-    //finalsearch.addAll(EmailSearch);
-    //finalsearch.addAll(NamesSearch);
-   // FilesManager.readAllLines()
+
 return finalsearch;
 }
-    public ArrayList<String> SearchInFreinds(String email,String Id){
+
+    ArrayList<String> SearchInGroups(String email){
         ArrayList<String> Names=FilesManager.FoldderSearcher(USERS+NAMES);
-        ArrayList<String> IDs=new ArrayList<>();
-        ArrayList<String> Friend=new ArrayList<>();
-        ArrayList<String> Search=new ArrayList<>();
-        String ID=Generator.GenerateID(email);
-        ID = (ID.length() > 3 )?  ID.substring(0, ID.length()-3) : ID;
-        for(int i=Names.size()-1;i>=0;i--){
-            if(!Names.get(i).startsWith(ID)){
-                Names.remove(Names.get(i));
-            }
-        }
-        for(int i=Names.size()-1;i>=0;i--){
-            IDs=FilesManager.ReadIntoArrayList(USERS+NAMES+Names.get(i));
-            for(int j=IDs.size()-1;j>=0;j--){
-                Search.add(IDs.get(j));
-            }
-        }
-        Friend=FilesManager.ReadArrayList(USERS+Id+"\\"+FRIENDS);
-      Search.retainAll(Friend);
-        return Search;
-    }
-    public ArrayList<String> SearchInGroups(String email){
-        ArrayList<String> Names=FilesManager.FoldderSearcher(USERS+NAMES);
-        ArrayList<String> finalsearch=new ArrayList();
-        ArrayList<String> IDs=new ArrayList<>();
+        ArrayList<String> finalsearch=new ArrayList<>();
+        ArrayList<String> IDs;
         String ID=Generator.GenerateID(email);
         ID = (ID.length() > 3 )?  ID.substring(0, ID.length()-3) : ID;
         for(int i=Names.size()-1;i>=0;i--){

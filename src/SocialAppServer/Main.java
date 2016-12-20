@@ -1,7 +1,6 @@
 package SocialAppServer;
 
 
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class Main {
 
     @SuppressWarnings("InfiniteLoopStatement")
     private static void startMainConnection(int startPort) {
-        for (int i = startPort; i < startPort + 10; i++) {
+        for (int i = startPort; i < startPort + 10; i++)
             try {
                 //create a server socket where the client will connect on the specified startPort
                 ServerSocket serverSocket = new ServerSocket(i);
@@ -38,13 +37,8 @@ public class Main {
                     HalfDuplexConnection clientConnection = new HalfDuplexConnection(client);
                     clientConnections.add(clientConnection);
                 }
-            } catch (IOException e) {
-                //Error reporting 4 Debugging later will use log class
-            } catch (Exception e) {
-                //TODO
-                //Export to log files
+            } catch (Exception ignored) {
             }
-        }
 
     }
 }

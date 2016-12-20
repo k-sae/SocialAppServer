@@ -7,20 +7,16 @@ import SocialAppGeneral.Relations;
 /**
  * Created by kemo on 05/12/2016.
  */
-public class Relation implements FilesPath {
+class Relation implements FilesPath {
      //add friend
      //remove friend
      //send req
      private String id;
      private  String currentDirectory;
-     public Relation(String id) {
+     Relation(String id) {
           this.id   = id ;
           currentDirectory =  USERS + id + "\\";
      }
-     // return 1 if is a friend
-     // return 2 if req sent
-     // return 3 if req received
-     // return 0 if no Relation
      Relations getStatus(String id)
      {
           if (FilesManager.StringFinder(currentDirectory + FRIEND_REQUEST, id))

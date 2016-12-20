@@ -5,9 +5,6 @@ import SocialAppGeneral.LoginInfo;
 import SocialAppGeneral.RegisterInfo;
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Verifier {
     public static boolean valdaidatereginfo(String FileName, String token) {
-        ArrayList<String> lines=new ArrayList<>();
+        ArrayList<String> lines;
         RegisterInfo re;
         Gson gson = new Gson();
        lines= FilesManager.ReadArrayList(FileName);
@@ -31,7 +28,7 @@ public class Verifier {
         return false;
     }
     public static boolean valdaidateLoginInfo(String FileName, String token) {
-        ArrayList<String> lines=new ArrayList<>();
+        ArrayList<String> lines;
         LoginInfo re;
         Gson gson = new Gson();
         lines= FilesManager.ReadArrayList(FileName);
@@ -46,8 +43,8 @@ public class Verifier {
         }
         return false;
     }
-    public static String FileSearcher(String FileName, String token) {
-        ArrayList<String> lines=new ArrayList<>();
+    static String FileSearcher(String FileName, String token) {
+        ArrayList<String> lines;
         RegisterInfo re;
         Gson gson = new Gson();
         lines= FilesManager.ReadArrayList(FileName);
@@ -62,8 +59,8 @@ public class Verifier {
         }
         return "";
     }
-    public static String FileSearcherForID(String FileName, String token) {
-        ArrayList<String> lines=new ArrayList<>();
+    static String FileSearcherForID(String FileName, String token) {
+        ArrayList<String> lines;
         lines= FilesManager.ReadArrayList(FileName);
         Gson gson = new Gson();
         LoginInfo re;
@@ -78,8 +75,8 @@ public class Verifier {
         }
         return "";
     }
-    public static boolean LoginValidatior(String FileName, String mail, String pass) {
-            ArrayList<String> lines=new ArrayList<>();
+    static boolean LoginValidatior(String FileName, String mail, String pass) {
+            ArrayList<String> lines;
             lines= FilesManager.ReadArrayList(FileName);
             Gson gson = new Gson();
             LoginInfo re;

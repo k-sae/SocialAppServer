@@ -1,12 +1,8 @@
 package SocialAppServer;
 
-import SocialAppGeneral.Command;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by kemo on 06/11/2016.

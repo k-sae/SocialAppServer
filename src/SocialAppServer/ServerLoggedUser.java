@@ -15,7 +15,7 @@ import static FileManagment.FilesPath.*;
 public class ServerLoggedUser extends LoggedUser {
     private Relation relation;
     private LoginInfo loginInfo;
-    public ServerLoggedUser(String id) {
+    ServerLoggedUser(String id) {
         super(id);
         relation = new Relation(id);
     }
@@ -48,7 +48,7 @@ public class ServerLoggedUser extends LoggedUser {
 
     }
 
-    public ArrayList<String> getFriends() {
+    ArrayList<String> getFriends() {
        return FilesManager.readAllLines(USERS + getID()+"\\" + FRIENDS);
     }
 
@@ -60,14 +60,8 @@ public class ServerLoggedUser extends LoggedUser {
     @Override
     public SocialArrayList getgroups() {
 
-//<<<<<<< HEAD
 
-       SocialArrayList groups=  GroupFileManagement.pickGroups( GroupFileManagement.pickMemberGroup(Long.parseLong(getID())));
-//=======
-//       SocialArrayList groups= GroupFileManagement.pickGroups(GroupFileManagement.pickMemberGroup(Long.parseLong(getID())));
-//
-//>>>>>>> develop
-        return groups;
+        return GroupFileManagement.pickGroups( GroupFileManagement.pickMemberGroup(Long.parseLong(getID())));
     }
 
     @Override
@@ -134,7 +128,7 @@ public class ServerLoggedUser extends LoggedUser {
 
         return PostManger.loadLog();
     }
-    public void modify(UserInfo newUserInfo) {
+    void modify(UserInfo newUserInfo) {
         FilesManager.Removefile(FilesPath.USERS + getID()+"\\" + FilesPath.INFO, newUserInfo.convertToJsonString());
       String fileName=USERS+NAMES+Generator.GenerateID(getUserInfo().getFullName())+".txt";
         //BufferedReader RL = new BufferedReader(new FileReader(FileName));
@@ -157,14 +151,14 @@ public class ServerLoggedUser extends LoggedUser {
     void deletePostGroup(Post post){
         FilesManager.delete(FilesPath.GROUPS+"\\"+post.getPostPos()+FilesPath.POSTS+"\\"+post.getId());
     }
-    public LoginInfo getLoginInfo() {
+    private LoginInfo getLoginInfo() {
         return loginInfo;
     }
 
-    public void setLoginInfo(LoginInfo loginInfo) {
+    void setLoginInfo(LoginInfo loginInfo) {
         this.loginInfo = loginInfo;
     }
-    public boolean reactivate()
+    boolean reactivate()
     {
         File file  = new File(USERS +"#" + getID());
         //noinspection ResultOfMethodCallIgnored

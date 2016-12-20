@@ -39,11 +39,9 @@ class GroupFileManagement implements FilesPath{
     static SocialArrayList pickMemberGroup(long userid ){
         SocialArrayList list=new SocialArrayList();
         if(FilesManager.FileIsExist(FilesPath.USERS+"\\"+userid+GROUP)) {
-//<<<<<<< HEAD:src/SocialAppServer/GroupfileMangement.java
-        list.setItems((ArrayList<Object>)(ArrayList<?>)FilesManager.ReadArrayList(USERS+userid+"\\"+GROUP));
-           // list.getItems().addAll(FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + userid + GROUP)) ;
-
-            System.out.println(list.convertToJsonString());
+            //noinspection unchecked
+            list.setItems((ArrayList<Object>)(ArrayList<?>)FilesManager.ReadArrayList(USERS+userid+"\\"+GROUP));
+         System.out.println(list.convertToJsonString());
         }
         return list;
 
@@ -52,34 +50,6 @@ class GroupFileManagement implements FilesPath{
     }
     static  void addgrouptomember(String userid,String groupid){
        FilesManager.AddLine(USERS+userid+"\\"+GROUP,groupid);
-        // SocialArrayList groups=new SocialArrayList();
-     //   if(FilesManager.FileIsExist(FilesPath.USERS+"\\"+userid+GROUP)) {
-       //      groups.getItems().addAll((ArrayList<Object>)(ArrayList<?>)FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + userid + GROUP)) ;
-         //   groups.getItems().add(groupid);
-       // }
-         //else {
-           // groups.getItems().add(groupid);
-        //}
-        //FilesManager.CreateFileBinary(groups,FilesPath.USERS + "\\" + userid + GROUP);
-//=======
-//            list = (SocialArrayList) FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + userid + GROUP);
-//        }
-//        else {
-//            list.getItems().add(0);
-//        }
-//            return list;
-//    }
-//    static  void addGroupToMember(long userid, long groupid){
-//        SocialArrayList groups=new SocialArrayList();
-//        if(FilesManager.FileIsExist(FilesPath.USERS+"\\"+userid+GROUP)) {
-//             groups = (SocialArrayList) FilesManager.ReadFromBinaryFile(FilesPath.USERS + "\\" + userid + GROUP);
-//            groups.getItems().add(groupid);
-//        }
-//         else {
-//            groups.getItems().add(groupid);
-//        }
-//        FilesManager.CreateFileBinary(groups,FilesPath.USERS + "\\" + userid + GROUP);
-//>>>>>>> develop:src/SocialAppServer/GroupFileManagement.java
     }
     static  Group load(long id){
     Group group=new Group(id);

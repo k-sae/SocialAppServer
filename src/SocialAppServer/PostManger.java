@@ -90,7 +90,7 @@ class PostManger {
         else{post1.setId(0);}
             return post1;
     }
-    static  Post setComment(Post postnew,Post post,String path){
+    private static  Post setComment(Post postnew, Post post, String path){
         Notification notification=new Notification();
         Log log = new Log();
         if (postnew.getComments().get(0).getShow().equals(Relations.ADD)) {
@@ -131,7 +131,7 @@ class PostManger {
             saveLog(log);
             return post;
     }
-    static  Post setLike(Post postnew,Post post){
+    private static  Post setLike(Post postnew, Post post){
         Notification notification=new Notification();
         Log log = new Log();
         int i = -1;
