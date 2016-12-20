@@ -186,29 +186,6 @@ public class FilesManager {
             return false;
         }
     }
-    public static boolean ReadLine(String FileName, String token) {
-        try {
-            BufferedReader RL = new BufferedReader(new FileReader(FileName));
-            RegisterInfo re;
-            Gson gson = new Gson();
-            String line ;
-            while ((line = RL.readLine()) != null) {
-//                line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
-                System.out.print(line);
-                if(!line.isEmpty()) {
-                  re = gson.fromJson(line, RegisterInfo.class);
-                    if (re.getLoginInfo().getEMAIL().equals(token)) {
-                        RL.close();
-                        return true;
-                    }
-                }
-            }
-            RL.close();
-            return false;
-        } catch (IOException ex) {
-            return false;
-        }
-    }
     //Change name later
     public static boolean ReadBanned(String FileName, String token) {
         try {
@@ -226,71 +203,6 @@ public class FilesManager {
             return false;
         } catch (IOException ex) {
             return false;
-        }
-    }
-    public static boolean ReadLineoflogin(String FileName, String token) {
-        try {
-            BufferedReader RL = new BufferedReader(new FileReader(FileName));
-            LoginInfo re;
-            Gson gson = new Gson();
-            String line ;
-            while ((line = RL.readLine()) != null) {
-                line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
-              //  System.out.print(line);
-                if(!line.isEmpty()) {
-                    re = gson.fromJson(line, LoginInfo.class);
-                    if (re.getEMAIL().equals(token)) {
-                        RL.close();
-                        return true;
-                    }
-                }
-            }
-            RL.close();
-            return false;
-        } catch (IOException ex) {
-            return false;
-        }
-    }
-    public static String FileSearcherForID(String FileName, String token) {
-        try {
-            BufferedReader RL = new BufferedReader(new FileReader(FileName));
-            LoginInfo re;
-            Gson gson = new Gson();
-            String line;
-            String Wline;
-            while ((Wline = RL.readLine()) != null) {
-                line=Wline;
-                line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
-               re = gson.fromJson(line,LoginInfo.class);
-                if (re.getEMAIL().equals(token)) {
-                    RL.close();
-                    return Wline;
-                }
-            }
-            RL.close();
-            return "";
-        } catch (IOException ex) {
-            return null;
-        }
-    }
-    public static String FileSearcher(String FileName, String token) {
-        try {
-            BufferedReader RL = new BufferedReader(new FileReader(FileName));
-            RegisterInfo re;
-            Gson gson = new Gson();
-            String line;
-            while ((line = RL.readLine()) != null) {
-           //    line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
-                re = gson.fromJson(line,RegisterInfo.class);
-                if (re.getLoginInfo().getEMAIL().equals(token)) {
-                    RL.close();
-                    return line;
-                }
-            }
-            RL.close();
-            return "";
-        } catch (IOException ex) {
-            return null;
         }
     }
     public static void DeleteFile(File file) {
@@ -504,25 +416,6 @@ public class FilesManager {
         }
         return o;
 
-    }
-    public static boolean LoginValidatior(String FileName, String mail, String pass) {
-        try {
-            BufferedReader RL = new BufferedReader(new FileReader(FileName));
-            String line;
-            LoginInfo loginInfo;
-            Gson gson = new Gson();
-           while( (line = RL.readLine()) != null) {
-            line=line.substring(line.indexOf('{'),line.indexOf('}')+1);
-               loginInfo = gson.fromJson(line,LoginInfo.class);
-                if (loginInfo.getEMAIL().equals(mail) && loginInfo.getPassword().equals(pass)) {
-                    return true;
-                }
-            }
-            RL.close();
-            return false;
-        } catch (IOException ex) {
-            return false;
-        }
     }
     public static ArrayList<String> readAllLines(String file) {
         ArrayList<String> strings = new ArrayList<>();

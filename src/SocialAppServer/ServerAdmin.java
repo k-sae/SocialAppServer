@@ -34,7 +34,7 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
     }
 
     public  static void  convertIntoPermnantUser(String Email) {
-        String line = FilesManager.FileSearcher(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt", Email);
+        String line = Verifier.FileSearcher(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt", Email);
         RegisterInfo re = RegisterInfo.fromJsonString(line);
         String ID = Generator.GenerateUnigueId(USERS);
         FilesManager.CreateFolder(USERS + ID);
@@ -60,7 +60,7 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
       }
     //Check if needing modification
     public void convertIntoBannedUser(String Email) {
-        String line = FilesManager.FileSearcher(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt", Email);
+        String line = Verifier.FileSearcher(UNREIGESTERDUSERS + Generator.GenerateID(Email)+".txt", Email);
         RegisterInfo re = RegisterInfo.fromJsonString(line);
        // String ID = Generator.GenerateUnigueId(BLOCKEDUSERS);
         FilesManager.AddLine(BLOCKEDUSERS+Generator.GenerateID(re.getLoginInfo().getEMAIL())+".txt",re.getLoginInfo().getEMAIL());
@@ -88,7 +88,7 @@ public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
     @Override
     public void approveAsAdmin(String Email) {
         convertIntoPermnantUser(Email);
-        String Line=FilesManager.FileSearcherForID(USERS+EMAILS+ Generator.GenerateID(Email)+".txt",Email);
+        String Line=Verifier.FileSearcherForID(USERS+EMAILS+ Generator.GenerateID(Email)+".txt",Email);
         Line=Line.substring(Line.indexOf('[')+1,Line.indexOf(']'));
         FilesManager.AddLine(USERS+ADMINS,Line);
         /** SENDING ACCEPTED AS ADMIN EMAIL IF THE ADMIN ACCEPT*/

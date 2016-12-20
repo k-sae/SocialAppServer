@@ -15,8 +15,8 @@ public static String  validate(String email, String pass){
     Command command = new Command();
     command.setKeyWord(RegisterInfo.KEYWORD);
     String id="-1";
-    if(FilesManager.LoginValidatior(USERS+EMAILS+ Generator.GenerateID(email)+".txt",email,pass)){
-        String Line=FilesManager.FileSearcherForID(USERS+EMAILS+ Generator.GenerateID(email)+".txt",email);
+    if(Verifier.LoginValidatior(USERS+EMAILS+ Generator.GenerateID(email)+".txt",email,pass)){
+        String Line=Verifier.FileSearcherForID(USERS+EMAILS+ Generator.GenerateID(email)+".txt",email);
         if (Line != null) {
             id=Line.substring(Line.indexOf('[')+1,Line.indexOf(']'));
         }

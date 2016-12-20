@@ -4,6 +4,7 @@ import SocialAppGeneral.*;
 import SocialAppServer.Generator;
 import SocialAppServer.HalfDuplexConnection;
 import SocialAppServer.RegisterUser;
+import SocialAppServer.Verifier;
 
 import java.nio.file.Files;
 
@@ -34,7 +35,7 @@ public Saver(RegisterInfo reg, HalfDuplexConnection connection) {
     Command command = new Command();
     command.setKeyWord(RegisterInfo.KEYWORD);
     if (FilesManager.FileIsExist(UNREIGESTERDUSERS, Id + ".txt")) {
-        if(FilesManager.ReadLine(UNREIGESTERDUSERS + Id + ".txt", reg.getLoginInfo().getEMAIL()) || FilesManager.ReadLineoflogin(USERS + EMAILS + Id + ".txt", reg.getLoginInfo().getEMAIL())||FilesManager. ReadBanned(BLOCKEDUSERS+Id+".txt",reg.getLoginInfo().getEMAIL())){
+        if(Verifier.valdaidatereginfo(UNREIGESTERDUSERS + Id + ".txt", reg.getLoginInfo().getEMAIL()) || Verifier.valdaidateLoginInfo(USERS + EMAILS + Id + ".txt", reg.getLoginInfo().getEMAIL())||FilesManager. ReadBanned(BLOCKEDUSERS+Id+".txt",reg.getLoginInfo().getEMAIL())){
             command.setSharableObject("false");
             connection.sendCommand(command);
     }else{
