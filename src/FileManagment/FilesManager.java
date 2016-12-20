@@ -7,11 +7,6 @@ package FileManagment;
 
 
 
-import SocialAppGeneral.LoginInfo;
-import SocialAppGeneral.RegisterInfo;
-import com.google.gson.Gson;
-
-import javax.sound.sampled.Line;
 import java.io.*;
 import java.util.ArrayList;
 
