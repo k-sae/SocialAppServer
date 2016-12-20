@@ -6,6 +6,7 @@ import SocialAppGeneral.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.jar.Attributes;
 
 import static FileManagment.FilesPath.*;
 
@@ -143,7 +144,9 @@ public class ServerLoggedUser extends LoggedUser {
             String Line = strings.get(i).substring(strings.get(i).indexOf('[') + 1, strings.get(i).indexOf(']'));
             //strings.get(i)=strings.get(i).substring(strings.get(i).indexOf('[')+1,strings.get(i).indexOf(']'));
             if (Line.equals(getID())) {
-                strings.get(i).replace(getUserInfo().getFullName(),newUserInfo.getFullName());
+                FilesManager.AddLine(USERS+NAMES+Generator.GenerateID(newUserInfo.getFullName())+".txt",newUserInfo.getFullName()+"&&&"+"ID="+"["+getID()+"]");
+                strings.remove(strings.get(i));
+
             }
         }
         FilesManager.AddLineWithoutAppend(strings,fileName);
