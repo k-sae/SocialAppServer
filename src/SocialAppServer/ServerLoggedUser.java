@@ -6,7 +6,6 @@ import SocialAppGeneral.*;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.jar.Attributes;
 
 import static FileManagment.FilesPath.*;
 
@@ -164,5 +163,11 @@ public class ServerLoggedUser extends LoggedUser {
 
     public void setLoginInfo(LoginInfo loginInfo) {
         this.loginInfo = loginInfo;
+    }
+    public boolean reactivate()
+    {
+        File file  = new File(USERS +"#" + getID());
+        //noinspection ResultOfMethodCallIgnored
+       return file.renameTo(new File(USERS + getID()));
     }
 }

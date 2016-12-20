@@ -313,5 +313,10 @@ String Groupid=command.getObjectStr().substring(0,command.getObjectStr().indexOf
            command.setSharableObject(socialArrayList.convertToJsonString());
             connection.sendCommand(command);
         }
+        else if (command.getKeyWord().equals(LoggedUser.REACTIVATE))
+        {
+            command.setSharableObject(Boolean.toString(serverLoggedUser.reactivate()));
+            connection.sendCommand(command);
+        }
     }
 }
