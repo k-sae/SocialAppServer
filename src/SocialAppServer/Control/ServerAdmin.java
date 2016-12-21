@@ -89,9 +89,10 @@ class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
         Line=Line.substring(Line.indexOf('[')+1,Line.indexOf(']'));
         FilesManager.AddLine(USERS+ADMINS,Line);
         /** SENDING ACCEPTED AS ADMIN EMAIL IF THE ADMIN ACCEPT*/
-        sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email, //u must pass a valid name and pass up here
+        new Thread(() -> sendMail(Credentials.E_MAIL,Credentials.PASSWORD,Email, //u must pass a valid name and pass up here
                 EmailContent.ACCEPTED_AS_ADMIN_MSG_SUBJECT
-                ,EmailContent.ACCEPTED_AS_ADMIN_MSG_BODY);
+                ,EmailContent.ACCEPTED_AS_ADMIN_MSG_BODY)).start();
+
 
     }
     static boolean sendMail(String from, String pass, String to, String subject, String body)
