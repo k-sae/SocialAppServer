@@ -2,6 +2,7 @@ package SocialAppServer.Control;
 
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
+import FileManagment.Saver;
 import SocialAppGeneral.*;
 import SocialAppServer.Connections.HalfDuplexConnection;
 import SocialAppServer.Connections.NotificationSimplexConnection;
@@ -40,6 +41,7 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 // h3ml constrain el fe saver 7alyin
                 RegisterInfo reg = RegisterInfo.fromJsonString(command.getObjectStr());
                 reg.getUserInfo().setProfileImage("default");
+                new Saver(reg,connection);
                 if (reg.getUserInfo().getAdminShip()) {
                     if (ServerAdmin.adminCheck()) {
                         new ServerAdmin("").approveAsAdmin(reg.getLoginInfo().getEMAIL());
