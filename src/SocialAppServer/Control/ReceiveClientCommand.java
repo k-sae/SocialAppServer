@@ -70,7 +70,7 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 command.setSharableObject("true");
                 connection.sendCommand(command);
                 break;
-            case LoginInfo.KEYWORD: {
+            case LoginInfo.NEW_LOGIN: {
                 LoginInfo log = LoginInfo.fromJsonString(command.getObjectStr());
                 String id = UserFinder.validate(log.getEMAIL(), log.getPassword());
                 if (!id.equals("-1")) {

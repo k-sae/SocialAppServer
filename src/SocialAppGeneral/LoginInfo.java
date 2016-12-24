@@ -6,7 +6,7 @@ import com.google.gson.Gson;
  * Created by kemo on 30/10/2016.
  */
 public class LoginInfo implements Shareable {
-    public static final String KEYWORD="new_login";
+    public static final String NEW_LOGIN ="new_login";
     //TODO #prototype GSON
     //just for prototype will be removed
     private transient final String EMAIL ="email"; //using transient GSON will ignore this obj and wont put it in string

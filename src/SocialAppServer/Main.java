@@ -38,6 +38,7 @@ public class Main {
                 System.out.println("Server Socket is: " + serverSocket.getLocalPort());
                 while (true) { // loop where the server wait for client to start his connection may need to make these process in another thread
                     Socket client = serverSocket.accept();
+                    System.out.println("Client Connected");
                     HalfDuplexConnection clientConnection = new HalfDuplexConnection(client);
                     clientConnections.add(clientConnection);
                 }
