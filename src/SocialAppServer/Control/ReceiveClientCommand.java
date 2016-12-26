@@ -282,8 +282,7 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 connection.sendCommand(command);
                 break;
             case LoggedUser.GET_FRIENDS: {
-                SocialArrayList socialArrayList = new SocialArrayList();
-                socialArrayList.getItems().addAll(serverLoggedUser.getFriends());
+                SocialArrayList socialArrayList = new SocialArrayList(serverLoggedUser.getFriends());
                 command.setSharableObject(socialArrayList.convertToJsonString());
                 connection.sendCommand(command);
                 break;
