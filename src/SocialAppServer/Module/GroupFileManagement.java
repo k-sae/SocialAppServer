@@ -3,11 +3,8 @@ package SocialAppServer.Module;
 import FileManagment.FilesManager;
 import FileManagment.FilesPath;
 import SocialAppGeneral.Group;
-
 import SocialAppGeneral.SocialArrayList;
 import SocialAppServer.Control.Generator;
-
-import java.util.ArrayList;
 
 /**
  * Created by khaled hesham on 11/25/2016.
@@ -41,7 +38,7 @@ public class GroupFileManagement implements FilesPath{
         SocialArrayList list=new SocialArrayList();
         if(FilesManager.FileIsExist(FilesPath.USERS+"\\"+userid+GROUP)) {
             //noinspection unchecked
-            list.setItems((ArrayList<Object>)(ArrayList<?>)FilesManager.ReadArrayList(USERS+userid+"\\"+GROUP));
+            list.setItems(FilesManager.ReadArrayList(USERS+userid+"\\"+GROUP));
          System.out.println(list.convertToJsonString());
         }
         return list;

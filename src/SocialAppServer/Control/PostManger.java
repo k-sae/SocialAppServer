@@ -191,7 +191,7 @@ class PostManger {
     static  SocialArrayList loadNoti(String id){
         SocialArrayList list =new SocialArrayList();
         if(FileIsExist(FilesPath.USERS + id+FilesPath.NOTI))
-            list.getItems().addAll( FilesManager.readAllLines(FilesPath.USERS +"\\"+ id+FilesPath.NOTI));
+            list.setItems(FilesManager.readAllLines(FilesPath.USERS +"\\"+ id+FilesPath.NOTI));
        else  list.setExtra("1");
 //        sendLiveNotification(list,id);
         return list;

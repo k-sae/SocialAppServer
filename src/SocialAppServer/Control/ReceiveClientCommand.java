@@ -88,10 +88,8 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             }
             case Admin.RetrieveData: {
 
-                ArrayList<Object> objects = new ArrayList<>();
                 ArrayList<String> strings = ((ServerAdmin) serverLoggedUser).fetchRequests();
-                objects.addAll(strings);
-                SocialArrayList socialArrayList = new SocialArrayList(objects);
+                SocialArrayList socialArrayList = new SocialArrayList(strings);
                 command.setSharableObject(socialArrayList.convertToJsonString());
                 connection.sendCommand(command);
                 break;
@@ -195,32 +193,26 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             case "Search": {
                 UserFinder f = new UserFinder();
                 //ArrayList <String>a=new ArrayList<String>();
-                ArrayList<Object> objects = new ArrayList<>();
                 ArrayList<String> strings;
                 strings = f.Search(command.getObjectStr());
                 strings.addAll(f.SearchInGroups(command.getObjectStr()));
-                objects.addAll(strings);
-                SocialArrayList socialArrayList = new SocialArrayList(objects);
+                SocialArrayList socialArrayList = new SocialArrayList(strings);
                 command.setSharableObject(socialArrayList.convertToJsonString());
                 connection.sendCommand(command);
                 break;
             }
             case "Search_Group": {
                 UserFinder f = new UserFinder();
-                //ArrayList <String>a=new ArrayList<String>();
-                ArrayList<Object> objects = new ArrayList<>();
                 ArrayList<String> strings;
                 strings = f.SearchInGroups(command.getObjectStr());
-                objects.addAll(strings);
-                SocialArrayList socialArrayList = new SocialArrayList(objects);
+                SocialArrayList socialArrayList = new SocialArrayList(strings);
                 command.setSharableObject(socialArrayList.convertToJsonString());
                 connection.sendCommand(command);
                 break;
             }
             case LoggedUser.FETCH_REQS: {
-                ArrayList<Object> objects = new ArrayList<>();
-                objects.addAll(FilesManager.readAllLines(USERS + serverLoggedUser.getID() + "\\" + FRIEND_REQUEST));
-                command.setSharableObject(new SocialArrayList(objects).convertToJsonString());
+                ArrayList<String> strings = (FilesManager.readAllLines(USERS + serverLoggedUser.getID() + "\\" + FRIEND_REQUEST));
+                command.setSharableObject(new SocialArrayList(strings).convertToJsonString());
                 connection.sendCommand(command);
                 break;
             }
@@ -256,11 +248,9 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 break;
             }
             case Group.FETCH_DATA: {
-                ArrayList<Object> objects = new ArrayList<>();
                 ArrayList<String> strings;
                 strings = new Group(Long.parseLong(command.getObjectStr())).getGroupRelation().fetch();
-                objects.addAll(strings);
-                SocialArrayList socialArrayList = new SocialArrayList(objects);
+                SocialArrayList socialArrayList = new SocialArrayList(strings);
                 command.setSharableObject(socialArrayList.convertToJsonString());
                 connection.sendCommand(command);
                 break;

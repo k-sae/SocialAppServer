@@ -13,8 +13,8 @@ public class SocialArrayList implements Shareable,Serializable {
     private static final long serialVersionUID = 6529685098267757690L;
     private String extra;
     private String target;
-    private List<Object> items;
-    public SocialArrayList(List<Object> items)
+    private List<String> items;
+    public SocialArrayList(List<String> items)
     {
         this.items = items;
     }
@@ -33,11 +33,11 @@ public class SocialArrayList implements Shareable,Serializable {
         return gson.fromJson(jsonStr, SocialArrayList.class);
     }
 
-    public List<Object> getItems() {
+    public List<String> getItems() {
         return items;
     }
 
-    public void setItems(List<Object> items) {
+    public void setItems(List<String> items) {
         this.items = items;
     }
 
