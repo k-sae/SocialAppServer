@@ -72,37 +72,45 @@ class PostManger {
 
                 return posts;
     }
-    static  Post saveAttachment(Post postNew, String path){
+    static  Post EditPost(Post postNew,String path) {
+        Post post1 = new Post();
+        if (FilesManager.FileIsExist(path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE)) {
+            post1 = (Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + postNew.getId()  + Post_FILE);
+            post1.setContent(postNew.getContent());
+            FilesManager.CreateFileBinary(post1, path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE);
+        }
+        else{post1.setId(0);}
+        return post1;
+    }
+    static  Post saveAttachment(AttachmentSender sender, String path){
         Post post1 =new Post();
-        if(FilesManager.FileIsExist(path +FilesPath.POSTS+ "\\" +postNew.getId() + Post_FILE)) {
-             post1 = (Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE);
-            if (postNew.getLike().size() != 0) {
-              post1=  setLike(postNew,post1);
+        if(FilesManager.FileIsExist(path +FilesPath.POSTS+ "\\" +sender.getPostId() + Post_FILE)) {
+             post1 = (Post) FilesManager.ReadFromBinaryFile(path + FilesPath.POSTS + "\\" + sender.getPostId() + Post_FILE);
+            if (sender.getLike() != null) {
+              post1=  setLike(sender,post1);
             } else {
-                if (postNew.getComments().size() != 0) {
-                   post1=setComment(postNew,post1,path);
+                if (sender.getComment() != null) {
+                   post1=setComment(sender,post1,path);
 
-                } else {
-                    post1.setContent(postNew.getContent());
                 }
             }
-            FilesManager.CreateFileBinary(post1, path + FilesPath.POSTS + "\\" + postNew.getId() + Post_FILE);
+            FilesManager.CreateFileBinary(post1, path + FilesPath.POSTS + "\\" + sender.getPostId() + Post_FILE);
         }
         else{post1.setId(0);}
             return post1;
     }
-    private static  Post setComment(Post postnew, Post post, String path){
+    private static  Post setComment(AttachmentSender sender, Post post, String path){
         Notification notification=new Notification();
         Log log = new Log();
-        if (postnew.getComments().get(0).getShow().equals(Relations.ADD)) {
-            postnew.getComments().get(0).setCommentId((Long.valueOf(Generator.GenerateUnigueId(path + FilesPath.POSTS + "\\" +
+        if (sender.getComment().getShow().equals(Relations.ADD)) {
+            sender.getComment().setCommentId((Long.valueOf(Generator.GenerateUnigueId(path + FilesPath.POSTS + "\\" +
                     post.getId()))));
-            post.addcomment(postnew.getComments().get(0));
-            if(postnew.getComments().get(0).getOwnerID()!=post.getOwnerId()) {
+            post.addcomment(sender.getComment());
+            if(sender.getComment().getOwnerID()!=post.getOwnerId()) {
                 notification.setKeyword(Relations.COMMENT);
-                notification.setIdSender(String.valueOf(postnew.getComments().get(0).getOwnerID()));
+                notification.setIdSender(String.valueOf(sender.getComment().getOwnerID()));
                 log.setKeyword(Relations.COMMENT);
-                log.setSenderId(String.valueOf(postnew.getComments().get(0).getOwnerID()));
+                log.setSenderId(String.valueOf(sender.getComment().getOwnerID()));
                 log.setOwnerId(String.valueOf(post.getOwnerId()));
             }
         } else {
@@ -110,19 +118,19 @@ class PostManger {
             int check = -1;
             do {
                 i++;
-                if (post.getComments().get(i).getCommentId() == postnew.getComments().get(0).getCommentId()) {
+                if (post.getComments().get(i).getCommentId() == sender.getComment().getCommentId()) {
                     check = i;
                 }
 
             }
-            while (i < post.getComments().size() - 1 && post.getComments().get(i).getCommentId() != postnew.getComments().get(0).getCommentId());
+            while (i < post.getComments().size() - 1 && post.getComments().get(i).getCommentId() != sender.getComment().getCommentId());
 
-            if (postnew.getComments().get(0).getShow().equals(Relations.DELETE)) {
+            if (sender.getComment().getShow().equals(Relations.DELETE)) {
                 if (check != -1)
                     post.deletecomment(check);
-            } else if (postnew.getComments().get(0).getShow().equals(Relations.EDIT)) {
+            } else if (sender.getComment().getShow().equals(Relations.EDIT)) {
                 if (check != -1)
-                    post.getComments().get(check).setCommentContent(postnew.getComments().get(0).getCommentContent());
+                    post.getComments().get(check).setCommentContent(sender.getComment().getCommentContent());
             }
         }
             if(!notification.getIdSender().equals("")){
@@ -132,7 +140,7 @@ class PostManger {
             saveLog(log);
             return post;
     }
-    private static  Post setLike(Post postnew, Post post){
+    private static  Post setLike(AttachmentSender sender, Post post){
         Notification notification=new Notification();
         Log log = new Log();
         int i = -1;
@@ -140,36 +148,36 @@ class PostManger {
         if (post.getLike().size() != 0) {
             do {
                 i++;
-                if (post.getLike().get(i).getOwnerID() == postnew.getLike().get(0).getOwnerID()) {
+                if (post.getLike().get(i).getOwnerID() == sender.getLike().getOwnerID()) {
                     check = i;
                 }
 
             }
-            while (i < post.getLike().size()-1 && post.getLike().get(i).getOwnerID() != postnew.getLike().get(0).getOwnerID());
+            while (i < post.getLike().size()-1 && post.getLike().get(i).getOwnerID() != sender.getLike().getOwnerID());
         }
-        if (!postnew.getLike().get(0).getLike().equals(Relations.DELETE)) {
+        if (!sender.getLike().getLike().equals(Relations.DELETE)) {
             if (check == -1) {
-                post.addlike((postnew.getLike().get(0)));
+                post.addlike((sender.getLike()));
 
             } else {
-                post.getLike().get(check).setLike(postnew.getLike().get(0).getLike());
+                post.getLike().get(check).setLike(sender.getLike().getLike());
             }
-            if(postnew.getLike().get(0).getOwnerID()!=post.getOwnerId()) {
-                if ((postnew.getLike().get(0).getLike().equals(Relations.THUMP_UP))) {
+            if(sender.getLike().getOwnerID()!=post.getOwnerId()) {
+                if ((sender.getLike().getLike().equals(Relations.THUMP_UP))) {
                     notification.setKeyword(Relations.THUMP_UP);
                     log.setKeyword(Relations.THUMP_UP);
                 } else {
-                    if ((postnew.getLike().get(0).getLike().equals(Relations.THUMP_DOWN))) {
+                    if ((sender.getLike().getLike().equals(Relations.THUMP_DOWN))) {
                         notification.setKeyword(Relations.THUMP_DOWN);
                         log.setKeyword(Relations.THUMP_DOWN);
                     }
                 }
 
-                notification.setIdSender(String.valueOf(postnew.getLike().get(0).getOwnerID()));
-                log.setSenderId(String.valueOf(postnew.getLike().get(0).getOwnerID()));
+                notification.setIdSender(String.valueOf(sender.getLike().getOwnerID()));
+                log.setSenderId(String.valueOf(sender.getLike().getOwnerID()));
                 log.setOwnerId(String.valueOf(post.getOwnerId()));
             }
-        } else if (postnew.getLike().get(0).getLike().equals(Relations.DELETE)) {
+        } else if (sender.getLike().getLike().equals(Relations.DELETE)) {
             if (check != -1) {
                 post.deletelike(check);
             }
