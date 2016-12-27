@@ -133,11 +133,19 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 connection.sendCommand(command);
                 break;
             case Post.EDITE_POST_USERS:
-                command.setSharableObject(serverLoggedUser.Edit(Post.fromJsonString(command.getObjectStr())).convertToJsonString());
+                command.setSharableObject(serverLoggedUser.edit(Post.fromJsonString(command.getObjectStr())).convertToJsonString());
                 connection.sendCommand(command);
                 break;
             case Post.EDITE_POST_GROUPS:
-                command.setSharableObject(serverLoggedUser.EditGroup(Post.fromJsonString(command.getObjectStr())).convertToJsonString());
+                command.setSharableObject(serverLoggedUser.editGroup(Post.fromJsonString(command.getObjectStr())).convertToJsonString());
+                connection.sendCommand(command);
+                break;
+            case AttachmentSender.ATTACHMENT_USER:
+                command.setSharableObject(serverLoggedUser.attachment(AttachmentSender.fromJsonString(command.getObjectStr())).convertToJsonString());
+                connection.sendCommand(command);
+                break;
+            case AttachmentSender.ATTACHMENT_GROUP:
+                command.setSharableObject(serverLoggedUser.attachmentGroup(AttachmentSender.fromJsonString(command.getObjectStr())).convertToJsonString());
                 connection.sendCommand(command);
                 break;
             case Post.DELETE_POST_GROUPS:
