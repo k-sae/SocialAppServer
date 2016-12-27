@@ -25,14 +25,11 @@ public class ServerLoggedUser extends LoggedUser {
 
     @Override
     public Group createGroup(Group group) {
-//<<<<<<< HEAD
+
         group.setId(Long.parseLong(Generator.GenerateUnigueId(FilesPath.GROUPS)));
         GroupFileManagement.create(group);
         GroupFileManagement.addgrouptomember(group.getAdminId()+"",group.getId()+"");
-//
-//        GroupFileManagement.create(group);
-//        GroupFileManagement.addGroupToMember(group.getAdminId(),group.getId());
-//>>>>>>> develop
+
         return group;
     }
 
@@ -111,12 +108,20 @@ public class ServerLoggedUser extends LoggedUser {
     SocialArrayList loadPostGroup(SocialArrayList posts){
         return PostManger.PickPosts(FilesPath.GROUPS+posts.getExtra(), Long.parseLong(posts.getTarget()));
     }
-    Post Edit(Post post){
-        post=PostManger.saveAttachment(post, FilesPath.USERS+post.getPostPos());
+    Post edit(Post post){
+        post=PostManger.EditPost(post, FilesPath.USERS+post.getPostPos());
         return post;
     }
-    Post EditGroup(Post post){
-        post=PostManger.saveAttachment(post, FilesPath.GROUPS+post.getPostPos());
+    Post editGroup(Post post){
+        post=PostManger.EditPost(post, FilesPath.GROUPS+post.getPostPos());
+        return post;
+    }
+    Post attachment(AttachmentSender sender){
+        Post post=PostManger.saveAttachment(sender, FilesPath.USERS+sender.getOwnerID());
+        return post;
+    }
+    Post attachmentGroup(AttachmentSender sender){
+        Post post=PostManger.saveAttachment(sender, FilesPath.GROUPS+sender.getOwnerID());
         return post;
     }
     Command loadNotification(){
