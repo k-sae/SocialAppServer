@@ -118,18 +118,18 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 break;
             case Post.LOAD_POST_USERS:
                 try {
-                    command.setSharableObject(serverLoggedUser.loadPost((SocialArrayList.convertFromJsonString(command.getObjectStr()))).convertToJsonString());
+                    command.setSharableObject(serverLoggedUser.loadPost(PostSender.fromJsonString(command.getObjectStr())).convertToJsonString());
                 } catch (Exception e) {
                     command.setSharableObject(new SocialArrayList());
                 }
                 connection.sendCommand(command);
                 break;
             case Post.LOAD_POST_GROUPS:
-                command.setSharableObject(serverLoggedUser.loadPostGroup((SocialArrayList.convertFromJsonString(command.getObjectStr()))).convertToJsonString());
+                command.setSharableObject(serverLoggedUser.loadPostGroup( PostSender.fromJsonString(command.getObjectStr())).convertToJsonString());
                 connection.sendCommand(command);
                 break;
             case Post.LOAD_POST_HOME:
-                command.setSharableObject(serverLoggedUser.homePost().convertToJsonString());
+                command.setSharableObject(serverLoggedUser.homePost(PostSender.fromJsonString(command.getObjectStr())).convertToJsonString());
                 connection.sendCommand(command);
                 break;
             case Post.EDITE_POST_USERS:

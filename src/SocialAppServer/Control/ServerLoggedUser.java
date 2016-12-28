@@ -88,7 +88,7 @@ public class ServerLoggedUser extends LoggedUser {
         return  GroupFileManagement.load(Id);
 
     }
-     SocialArrayList homePost(){
+     SocialArrayList homePost(PostSender posts){
         ArrayList <String> ids=getFriends();
         ids.add(getID());
         return PostManger.pickPostHome(ids);
@@ -102,11 +102,11 @@ public class ServerLoggedUser extends LoggedUser {
         PostManger.SavePost(post,FilesPath.USERS+post.getPostPos());
         return  post;
     }
-      SocialArrayList loadPost(SocialArrayList posts){
-       return PostManger.PickPosts(FilesPath.USERS+posts.getExtra(), Long.parseLong(posts.getTarget()));
+      SocialArrayList loadPost(PostSender posts){
+       return PostManger.PickPosts(FilesPath.USERS+posts.getId(), posts.getNumberPost());
     }
-    SocialArrayList loadPostGroup(SocialArrayList posts){
-        return PostManger.PickPosts(FilesPath.GROUPS+posts.getExtra(), Long.parseLong(posts.getTarget()));
+    SocialArrayList loadPostGroup(PostSender posts){
+        return PostManger.PickPosts(FilesPath.GROUPS+posts.getId(), posts.getNumberPost());
     }
     Post edit(Post post){
         post=PostManger.EditPost(post, FilesPath.USERS+post.getPostPos());
