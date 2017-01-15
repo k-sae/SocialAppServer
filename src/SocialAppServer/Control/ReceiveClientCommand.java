@@ -12,6 +12,8 @@ import SocialAppServer.Module.UserPicker;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import static SocialAppServer.Module.UserPicker.pickUserInfo;
+
 
 /**
  * Created by kemo on 25/10/2016.
@@ -80,7 +82,7 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                         serverLoggedUser = new ServerLoggedUser(id);
                     }
                     serverLoggedUser.setLoginInfo(log);
-                    serverLoggedUser.setUserInfo(UserPicker.pickUserInfo(id));
+                    serverLoggedUser.setUserInfo(pickUserInfo(id));
                 }
                 command.setSharableObject(id);
                 connection.sendCommand(command);
@@ -173,7 +175,7 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 break;
             case UserInfo.PICK_INFO:
                 try {
-                    command.setSharableObject(UserPicker.pickUserInfo(command.getObjectStr()));
+                    command.setSharableObject(pickUserInfo(command.getObjectStr()));
                 } catch (Exception e) {
                     command.setSharableObject(UserInfo.getDefaultUserInfo());
                 }
@@ -293,12 +295,29 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             }
             case LoggedUser.REACTIVATE: {
                 command.setSharableObject(Boolean.toString(serverLoggedUser.reactivate()));
-                serverLoggedUser.setUserInfo(UserPicker.pickUserInfo(serverLoggedUser.getID()));
+                serverLoggedUser.setUserInfo(pickUserInfo(serverLoggedUser.getID()));
                 connection.sendCommand(command);
                 break;
             }
             case LoggedUser.SEARCH_WITH_DETAILS:
             {
+                SocialArrayList socialArrayList = new SocialArrayList();
+                for (String s: serverLoggedUser.searchForUsers(command.getObjectStr())
+                     ) {
+                    AppUser appUser = new AppUser();
+                    appUser.setID(s);
+                    try {
+
+                        appUser.setUserInfo( UserPicker.pickUserInfo(s));
+
+                    } catch (Exception e) {
+                        appUser.setUserInfo( UserInfo.getDefaultUserInfo());
+                    }
+                    socialArrayList.getItems().add(appUser.convertToJsonString());
+                }
+
+                command.setSharableObject(socialArrayList.convertToJsonString());
+                connection.sendCommand(command);
             }
         }
     }
