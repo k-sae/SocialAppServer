@@ -6,6 +6,7 @@ import SocialAppGeneral.*;
 import SocialAppServer.Connections.Credentials;
 import SocialAppServer.Connections.EmailContent;
 import SocialAppServer.Module.GroupFileManagement;
+import SocialAppServer.Module.UserFinder;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -171,5 +172,13 @@ public class ServerLoggedUser extends LoggedUser {
         File file  = new File(USERS +"#" + getID());
         //noinspection ResultOfMethodCallIgnored
        return file.renameTo(new File(USERS + getID()));
+    }
+    ArrayList<String> searchForUsers(String s)
+    {
+        UserFinder f = new UserFinder();
+        ArrayList<String> strings;
+        strings = f.Search(s);
+//        strings.addAll(f.SearchInGroups(command.getObjectStr()));
+       return strings;
     }
 }

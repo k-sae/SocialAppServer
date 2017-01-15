@@ -199,12 +199,8 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 break;
             }
             case "Search": {
-                UserFinder f = new UserFinder();
-                //ArrayList <String>a=new ArrayList<String>();
-                ArrayList<String> strings;
-                strings = f.Search(command.getObjectStr());
-                strings.addAll(f.SearchInGroups(command.getObjectStr()));
-                SocialArrayList socialArrayList = new SocialArrayList(strings);
+
+                SocialArrayList socialArrayList = new SocialArrayList( serverLoggedUser.searchForUsers(command.getObjectStr()));
                 command.setSharableObject(socialArrayList.convertToJsonString());
                 connection.sendCommand(command);
                 break;
@@ -295,12 +291,15 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 connection.sendCommand(command);
                 break;
             }
-            case LoggedUser.REACTIVATE:
-
+            case LoggedUser.REACTIVATE: {
                 command.setSharableObject(Boolean.toString(serverLoggedUser.reactivate()));
                 serverLoggedUser.setUserInfo(UserPicker.pickUserInfo(serverLoggedUser.getID()));
                 connection.sendCommand(command);
                 break;
+            }
+            case LoggedUser.SEARCH_WITH_DETAILS:
+            {
+            }
         }
     }
 }
