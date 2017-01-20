@@ -2,6 +2,7 @@ package SocialAppGeneral;
 
 import java.io.DataInputStream;
 import java.io.EOFException;
+import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
 
@@ -37,6 +38,11 @@ public abstract class ReceiveCommand extends Thread {
             //Export to log
             System.out.println("ReadClientData\t" + e.getMessage());
             e.printStackTrace();
+            try {
+                remote.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
     public abstract void Analyze(Command command);

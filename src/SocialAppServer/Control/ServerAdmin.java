@@ -19,8 +19,8 @@ import java.util.Properties;
 /**
  * Created by mosta on 12-Dec-16.
  */
-class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
-    ServerAdmin(String id) {
+public class ServerAdmin extends ServerLoggedUser implements FilesPath , Admin {
+   public ServerAdmin(String id) {
         super(id);
     }
     static Boolean adminChecker(String ID){
