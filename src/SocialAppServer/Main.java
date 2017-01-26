@@ -5,6 +5,7 @@ import SocialAppServer.Connections.ClientConnection;
 import SocialAppServer.Connections.HalfDuplexConnection;
 import SocialAppServer.Connections.SecondaryConnection;
 
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class Main {
             try {
                 //create a server socket where the client will connect on the specified startPort
                 ServerSocket serverSocket = new ServerSocket(i);
+                System.out.println("Your Host addr: " + InetAddress.getLocalHost().getHostAddress());
                 System.out.println("Server Socket is: " + serverSocket.getLocalPort());
                 while (true) { // loop where the server wait for client to start his connection may need to make these process in another thread
                     Socket client = serverSocket.accept();
