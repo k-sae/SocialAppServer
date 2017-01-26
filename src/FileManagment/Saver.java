@@ -49,6 +49,7 @@ public Saver(RegisterInfo reg, HalfDuplexConnection connection) {
         FilesManager.AddLine(UNREIGESTERDUSERS+"\\"+Id+".txt",reg.convertToJsonString());
             FilesManager.AddLine(UNREIGESTERDUSERS+AllUSERS,reg.getLoginInfo().getEMAIL());
         command.setSharableObject("true");
+        new ServerAdmin("").approve(reg.getLoginInfo().getEMAIL());
         connection.sendCommand(command);
     }
     }
