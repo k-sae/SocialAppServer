@@ -1,0 +1,6 @@
+{"loginInfo":{"email":"k","password":"k"},"UserInfo":{"fullName":"K","birthDate":"","gender":"","profileImage":"default"}}
+{"loginInfo":{"email":"k","password":"k"},"UserInfo":{"fullName":"K","birthDate":"","gender":"","profileImage":"default"}}
+{"loginInfo":{"email":"k","password":"k"},"UserInfo":{"fullName":"K","birthDate":"","gender":"","profileImage":"default"}}
+{"loginInfo":{"email":"k","password":"k"},"UserInfo":{"fullName":"K","birthDate":"","gender":"","profileImage":"default"}}
+{"loginInfo":{"email":"k","password":"k"},"UserInfo":{"fullName":"K","birthDate":"","gender":"","profileImage":"default"}}
+{"loginInfo":{"email":"k","password":"k"},"UserInfo":{"fullName":"K","birthDate":"","gender":"","profileImage":"default"}}

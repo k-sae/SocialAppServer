@@ -15,9 +15,15 @@ import java.util.ArrayList;
  */
 public class FilesManager {
 
-    public static File CreateFolder(String FolderName) {
-        File Folder = new File(FolderName);
-        return Folder.mkdir() ? Folder : null;
+    public static void CreateFolder(String FolderName) {
+        String[] nestedFolders = FolderName.split("\\\\");
+        String nextFolderLocation = "";
+        for (int i = 0; i < nestedFolders.length; i++) {
+            File Folder = new File(nextFolderLocation + nestedFolders[i]);
+            //noinspection ResultOfMethodCallIgnored
+            Folder.mkdir();
+            nextFolderLocation += nestedFolders[i] + "/";
+        }
     }
 
     public static File CreateFolder(String ExistedFolderName, String NewFolderName) {
@@ -466,6 +472,9 @@ public class FilesManager {
         File file =new File (path);
         deleteFolder(file);
     }
-
+    public static String toLinuxPath(String path)
+    {
+       return path.replace("\\","/" );
+    }
 }
 
