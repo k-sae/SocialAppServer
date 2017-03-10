@@ -32,16 +32,20 @@ public class FilesManager {
     }
 
     public static File CreateFile(String FileName) {
+        FileName = toLinuxPath(FileName);
         File file = new File(FileName);
         return file;
     }
 
     public static File CreateFile(String FolderName, String FileName) {
+        FileName = toLinuxPath(FileName);
+        FolderName = toLinuxPath(FolderName);
         File file = new File(FolderName, FileName);
         return file;
     }
 
     public static BufferedWriter OpenToWrite(String FileName) {
+        FileName = toLinuxPath(FileName);
         try {
             FileWriter fileWriter = new FileWriter(FileName);
             BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
@@ -64,6 +68,8 @@ public class FilesManager {
     }
 
     public static BufferedWriter OpenToWrite(String FolderName, String FileName) {
+        FileName = toLinuxPath(FileName);
+        FolderName = toLinuxPath(FolderName);
         try {
             File file = new File(FolderName, FileName);
             FileWriter fileWriter = new FileWriter(file);
@@ -98,6 +104,7 @@ public class FilesManager {
 
     //belal
     public static Boolean AddLine(String FileName, String text) {
+        FileName = toLinuxPath(FileName);
         try {
             BufferedWriter WT = new BufferedWriter(new FileWriter(FileName,true));
             WT.write(text);
@@ -110,6 +117,7 @@ public class FilesManager {
        }
     }
     public static Boolean AddLineWithoutAppend(String FileName, String text) {
+        FileName = toLinuxPath(FileName);
         try {
             BufferedWriter WT = new BufferedWriter(new FileWriter(FileName));
             WT.write(text);
@@ -122,6 +130,7 @@ public class FilesManager {
         }
     }
     public static Boolean AddLineWithoutAppend(ArrayList<String> a, String FileName) {
+        FileName = toLinuxPath(FileName);
         try {
             BufferedWriter WT = new BufferedWriter(new FileWriter(FileName));
             for (String S:a){
@@ -136,6 +145,7 @@ public class FilesManager {
         }
     }
     public static boolean StringFinder(String FileName, String token) {
+        FileName = toLinuxPath(FileName);
         try {
             BufferedReader RL = new BufferedReader(new FileReader(FileName));
             String line;
@@ -152,6 +162,7 @@ public class FilesManager {
         }
     }
     public static String ReadLine(String FileName, int lineNum) {
+        FileName = toLinuxPath(FileName);
         try {
             BufferedReader RL = new BufferedReader(new FileReader(FileName));
             String line;
@@ -171,6 +182,7 @@ public class FilesManager {
         }
     }
     public static Boolean searcher(String FileName,String id) {
+        FileName = toLinuxPath(FileName);
         try {
             BufferedReader RL = new BufferedReader(new FileReader(FileName));
             String line;
@@ -189,6 +201,7 @@ public class FilesManager {
     }
     //Change name later
     public static boolean ReadBanned(String FileName, String token) {
+        FileName = toLinuxPath(FileName);
         try {
             BufferedReader RL = new BufferedReader(new FileReader(FileName));
             String line ;
@@ -217,6 +230,7 @@ public class FilesManager {
 
     public static synchronized void RemoveLine(String FilePath,String token){
         BufferedReader RL = null;
+        FilePath = toLinuxPath(FilePath);
       try {
        RL=new BufferedReader(new FileReader(FilePath));
       String Line;
@@ -237,6 +251,7 @@ public class FilesManager {
       }
     }
     public static ArrayList<String> ReadIntoArrayList(String FilePath){
+        FilePath = toLinuxPath(FilePath);
         ArrayList <String> a =new ArrayList<String>();
         try {
             BufferedReader RL=new BufferedReader(new FileReader(FilePath));
@@ -251,6 +266,7 @@ public class FilesManager {
         return a;
     }
     public static ArrayList<String> ReadArrayList(String FilePath){
+        FilePath = toLinuxPath(FilePath);
         ArrayList <String> a =new ArrayList<String>();
         try {
             BufferedReader RL=new BufferedReader(new FileReader(FilePath));
@@ -264,6 +280,7 @@ public class FilesManager {
         return a;
     }
     public static ArrayList<String > FoldderSearcher(String FilePath){
+        FilePath = toLinuxPath(FilePath);
         ArrayList<String> a=new ArrayList<>();
         File folder = new File(FilePath);
         File[] listOfFiles = folder.listFiles();
@@ -273,6 +290,7 @@ public class FilesManager {
         return a;
     }
     public static synchronized void Removefile(String FilePath,String info){
+        FilePath = toLinuxPath(FilePath);
         try {
 
             File inputFile = new File(FilePath);
@@ -313,11 +331,14 @@ public class FilesManager {
     }
 
     public static boolean FileIsExist(String FolderName, String FileName) {
+        FolderName = toLinuxPath(FolderName);
+        FileName = toLinuxPath(FileName);
         File file = new File(FolderName, FileName);
         return file.exists();
     }
 
     public static boolean WriteOnTop(String FileName, String Line) {
+        FileName = toLinuxPath(FileName);
         try {
             // el function el gahza bel list
 
@@ -351,6 +372,7 @@ public class FilesManager {
     }
 
     public static boolean WriteOnTop(String FileName, String Line, int lineNum) {
+        FileName = toLinuxPath(FileName);
         try {
             BufferedReader BR = new BufferedReader(new FileReader(FileName));
 
@@ -382,10 +404,13 @@ public class FilesManager {
     }
 
     public static boolean FileIsExist(String FileName) {
+        FileName = toLinuxPath(FileName);
         File file = new File(FileName);
         return file.exists();
     }
     public static void CreateFileBinary(Object object,String path){
+        CreateFolder(path.substring(0,path.lastIndexOf("\\")));
+        path = toLinuxPath(path);
         try{
 
             FileOutputStream fos = new FileOutputStream(path);
@@ -405,6 +430,7 @@ public class FilesManager {
     }
     public  static  Object ReadFromBinaryFile(String path){
         Object o = null;
+        path = toLinuxPath(path);
         try{
             FileInputStream foss=new FileInputStream(path);
             ObjectInputStream ooss=new ObjectInputStream(foss);
@@ -420,6 +446,7 @@ public class FilesManager {
     }
     public static ArrayList<String> readAllLines(String file) {
         ArrayList<String> strings = new ArrayList<>();
+        file = toLinuxPath(file);
         BufferedReader bufferedReader = null;
         try {
 
@@ -438,7 +465,6 @@ public class FilesManager {
         return strings;
     }
     private   static  void deleteFolder(File file){
-
         if(file.isDirectory()){
             //directory is empty, then delete it
             if(file.list().length==0){
@@ -450,6 +476,7 @@ public class FilesManager {
 
                 for (String temp : files) {
                     //construct the file structure
+                    temp = toLinuxPath(temp);
                     File fileDelete = new File(file, temp);
 
                     //recursive delete
@@ -469,6 +496,7 @@ public class FilesManager {
         }
     }
     public static void delete(String path){
+        path = toLinuxPath(path);
         File file =new File (path);
         deleteFolder(file);
     }
