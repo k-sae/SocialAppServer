@@ -42,8 +42,8 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
             case RegisterInfo.KEYWORD:
                 // h3ml constrain el fe saver 7alyin
                 RegisterInfo reg = RegisterInfo.fromJsonString(command.getObjectStr());
-                reg.getUserInfo().setProfileImage("default");
-                new Saver(reg,connection);
+                validator v =new validator(reg,connection);
+               reg.getUserInfo().setProfileImage("default");
                 //for while approve any one with no need for admin
 //                if (reg.getUserInfo().getAdminShip()) {
 //                    if (ServerAdmin.adminCheck()) {
