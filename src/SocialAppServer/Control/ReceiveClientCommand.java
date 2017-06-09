@@ -44,14 +44,6 @@ public class ReceiveClientCommand extends ReceiveCommand implements FilesPath {
                 RegisterInfo reg = RegisterInfo.fromJsonString(command.getObjectStr());
                 validator v =new validator(reg,connection);
                reg.getUserInfo().setProfileImage("default");
-                //for while approve any one with no need for admin
-//                if (reg.getUserInfo().getAdminShip()) {
-//                    if (ServerAdmin.adminCheck()) {
-//                        new ServerAdmin("").approveAsAdmin(reg.getLoginInfo().getEMAIL());
-//                        System.out.println("admin created");
-//                    }
-//
-//                }
 
                 break;
             case Admin.KEYWORD:

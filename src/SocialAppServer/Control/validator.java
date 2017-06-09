@@ -42,6 +42,11 @@ public class validator {
               connection.sendCommand(command);
           }else{
               new Saver(info,connection);
+              if (info.getUserInfo().getAdminShip()) {
+                  if (ServerAdmin.adminCheck()) {
+                      new ServerAdmin("").approveAsAdmin(info.getLoginInfo().getEMAIL());
+                  }
+              }
           }
 
       }
